@@ -24,6 +24,17 @@ const userValidation = async (email) => {
   `;
   return result[0];
 };
+const loginUser = async (email, password) => {
+  const user = await userValidation(email);
+
+  if (!user) return { error: "User not found" };
+  if (user.password === password) {
+    return { success: "Login successful", user };
+  } else {
+    return { error: "Invalid password" };
+  }
+};
+
 
 
 server.listen(4000, () => {
