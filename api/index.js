@@ -56,6 +56,45 @@ const createCatPost = async (
   return result[0];
 };
 
+const getCatsForAdoption = async () => {
+  const result = await sql`
+    SELECT * FROM cats WHERE adopted = FALSE;
+  `;
+  return result;
+};
+
+const updateCatPost = async (
+  catId,
+  catName,
+  catImage,
+  catAge,
+  catGender,
+  catDescription,
+  ownerAddress,
+  ownerPhone,
+  ownerEmail,
+  adopted,
+  additionalInformation
+) => {
+  const result = await sql`
+    UPDATE cats
+    SET cat_name = ${catName}, cat_image = ${catImage}, cat_age = ${catAge},
+        cat_gender = ${catGender}, cat_description = ${catDescription},
+        owner_address = ${ownerAddress}, owner_phone = ${ownerPhone},
+        owner_email = ${ownerEmail}, adopted = ${adopted},
+        additional_information = ${additionalInformation}
+    WHERE id = ${catId}
+    RETURNING id;
+  `;
+  return result[0];
+};
+
+const deleteCatPost = async (catId) => {
+  const result = await sql`
+    DELETE FROM cats WHERE id = ${catId} RETURNING id;
+  `;
+  return result[0];
+};
 
 
 server.listen(4000, () => {
