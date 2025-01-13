@@ -35,6 +35,27 @@ const loginUser = async (email, password) => {
   }
 };
 
+const createCatPost = async (
+  catOwnerId,
+  catName,
+  catImage,
+  catAge,
+  catGender,
+  catDescription,
+  ownerAddress,
+  ownerPhone,
+  ownerEmail,
+  adopted,
+  additionalInformation
+) => {
+  const result = await sql`
+    INSERT INTO cats (cat_owner_id, cat_name, cat_image, cat_age, cat_gender, cat_description, owner_address, owner_phone, owner_email, adopted, additional_information)
+    VALUES (${catOwnerId}, ${catName}, ${catImage}, ${catAge}, ${catGender}, ${catDescription}, ${ownerAddress}, ${ownerPhone}, ${ownerEmail}, ${adopted}, ${additionalInformation})
+    RETURNING id;
+  `;
+  return result[0];
+};
+
 
 
 server.listen(4000, () => {
