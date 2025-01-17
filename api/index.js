@@ -1,17 +1,28 @@
-require("dotenv").config();
-const http = require("http");
-const { neon } = require("@neondatabase/serverless");
+import dotenv from "dotenv";
+import { createServer } from "http";
+import { neon } from "@neondatabase/serverless";
+
+dotenv.config();
+
 const sql = neon(process.env.DATABASE_URL);
 
 // Create User
-const createUser = async (email, password, profilePicture) => {
-  const result = await sql`
-    INSERT INTO users (email, password, profile_picture)
-    VALUES (${email}, ${password}, ${profilePicture})
-    RETURNING id, email, profile_picture;
-  `;
-  return result[0];
+const createUser = async (user_name, email, password, profilePicture) => {
+  try {
+    const result = await sql`
+      INSERT INTO public.users (name, email, password, profile_picture)
+      VALUES (${user_name}, ${email}, ${password}, ${profilePicture})
+      RETURNING id, name, email, profile_picture;
+    `;
+    return result[0];
+  } catch (error) {
+    console.error("Error creating user:", error);
+    throw error;
+  }
 };
+
+const dbCheck = await sql`SELECT current_database();`;
+console.log("Connected to database:", dbCheck[0].current_database);
 
 // Login validation
 const userValidation = async (email) => {
@@ -44,6 +55,7 @@ const createCatPost = async (
   catAge,
   catGender,
   catDescription,
+  ownerName,
   ownerAddress,
   ownerPhone,
   ownerEmail,
@@ -51,8 +63,8 @@ const createCatPost = async (
   additionalInformation
 ) => {
   const result = await sql`
-    INSERT INTO cats (cat_owner_id, cat_name, cat_image, cat_age, cat_gender, cat_description, owner_address, owner_phone, owner_email, adopted, additional_information)
-    VALUES (${catOwnerId}, ${catName}, ${catImage}, ${catAge}, ${catGender}, ${catDescription}, ${ownerAddress}, ${ownerPhone}, ${ownerEmail}, ${adopted}, ${additionalInformation})
+    INSERT INTO cats (cat_owner_id, cat_name, cat_image, cat_age, cat_gender, cat_description, owner_name, owner_address, owner_phone, owner_email, adopted, additional_information)
+    VALUES (${catOwnerId}, ${catName}, ${catImage}, ${catAge}, ${catGender}, ${catDescription}, ${ownerName}, ${ownerAddress}, ${ownerPhone}, ${ownerEmail}, ${adopted}, ${additionalInformation})
     RETURNING id;
   `;
   return result[0];
@@ -109,6 +121,12 @@ const deleteCatPost = async (catId) => {
 const requestHandler = async (req, res) => {
   res.setHeader("Content-Type", "application/json");
 
+  if (req.method === "GET" && req.url === "/") {
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/plain");
+    res.end("Server Running");
+  }
+
   // Register User
   if (req.method === "POST" && req.url === "/register") {
     let body = "";
@@ -116,9 +134,14 @@ const requestHandler = async (req, res) => {
       body += chunk;
     });
     req.on("end", async () => {
-      const { email, password, profilePicture } = JSON.parse(body);
+      const { user_name, email, password, profilePicture } = JSON.parse(body);
       try {
-        const user = await createUser(email, password, profilePicture);
+        const user = await createUser(
+          user_name,
+          email,
+          password,
+          profilePicture
+        );
         res.statusCode = 201;
         res.end(JSON.stringify({ message: "User created", user }));
       } catch (error) {
@@ -172,6 +195,7 @@ const requestHandler = async (req, res) => {
         catAge,
         catGender,
         catDescription,
+        ownerName,
         ownerAddress,
         ownerPhone,
         ownerEmail,
@@ -185,6 +209,7 @@ const requestHandler = async (req, res) => {
         catAge,
         catGender,
         catDescription,
+        ownerName,
         ownerAddress,
         ownerPhone,
         ownerEmail,
@@ -268,6 +293,6 @@ const requestHandler = async (req, res) => {
   }
 };
 
-http.createServer(requestHandler).listen(4000, () => {
+createServer(requestHandler).listen(4000, () => {
   console.log("Server running at http://localhost:4000");
 });
