@@ -10,11 +10,11 @@
     <nav class="navbar">
       <a href="#" class="logo">Nekodop</a>
       <ul class="nav-links">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#">Explore</a></li>
+        <li><<a href="/" onclick="navigateTo(event, '/')">Home</a></li>
+        <li><a href="/explore" onclick="navigateTo(event, '/explore')">Explore</a></li>
         <li><a href="#">Service</a></li>
         <li><a href="#">Gallery</a></li>
-        <li><a href="#">Contact us</a></li>
+        <li><a href="/contact" onclick="navigateTo(event, '/contact')">Contact</a></li>
         <li class="login-phn">
           <a href="#"><button class="login-btn">Login</button></a>
         </li>
@@ -26,7 +26,7 @@
         <span></span>
       </button>
     </nav>
-
+     <div id="app">
     <main class="hero container">
       <div class="hero-content">
         <h1 class="hero-text">Looking for a <span>good</span> time?</h1>
@@ -69,6 +69,8 @@
         />
       </div>
     </main>
+    </div>
   </body>
   <script src="/scripts/reponsive.js"></script>
+  <script src="router.js"></script>
 </html>
