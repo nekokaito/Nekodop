@@ -1,37 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nekodop</title>
-    <link rel="stylesheet" href="/styles/index.css" />
-  </head>
-  <body>
-    <nav class="navbar">
-      <a href="#" class="logo">Nekodop</a>
-      <ul class="nav-links">
-        <li><a href="/" onclick="navigateTo(event, '/')">Home</a></li>
-        <li>
-          <a href="/explore" onclick="navigateTo(event, '/explore')">Explore</a>
-        </li>
-        <li><a href="#">Service</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li>
-          <a href="/contact" onclick="navigateTo(event, '/contact')">Contact</a>
-        </li>
-        <li class="login-phn">
-          <a href="#"><button class="login-btn">Login</button></a>
-        </li>
-      </ul>
-      <button class="login-btn login-desktop">Login</button>
-      <button class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </nav>
-    <div id="app">
-       <main class="hero container">
+export default function home() {
+   
+    return `<main class="hero container">
            <div class="hero-content">
              <h1 class="hero-text">
                Looking for a <span>good</span> time?
@@ -73,9 +42,5 @@
                class="cat2-image"
              />
            </div>
-         </main>
-    </div>
-  </body>
-  <script src="/scripts/reponsive.js"></script>
-  <script src="router.js"></script>
-</html>
+         </main>`;
+}
