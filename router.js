@@ -11,13 +11,13 @@ const routes = {
   },
 };
 
-function navigateTo(event, path) {
+const navigateTo = (event, path) => {
   event.preventDefault();
   window.history.pushState({}, "", path);
   updateContent();
 }
 
-async function updateContent() {
+const updateContent = async () => {
   const path = window.location.pathname;
   const route = routes[path] || routes["/"];
 
@@ -37,5 +37,6 @@ async function updateContent() {
 }
 
 window.addEventListener("popstate", updateContent);
+
 
 updateContent();

@@ -164,6 +164,7 @@ body {
   padding: 0.8rem 1.5rem;
   border-radius: 2rem;
   text-decoration: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
