@@ -6,6 +6,17 @@
      <title>Nekodop</title>
 </head>
 <body>
-     
+     <nav>
+          <a href="/" onclick="navigateTo(event, '/')">Home</a>
+          <a href="/explore" onclick="navigateTo(event, '/explore')">Explore</a>
+          <a href="/about" onclick="navigateTo(event, '/about')">About</a>
+          <a href="/contact" onclick="navigateTo(event, '/contact')">Contact</a>
+      </nav>
+      
+      <div id="app">
+          <!-- Dynamic Content will be loaded here -->
+      </div>
+  
+      <script src="router.js"></script>
 </body>
 </html>
