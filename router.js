@@ -5,17 +5,14 @@ const routes = {
     title: "About",
     content: "<h1>About Us</h1><p>We build amazing things.</p>",
   },
-  "/contact": {
-    title: "Contact",
-    content: "<h1>Contact Us</h1><p>Email: contact@example.com</p>",
-  },
+  "/contact": { title: "Contact", module: "pages/contact.js" },
 };
 
 const navigateTo = (event, path) => {
   event.preventDefault();
   window.history.pushState({}, "", path);
   updateContent();
-}
+};
 
 const updateContent = async () => {
   const path = window.location.pathname;
@@ -34,9 +31,8 @@ const updateContent = async () => {
   }
 
   document.title = route.title;
-}
+};
 
 window.addEventListener("popstate", updateContent);
-
 
 updateContent();
