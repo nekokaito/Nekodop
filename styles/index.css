@@ -19,6 +19,57 @@ body {
   padding-left: 1rem;
 }
 
+/* Explore Page */
+/* Base styles for the card container */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px; 
+  padding: 20px;
+}
+/* Basic Card Styles */
+.card {
+  border: 1px solid #c4b5fd;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  overflow: hidden;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.card-text{
+  margin-top: 16px;
+  display: grid;
+  gap: 4px;
+}
+/* Hover Effect */
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  background-color: #b8aaf7;
+}
+
+/* Card Header */
+/* .card-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+} */
+
+/* Card Details */
+/* .card-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+} */
+
 @media (min-width: 640px) {
   .container {
     max-width: 640px;
@@ -28,6 +79,9 @@ body {
 @media (min-width: 768px) {
   .container {
     max-width: 768px;
+  }
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -41,11 +95,17 @@ body {
   .container {
     max-width: 1280px;
   }
+  .card-container {
+    grid-template-columns: repeat(3, 1fr); 
+  }
 }
 
 @media (min-width: 1536px) {
   .container {
     max-width: 1536px;
+  }
+  .card-container {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
