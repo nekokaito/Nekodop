@@ -4,7 +4,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: "DynaPuff", serif;
+  font-optical-sizing: auto;
 }
 
 body {
@@ -285,5 +286,134 @@ body {
 
   .cta-buttons {
     justify-content: center;
+  }
+}
+
+/* forms for contact */
+
+.contact-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  margin-top: 50px;
+  background-color: #fff;
+  border: 1px solid #e6e1ed;
+  border-radius: 20px;
+}
+
+.form-section {
+  flex: 1;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+.content-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border-radius: 0px 20px 20px 0px;
+  background-color: #b5e4d4;
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.logo-text {
+  font-size: 34px;
+  color: #333;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #666;
+  font-size: 14px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #e6e1ed;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+button {
+  background-color: #9c8aa5;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #8a7991;
+}
+
+.illustration {
+  text-align: center;
+  position: relative;
+}
+
+.paper-plane-img {
+  width: 400px;
+
+  position: relative;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Add responsive styles */
+
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .content-section {
+    display: none;
+  }
+
+  .form-row {
+    flex-direction: column;
   }
 }
