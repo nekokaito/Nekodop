@@ -6,6 +6,7 @@ const routes = {
     content: "<h1>About Us</h1><p>We build amazing things.</p>",
   },
   "/contact": { title: "Contact", module: "pages/contact.js" },
+  "/login": { title: "Login", module: "pages/login.js" },
 };
 
 const navigateTo = (event, path) => {

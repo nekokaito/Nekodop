@@ -24,7 +24,7 @@ body {
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px; 
+  gap: 20px;
   padding: 20px;
 }
 /* Basic Card Styles */
@@ -35,7 +35,8 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
   overflow: hidden;
 }
 
@@ -45,7 +46,7 @@ body {
   border-radius: 8px;
 }
 
-.card-text{
+.card-text {
   margin-top: 16px;
   display: grid;
   gap: 4px;
@@ -96,7 +97,7 @@ body {
     max-width: 1280px;
   }
   .card-container {
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -351,7 +352,8 @@ body {
 
 /* forms for contact */
 
-.contact-container {
+.contact-container,
+.login-container {
   display: flex;
   width: 100%;
   max-width: 1200px;
@@ -465,7 +467,8 @@ button:hover {
 /* Add responsive styles */
 
 @media (max-width: 768px) {
-  .contact-container {
+  .contact-container,
+  .login-container {
     flex-direction: column;
   }
 
