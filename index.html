@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nekodop</title>
     <link rel="stylesheet" href="/styles/index.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,23 +11,19 @@
       href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap"
       rel="stylesheet"
     />
-  </head>
-  <body>
+</head>
+<body>
     <nav class="navbar">
       <a href="#" class="logo">Nekodop</a>
       <ul class="nav-links">
-        <li><a href="/" onclick="navigateTo(event, '/')">Home</a></li>
-        <li>
-          <a href="/explore" onclick="navigateTo(event, '/explore')">Explore</a>
-        </li>
-        <li><a href="#">Service</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li>
-          <a href="/contact" onclick="navigateTo(event, '/contact')">Contact</a>
-        </li>
-        <li class="login-phn">
-          <a href="#"><button class="login-btn">Login</button></a>
-        </li>
+          <li><a href="#/" data-route="home">Home</a></li>
+          <li><a href="#/explore" data-route="explore">Explore</a></li>
+          <li><a href="#/">Service</a></li>
+          <li><a href="#/">Gallery</a></li>
+          <li><a href="#/contact" data-route="contact">Contact</a></li>
+          <li  class="login-phn">
+            <a href="#"><button class="login-btn">Login</button></a>
+          </li>
       </ul>
       <button class="login-btn login-desktop">Login</button>
       <button class="hamburger">
@@ -36,8 +32,10 @@
         <span></span>
       </button>
     </nav>
-    <div id="app" class="container"></div>
-  </body>
-  <script src="/scripts/reponsive.js"></script>
-  <script src="router.js"></script>
+
+    <div id="app" class="container">Loading...</div>
+
+    <script src="router.js"></script>
+</body>
+<script src="/scripts/reponsive.js"></script>
 </html>

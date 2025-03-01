@@ -14,7 +14,7 @@ export default async function Explore() {
     cats.forEach((cat) => {
       content += `
           <div class="card">
-              <img src="${cat.cat_image} alt="${cat.cat_name}" />
+              <img src="${cat.cat_image} alt="${cat.cat_name}" class="card-image" />
               <div class="card-text">
                 <h2>${cat.cat_name}</h2>
                 <p>Age: ${cat.cat_age}</p>

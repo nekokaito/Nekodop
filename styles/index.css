@@ -37,11 +37,14 @@ body {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   overflow: hidden;
+  /* transition: 0.5s; */
+  /* filter: grayscale(100%); */
 }
 
-.card img {
+.card-image {
   max-width: 100%;
-  height: auto;
+  width: 350px;
+  height: 350px;
   border-radius: 8px;
 }
 
@@ -55,6 +58,8 @@ body {
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   background-color: #b8aaf7;
+  /* transition: 0.5s; */
+  /* filter: grayscale(0); */
 }
 
 /* Card Header */
