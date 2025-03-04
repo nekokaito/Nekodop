@@ -20,7 +20,10 @@
   </head>
   <body>
     <nav class="navbar">
-      <a href="#" class="logo">Nekodop</a>
+      <div class="logo-div">
+        <a href="#" class="logo">Nekodop</a>
+      </div>
+
       <ul class="nav-links">
         <li><a href="/" onclick="navigateTo(event, '/')">Home</a></li>
         <li>
@@ -37,9 +40,12 @@
           >
         </li>
       </ul>
-      <a href="/pages/login.html">
-        <button class="login-btn login-desktop">Login</button>
-      </a>
+
+      <div class="user-nav">
+        <a href="/pages/login.html">
+          <button class="login-btn login-desktop">Login</button>
+        </a>
+      </div>
       <button class="hamburger">
         <span></span>
         <span></span>
@@ -50,4 +56,5 @@
   </body>
   <script src="/scripts/reponsive.js"></script>
   <script src="router.js"></script>
+  <script src="/scripts/user.js"></script>
 </html>

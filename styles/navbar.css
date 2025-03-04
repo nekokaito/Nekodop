@@ -1,10 +1,11 @@
- .navbar {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   position: relative;
-  margin-top: 1rem;
+  background-color: #c3b5fdb9;
 }
 
 .logo {
@@ -12,6 +13,12 @@
   font-weight: bold;
   color: #000;
   text-decoration: none;
+}
+.logo-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 .nav-links {
@@ -114,4 +121,24 @@
   .cta-buttons {
     justify-content: center;
   }
+}
+
+.user-icon {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.user-icon img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #fff;
+  transition: transform 0.2s ease-in-out;
+}
+
+.user-icon img:hover {
+  transform: scale(1.1);
 }
