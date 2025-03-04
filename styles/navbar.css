@@ -5,7 +5,7 @@
   padding-left: 1rem;
   padding-right: 1rem;
   position: relative;
-  background-color: #c3b5fdb9;
+  background-color: #c3b5fd57;
 }
 
 .logo {
@@ -141,4 +141,70 @@
 
 .user-icon img:hover {
   transform: scale(1.1);
+}
+
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.user-icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  transition: transform 0.2s ease-in-out;
+}
+
+.profile-img:hover {
+  transform: scale(1.1);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  width: 150px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+  z-index: 100;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 10px;
+  text-align: center;
+}
+
+.dropdown-menu li a,
+.dropdown-menu li button {
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.dropdown-menu li button:hover,
+.dropdown-menu li a:hover {
+  background: #f1f1f1;
 }

@@ -9,6 +9,7 @@ const login = async (email, password) => {
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
         console.log("login successful", data.user);
+        window.location.href = "/";
       } else {
         console.error("login failed", data.error);
       }
