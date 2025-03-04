@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/navbar.css" />
+    <link rel="stylesheet" href="/styles/hero.css" />
+
+    <link rel="stylesheet" href="/styles/footer.css" />
+    <link rel="stylesheet" href="/styles/form.css" />
+    <link rel="stylesheet" href="/styles/card.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="contact-container">
+      <section class="form-section">
+        <div class="logo">
+          <span class="logo-text">Login</span>
+        </div>
+
+        <form id="login-form">
+          <div class="form-row"></div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required />
+          </div>
+          <button type="submit">Submit</button>
+          <span class="form-footer">
+            <p>
+              Don't You have an account?
+              <a href="../pages/sign-up.html">Register</a>
+            </p>
+          </span>
+        </form>
+      </section>
+
+      <section class="content-section">
+        <div class="content">
+          <div class="illustration">
+            <div class="paper-plane-wrapper">
+              <div class="plane">
+                <div class="trail">
+                  <img
+                    class="paper-plane paper-plane-img"
+                    src="/images/paperfly.png"
+                    alt="Paper Plane"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+
+  <script src="../scripts/login.js"></script>
+</html>
