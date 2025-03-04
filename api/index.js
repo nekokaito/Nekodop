@@ -243,6 +243,32 @@ const requestHandler = async (req, res) => {
     res.end(JSON.stringify({ cats }));
   }
 
+  // Get a specific cat by ID
+  const getCatById = async (catId) => {
+    const result = await sql`
+    SELECT * FROM cats WHERE id = ${catId};
+  `;
+    return result[0];
+  };
+
+  // Get Cat by ID
+  if (req.method === "GET" && req.url.startsWith("/get-cat/")) {
+    const catId = req.url.split("/")[2]; // Extract catId from URL
+    try {
+      const cat = await getCatById(catId);
+      if (!cat) {
+        res.statusCode = 404;
+        res.end(JSON.stringify({ message: "Cat not found" }));
+      } else {
+        res.statusCode = 200;
+        res.end(JSON.stringify({ cat }));
+      }
+    } catch (error) {
+      res.statusCode = 500;
+      res.end(JSON.stringify({ error: "Error fetching cat details" }));
+    }
+  }
+
   // Get Cats by Cat Owner ID
   if (req.method === "GET" && req.url.startsWith("/get-cats/")) {
     const catOwnerId = req.url.split("/")[2]; // Extract catOwnerId from the URL
