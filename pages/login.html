@@ -4,93 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login Page</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #f4f4f4;
-      }
-      .login-container {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        width: 300px;
-        text-align: center;
-      }
-      label,
-      input {
-        display: block;
-        width: 100%;
-        margin-top: 10px;
-      }
-      input {
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-      button {
-        margin-top: 15px;
-        padding: 10px;
-        width: 100%;
-        border: none;
-        background: #007bff;
-        color: white;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-      button:hover {
-        background: #0056b3;
-      }
-    </style>
+    <link rel="stylesheet" href="/styles/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <div class="login-container">
-      <h2>Login</h2>
-      <form id="login-form">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" required />
-        <label for="password">Password</label>
-        <input type="password" id="password" required />
-        <button type="submit">Submit</button>
-      </form>
+    <div class="contact-container">
+      <section class="form-section">
+        <div class="logo">
+          <span class="logo-text">Login</span>
+        </div>
+
+        <form id="login-form">
+          <div class="form-row"></div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+
+      <section class="content-section">
+        <div class="content">
+          <div class="illustration">
+            <div class="paper-plane-wrapper">
+              <div class="plane">
+                <div class="trail">
+                  <img
+                    class="paper-plane paper-plane-img"
+                    src="/images/paperfly.png"
+                    alt="Paper Plane"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-
-    <script>
-      async function login(email, password) {
-        try {
-          const response = await fetch(
-            "https://nekodop-server.vercel.app/login",
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email, password }),
-            }
-          );
-          const data = await response.json();
-          if (data.user) {
-            localStorage.setItem("user", JSON.stringify(data.user));
-            console.log("Login successful", data.user);
-          } else {
-            console.error("Login failed", data.error);
-          }
-        } catch (err) {
-          console.error("Error:", err);
-        }
-      }
-
-      document
-        .getElementById("login-form")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          const email = document.getElementById("email").value;
-          const password = document.getElementById("password").value;
-          login(email, password);
-        });
-    </script>
   </body>
+
+  <script src="../scripts/login.js"></script>
 </html>
