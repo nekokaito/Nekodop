@@ -25,14 +25,14 @@
       </div>
 
       <ul class="nav-links">
-        <li><a href="/" onclick="navigateTo(event, '/')">Home</a></li>
+        <li><a href="#home">Home</a></li>
         <li>
-          <a href="/explore" onclick="navigateTo(event, '/explore')">Explore</a>
+          <a href="#explore">Explore</a>
         </li>
         <li><a href="#">Service</a></li>
         <li><a href="#">Gallery</a></li>
         <li>
-          <a href="/contact" onclick="navigateTo(event, '/contact')">Contact</a>
+          <a href="#contact">Contact</a>
         </li>
         <li class="login-phn">
           <a href="/pages/login.html"
@@ -52,9 +52,113 @@
         <span></span>
       </button>
     </nav>
-    <div id="app" class="container"></div>
+
+    <div id="app" class="container">
+      <!-- Home Section -->
+      <div id="home">
+        <main class="hero">
+          <div class="hero-content">
+            <h1 class="hero-text">Looking for a <span>good</span> time?</h1>
+            <p>
+              Adoption gives pets in shelters or rescue centers a second chance
+              at life. By adopting, you're not only giving love to one pet but
+              also freeing up space for another animal in need.
+            </p>
+
+            <div class="cta-buttons">
+              <div onclick="navigateTo(event, '/explore')" class="adopt-now">
+                adopt now
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-12c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
+                  />
+                </svg>
+              </div>
+              <a href="#" class="watch-video">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                Watch Video
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-images">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <img
+              src="/images/white-cat.png"
+              alt="Cat illustration"
+              class="cat1-image"
+            />
+            <img
+              src="/images/black-cat.png"
+              alt="Cat illustration"
+              class="cat2-image"
+            />
+          </div>
+        </main>
+      </div>
+      <div id="explore" class="explore">
+        <h1>Explorer Our Cats</h1>
+        <div class="card-container" id="cat-container">
+          <p>Loading cats...</p>
+        </div>
+      </div>
+      <div id="contact">
+        <div class="contact-container">
+          <section class="form-section">
+            <div class="logo">
+              <span class="logo-text">Contact</span>
+            </div>
+
+            <form>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input type="text" id="firstName" required />
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required />
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" required></textarea>
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </section>
+
+          <section class="content-section">
+            <div class="content">
+              <div class="illustration">
+                <div class="paper-plane-wrapper">
+                  <div class="plane">
+                    <div class="trail">
+                      <img
+                        class="paper-plane paper-plane-img"
+                        src="/images/paperfly.png"
+                        alt="Paper Plane"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div id="login">Login</div>
+    </div>
   </body>
   <script src="/scripts/reponsive.js"></script>
-  <script src="router.js"></script>
+  <script src="/scripts/main.js"></script>
   <script src="/scripts/user.js"></script>
+  <script src="/scripts/explore.js"></script>
 </html>

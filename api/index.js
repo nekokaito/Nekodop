@@ -196,6 +196,51 @@ const requestHandler = async (req, res) => {
     });
   }
 
+  // Get all users
+  const getUsers = async () => {
+    const result =
+      await sql`SELECT id, name, email, profile_picture FROM users;`;
+    return result;
+  };
+
+  // Get user by ID
+  const getUserById = async (userId) => {
+    const result = await sql`
+    SELECT id, name, email, profile_picture FROM users WHERE id = ${userId};
+  `;
+    return result[0];
+  };
+
+  // Get all users
+  if (req.method === "GET" && req.url === "/get-users") {
+    try {
+      const users = await getUsers();
+      res.statusCode = 200;
+      res.end(JSON.stringify({ users }));
+    } catch (error) {
+      res.statusCode = 500;
+      res.end(JSON.stringify({ error: "Error fetching users" }));
+    }
+  }
+
+  // Get user by ID
+  if (req.method === "GET" && req.url.startsWith("/get-user/")) {
+    const userId = req.url.split("/")[2]; // Extract user ID from URL
+    try {
+      const user = await getUserById(userId);
+      if (!user) {
+        res.statusCode = 404;
+        res.end(JSON.stringify({ message: "User not found" }));
+      } else {
+        res.statusCode = 200;
+        res.end(JSON.stringify({ user }));
+      }
+    } catch (error) {
+      res.statusCode = 500;
+      res.end(JSON.stringify({ error: "Error fetching user details" }));
+    }
+  }
+
   // Create Cat Post
   if (req.method === "POST" && req.url === "/create-cat") {
     let body = "";
@@ -241,6 +286,32 @@ const requestHandler = async (req, res) => {
     const cats = await getCatsForAdoption();
     res.statusCode = 200;
     res.end(JSON.stringify({ cats }));
+  }
+
+  // Get a specific cat by ID
+  const getCatById = async (catId) => {
+    const result = await sql`
+    SELECT * FROM cats WHERE id = ${catId};
+  `;
+    return result[0];
+  };
+
+  // Get Cat by ID
+  if (req.method === "GET" && req.url.startsWith("/get-cat/")) {
+    const catId = req.url.split("/")[2]; // Extract catId from URL
+    try {
+      const cat = await getCatById(catId);
+      if (!cat) {
+        res.statusCode = 404;
+        res.end(JSON.stringify({ message: "Cat not found" }));
+      } else {
+        res.statusCode = 200;
+        res.end(JSON.stringify({ cat }));
+      }
+    } catch (error) {
+      res.statusCode = 500;
+      res.end(JSON.stringify({ error: "Error fetching cat details" }));
+    }
   }
 
   // Get Cats by Cat Owner ID

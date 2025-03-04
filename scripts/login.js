@@ -30,4 +30,4 @@ if (loginForm) {
   console.error("login-form not found in the DOM.");
 }
 
-console.log("js running");
+
