@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/styles/footer.css" />
     <link rel="stylesheet" href="/styles/form.css" />
     <link rel="stylesheet" href="/styles/card.css" />
+    <link rel="stylesheet" href="/styles/preloader.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,6 +20,13 @@
     />
   </head>
   <body>
+    <div id="preloader" class="preloader">
+      <img src="/images/preloader.gif" alt="" />
+    </div>
+
+    <main id="main-content">
+
+    
     <nav class="navbar">
       <div class="logo-div">
         <a href="#" class="logo">Nekodop</a>
@@ -99,12 +107,16 @@
           </div>
         </main>
       </div>
+
+      <!-- Explore Section -->
       <div id="explore" class="explore">
         <h1>Explorer Our Cats</h1>
         <div class="card-container" id="cat-container">
           <p>Loading cats...</p>
         </div>
       </div>
+
+      <!-- Contact Section -->
       <div id="contact">
         <div class="contact-container">
           <section class="form-section">
@@ -154,9 +166,15 @@
           </section>
         </div>
       </div>
-      <div id="login">Login</div>
+      <!-- Profile Section -->
+      <div id="profile">Profile</div>
     </div>
+    </main>
   </body>
+  <script
+    src="https://kit.fontawesome.com/ef66a13064.js"
+    crossorigin="anonymous"
+  ></script>
   <script src="/scripts/reponsive.js"></script>
   <script src="/scripts/main.js"></script>
   <script src="/scripts/user.js"></script>

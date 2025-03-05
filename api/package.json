@@ -12,9 +12,7 @@
   "description": "",
   "dependencies": {
     "@neondatabase/serverless": "^0.10.4",
-    "dotenv": "^16.4.7",
-    "pg": "^8.13.1",
-    "uuid": "^11.0.5"
+    "dotenv": "^16.4.7"
   }
   
 }

@@ -7,8 +7,10 @@ const login = async (email, password) => {
     .then((res) => res.json())
     .then((data) => {
       if (data.user) {
-        localStorage.setItem("user", JSON.stringify(data.user));
-        console.log("login successful", data.user);
+        const { password: _, ...userData } = data.user; // Exclude password
+        localStorage.setItem("user", JSON.stringify(userData));
+
+        console.log("login successful", userData);
         window.location.href = "/";
       } else {
         console.error("login failed", data.error);
@@ -24,10 +26,12 @@ if (loginForm) {
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+
     login(email, password);
+
+    // Clear password
+    document.getElementById("password").value = "";
   });
 } else {
   console.error("login-form not found in the DOM.");
 }
-
-

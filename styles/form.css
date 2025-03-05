@@ -1,3 +1,8 @@
+.login-body,
+.signup-body {
+  background-image: url("../images/bg-d.jpg");
+  background-size: cover;
+}
 .contact-container,
 .login-container {
   display: flex;
@@ -8,6 +13,13 @@
   background-color: #fff;
   border: 1px solid #e6e1ed;
   border-radius: 20px;
+}
+.back {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+  font-size: 20px;
 }
 
 .form-section {
@@ -127,6 +139,13 @@ button:hover {
   .contact-container,
   .login-container {
     flex-direction: column;
+    width: auto;
+    margin: 10px;
+    margin-top: 100px;
+  }
+  .login-body,
+  .signup-body {
+    background-image: url("../images/bg-p.jpg");
   }
 
   .content-section {
