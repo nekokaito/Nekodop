@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname;
 
   const loginPages = ["/pages/login.html", "/pages/sign-up.html"];
-  const profilePages = ["/pages/profile.html"];
+  const profilePages = ["/pages/profile.html", "/pages/cat-details.html"];
 
   // Protected Routes
   if (user && loginPages.includes(currentPath)) {
@@ -33,7 +33,7 @@ window.onload = function () {
   const preloader = document.getElementById("preloader");
   const app = document.getElementById("main-content");
 
- //Show the display of the preloader
+  //Show the display of the preloader
   preloader.style.display = "flex";
   app.style.display = "none";
 
