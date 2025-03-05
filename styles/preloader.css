@@ -1,0 +1,12 @@
+.preloader {
+  margin: 0;
+  padding: 0;
+
+  background-color: #e9e4fd;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vw;
+}
