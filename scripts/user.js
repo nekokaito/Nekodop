@@ -16,7 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // User profile image
     userIconContainer.innerHTML = `
       <div class="user-icon">
-        <img src="${user?.profile_picture}" alt="User" class="profile-img" />
+        <img src="${
+          user?.profile_picture || "../images/profile.png"
+        }" alt="User" class="profile-img" />
       </div>
       <ul class="dropdown-menu">
         <li><a href="../pages/profile.html">My Profile</a></li>
@@ -53,6 +55,3 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 });
-
-
-

@@ -199,14 +199,14 @@ const requestHandler = async (req, res) => {
   // Get all users
   const getUsers = async () => {
     const result =
-      await sql`SELECT id, name, email, profile_picture FROM users;`;
+      await sql`SELECT id, name, email, profile_picture, created_at FROM users;`;
     return result;
   };
 
   // Get user by ID
   const getUserById = async (userId) => {
     const result = await sql`
-    SELECT id, name, email, profile_picture FROM users WHERE id = ${userId};
+    SELECT id, name, email, profile_picture, created_at FROM users WHERE id = ${userId};
   `;
     return result[0];
   };
