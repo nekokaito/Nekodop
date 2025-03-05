@@ -49,6 +49,55 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+const fetchCats = async () => {
+  const localData = JSON.parse(localStorage.getItem("user"));
+
+  if (!localData || !localData.id) {
+    console.error("no user id found in localstorage");
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `http://nekodop-server.vercel.app/get-cats/${localData.id}`
+    );
+    const data = await response.json();
+    const cats = data.cats;
+    // Assuming the API returns an array of cats
+
+    if (cats && cats.length > 0) {
+      const catsContainer = document.getElementById("cats-container");
+      catsContainer.innerHTML = ""; 
+
+      
+      cats.forEach((cat) => {
+        const catCard = document.createElement("div");
+        catCard.classList.add("card"); 
+
+        
+        catCard.innerHTML = `
+          <img src="${cat.cat_image}" alt="${cat.name}" class="cat-image" />
+          <div class="cat-info">
+            <h3>${cat.cat_name}</h3>
+            <p>Age: ${cat.cat_age}</p>
+            <p>${cat.cat_gender}</p>
+          </div>
+        `;
+
+        // Append the card to the container
+        catsContainer.appendChild(catCard);
+      });
+    } else {
+      // Display a message if no cats found
+      const catsContainer = document.getElementById("cats-container");
+      catsContainer.innerHTML = "<p>No cats found!</p>";
+    }
+  } catch (error) {
+    console.error("Error fetching cats:", error);
+  }
+};
+
+fetchCats();
 const showSection = (sectionId, tabId) => {
   // Hide all sections
   document.getElementById("post-section").style.display = "none";
@@ -64,4 +113,3 @@ const showSection = (sectionId, tabId) => {
   // Add active class to the clicked tab
   document.getElementById(tabId).classList.add("active");
 };
-

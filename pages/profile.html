@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Nekodop</title>
     <link rel="stylesheet" href="/styles/global.css" />
     <link rel="stylesheet" href="/styles/navbar.css" />
@@ -122,7 +123,8 @@
 
 <!-- My Cats Section -->
 <div id="my-cats-section" style="display: none;">
-  <p>Billu</p>
+  <div id="cats-container"></div>
+  
 </div>
       </div>
     </main>
@@ -134,7 +136,6 @@
   <script src="/scripts/reponsive.js"></script>
   <script src="/scripts/main.js"></script>
   <script src="/scripts/user.js"></script>
-  <script src="/scripts/explore.js"></script>
   <script src="/scripts/profile.js"></script>
   <script src="/scripts/post.js"></script>
 </html>
