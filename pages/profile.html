@@ -3,8 +3,89 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Nekodop</title>
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/navbar.css" />
+    <link rel="stylesheet" href="/styles/hero.css" />
+
+    <link rel="stylesheet" href="/styles/footer.css" />
+    <link rel="stylesheet" href="/styles/form.css" />
+    <link rel="stylesheet" href="/styles/card.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="/styles/profile.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body></body>
-  <script src="../scripts/main.js"></script>
+  <body>
+    <nav class="navbar">
+      <div class="logo-div">
+        <a href="#" class="logo">Nekodop</a>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="/#home">Home</a></li>
+        <li>
+          <a href="/#explore">Explore</a>
+        </li>
+        <li><a href="#">Service</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li>
+          <a href="/#contact">Contact</a>
+        </li>
+        <li class="login-phn">
+          <a href="/pages/login.html"
+            ><button class="login-btn">Login</button></a
+          >
+        </li>
+      </ul>
+
+      <div class="user-nav">
+        <a href="/pages/login.html">
+          <button class="login-btn login-desktop">Login</button>
+        </a>
+      </div>
+      <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+    <main class="container">
+      <div>
+        <!-- Profile Section -->
+        <div class="profile-container">
+          <div class="profile-image">
+            <img src="" alt="" />
+          </div>
+
+          <div class="profile-info">
+            <h1></h1>
+            <p></p>
+            <p></p>
+          </div>
+        </div>
+        <div>
+          <h2>Posts</h2>
+          <div>
+            <img src="" alt="" />
+            <img src="" alt="" />
+            <img src="" alt="" />
+            <img src="" alt="" />
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script
+    src="https://kit.fontawesome.com/ef66a13064.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="/scripts/reponsive.js"></script>
+  <script src="/scripts/main.js"></script>
+  <script src="/scripts/user.js"></script>
+  <script src="/scripts/explore.js"></script>
+  <script src="/scripts/profile.js"></script>
 </html>
