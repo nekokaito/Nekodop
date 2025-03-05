@@ -5,6 +5,11 @@
   justify-content: center;
   margin-top: 50px;
 }
+.profile-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
 
 .profile-image img {
   width: 300px;

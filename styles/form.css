@@ -55,12 +55,18 @@
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .form-row {
   display: flex;
   gap: 20px;
+}
+.post-row {
+  display: flex;
+  gap: 20px;
+  justify-content: space-evenly;
 }
 .form-footer {
   font-size: 12px;
@@ -82,7 +88,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   padding: 12px;
   border: none;
@@ -152,7 +159,8 @@ button:hover {
     display: none;
   }
 
-  .form-row {
+  .form-row,
+  .post-row {
     flex-direction: column;
   }
 }
