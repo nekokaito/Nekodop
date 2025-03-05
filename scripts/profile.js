@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const data = await response.json();
     const userData = data.user;
-    
 
     if (userData) {
       profileImg.src = userData.profile_picture || "../images/profile.png";
@@ -49,3 +48,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("error fetching user data:", error.message);
   }
 });
+
+const showSection = (sectionId, tabId) => {
+  // Hide all sections
+  document.getElementById("post-section").style.display = "none";
+  document.getElementById("my-cats-section").style.display = "none";
+
+  // Show the selected section
+  document.getElementById(sectionId).style.display = "block";
+
+  // Remove active class from all tabs
+  document.getElementById("post-tab").classList.remove("active");
+  document.getElementById("my-cats-tab").classList.remove("active");
+
+  // Add active class to the clicked tab
+  document.getElementById(tabId).classList.add("active");
+};
+

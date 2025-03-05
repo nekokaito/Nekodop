@@ -68,61 +68,62 @@
           </div>
         </div>
         <div>
-          <!-- Profile Links -->
-          <ul class="profile-links">
-            <li>Post</li>
-            <li>My Cats</li>
-          </ul>
-        </div>
-        <!-- Post Section-->
-        <div>
-          <form id="post-form">
-            <div class="form-group">
-              <label for="cat-name">Cat Name</label>
-              <input type="text" id="cat-name" required />
-            </div>
-            <div class="post-row">
-              <div class="form-group">
-                <label for="age">Age (If month then add 0.) </label>
-                <input type="number" id="age" required />
-              </div>
-              <div class="form-group">
-                <label for="gender">Gender</label>
-                <select id="gender" required>
-                  <option value="" disabled selected>Select gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
+         <!-- Profile Links -->
+<ul class="profile-links">
+  <li id="post-tab" class="active" onclick="showSection('post-section', 'post-tab')">Post</li>
+  <li id="my-cats-tab" onclick="showSection('my-cats-section', 'my-cats-tab')">My Cats</li>
+</ul>
 
-              <div class="form-group">
-                <label for="lastName">Phone Number</label>
-                <input type="text" id="lastName" required />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="cat-image">Cat Image</label>
-              <input type="file" id="cat-image" accept="image/*" />
-            </div>
-            <div class="form-group">
-              <label for="address">Address</label>
-              <input type="text" id="address" required />
-            </div>
-            <div class="form-group">
-              <label for="additional">Additional Information</label>
-              <input type="text" id="additional" required />
-            </div>
-            <div class="form-group">
-              <label for="description">Cat Description</label>
-              <textarea id="description" required></textarea>
-            </div>
-            <button type="submit">Post</button>
-          </form>
-        </div>
-        <!-- My Cats Section -->
-         <div>
-          
-         </div>
+
+<!-- Post Section -->
+<div id="post-section">
+  <form id="post-form">
+    <div class="form-group">
+      <label for="cat-name">Cat Name</label>
+      <input type="text" id="cat-name" required />
+    </div>
+    <div class="post-row">
+      <div class="form-group">
+        <label for="age">Age (If month then add 0.) </label>
+        <input type="number" id="age" required />
+      </div>
+      <div class="form-group">
+        <label for="gender">Gender</label>
+        <select id="gender" required>
+          <option value="" disabled selected>Select gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Phone Number</label>
+        <input type="text" id="lastName" required />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="cat-image">Cat Image</label>
+      <input type="file" id="cat-image" accept="image/*" />
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" id="address" required />
+    </div>
+    <div class="form-group">
+      <label for="additional">Additional Information</label>
+      <input type="text" id="additional" required />
+    </div>
+    <div class="form-group">
+      <label for="description">Cat Description</label>
+      <textarea id="description" required></textarea>
+    </div>
+    <button type="submit">Post</button>
+  </form>
+</div>
+
+<!-- My Cats Section -->
+<div id="my-cats-section" style="display: none;">
+  <p>Billu</p>
+</div>
       </div>
     </main>
   </body>

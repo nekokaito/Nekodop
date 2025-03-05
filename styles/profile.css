@@ -9,6 +9,11 @@
   display: flex;
   gap: 2rem;
   list-style: none;
+  margin-bottom: 20px;
+}
+.profile-links li {
+  font-size: large;
+  cursor: pointer;
 }
 
 .profile-image img {

@@ -20,6 +20,10 @@ a {
   padding-right: 1rem;
   padding-left: 1rem;
 }
+.active {
+  color: #e4c9fa;
+  font-weight: bold;
+}
 
 @media (min-width: 640px) {
   .container {
