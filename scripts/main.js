@@ -3,22 +3,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname;
 
   const loginPages = ["/pages/login.html", "/pages/sign-up.html"];
+  const profilePages = ["/pages/profile.html"];
 
   // Protected Routes
   if (user && loginPages.includes(currentPath)) {
     window.location = "/";
     console.log("Already Has Been Logged In");
   }
+  if (!user && profilePages.includes(currentPath)) {
+    window.location = "/pages/login.html";
+    console.log("Please Login First");
+  }
 
   const showActiveSection = () => {
     const sections = document.querySelectorAll("#app > div");
     const hash = window.location.hash || "#home";
-
-    // Redirect to login if not authenticated
-    if (hash === "#profile" && !user) {
-      window.location = "../pages/login.html";
-      return;
-    }
 
     sections.forEach((section) => {
       section.style.display = `#${section.id}` === hash ? "block" : "none";

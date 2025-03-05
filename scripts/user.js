@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <img src="${user?.profile_picture}" alt="User" class="profile-img" />
       </div>
       <ul class="dropdown-menu">
-        <li><a href="/profile">My Profile</a></li>
+        <li><a href="../pages/profile.html">My Profile</a></li>
         <li><button id="logout-btn">Logout</button></li>
       </ul>
     `;
