@@ -6,9 +6,31 @@
   font-optical-sizing: auto;
 }
 
+html,
+body {
+  scroll-behavior: smooth;
+  cursor: url("../images/cursor.png"), auto;
+}
+
+input:hover,
+button:hover,
+a:hover,
+textarea:hover,
+ul:hover,
+li:hover,
+.profile-img:hover,
+.card:hover,
+select:hover,
+.profile-links li:hover,
+.dropdown-menu a:hover,
+.dropdown-menu button:hover {
+  cursor: url("../images/cursor-pointer.png"), pointer;
+}
+
 body {
   overflow-x: hidden;
 }
+
 a {
   text-decoration: none;
   color: inherit;

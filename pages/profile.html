@@ -15,19 +15,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="/styles/profile.css" />
+    <link rel="stylesheet" href="/styles/preloader.css">
     <link
       href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <nav class="navbar">
+    <div id="preloader" class="preloader">
+      <img src="/images/preloader.gif" alt="" />
+    </div>
+    <div id="main-content" class="main-content">
+      <nav class="navbar">
       <div class="logo-div">
         <a href="#" class="logo">Nekodop</a>
       </div>
 
       <ul class="nav-links">
-        <li><a href="/#home">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li>
           <a href="/#explore">Explore</a>
         </li>
@@ -128,6 +133,8 @@
 </div>
       </div>
     </main>
+    </div>
+    
   </body>
   <script
     src="https://kit.fontawesome.com/ef66a13064.js"
