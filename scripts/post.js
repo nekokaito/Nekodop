@@ -90,19 +90,6 @@ if (postForm) {
 
     const catImage = await handlePhotoUpload();
 
-    console.log(
-      catOwnerId,
-      catName,
-      catImage,
-      catAge,
-      catGender,
-      catDescription,
-      ownerName,
-      ownerAddress,
-      ownerPhone,
-      ownerEmail,
-      additionalInformation
-    );
     await postCat(
       catOwnerId,
       catName,
