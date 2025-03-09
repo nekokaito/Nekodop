@@ -49,6 +49,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const cameraButton = document.querySelector(".camera-button");
+
+  cameraButton.addEventListener("click", () => {
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+
+    fileInput.click();
+
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          document.querySelector(".profile-image img").src = e.target.result;
+        };
+
+        reader.readAsDataURL(fileInput.files[0]);
+      }
+    });
+  });
+});
+
 const fetchCats = async () => {
   const localData = JSON.parse(localStorage.getItem("user"));
 
