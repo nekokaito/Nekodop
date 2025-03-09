@@ -45,6 +45,10 @@
   display: flex;
   gap: 4px;
 }
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
 
 .card:hover {
   transform: scale(1.05);

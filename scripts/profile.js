@@ -63,6 +63,7 @@ const fetchCats = async () => {
     );
     const data = await response.json();
     const cats = data.cats;
+    // Assuming the API returns an array of cats
 
     if (cats && cats.length > 0) {
       const catsContainer = document.getElementById("cats-container");
@@ -73,47 +74,33 @@ const fetchCats = async () => {
         catCard.classList.add("card");
 
         catCard.innerHTML = `
-        <div class="card-body">
-        <div class="cat-info">
+          <img src="${cat.cat_image}" alt="${cat.name}" class="cat-image" />
+          <div class="card-body">
+          <div class="cat-info">
             <h3>${cat.cat_name}</h3>
             <p>Age: ${cat.cat_age}</p>
             <p>${cat.cat_gender}</p>
           </div>
-          <div class="">
-            
+          <div class="card-actions">
+
+  <div class="tooltip-container">
+    <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
+    <span class="tooltip-text">Edit Details</span>
+  </div>
+
+  <div class="tooltip-container">
+    <button class="btn"><i class="fa-solid fa-trash"></i></button>
+    <span class="tooltip-text">Delete</span>
+  </div>
           </div>
           </div>
-          <img src="${cat.cat_image}" alt="${cat.name}" class="cat-image" />
-          
         `;
 
         // Append the card to the container
         catsContainer.appendChild(catCard);
-
-        // Dropdown functionality
-        const dropdownBtn = catCard.querySelector(".dropdown-btn");
-        const dropdownMenu = catCard.querySelector(".dropdown-menu");
-
-        dropdownBtn.addEventListener("click", () => {
-          dropdownMenu.classList.toggle("show");
-        });
-
-        // Event listeners for options
-        catCard.querySelector(".adopt-option").addEventListener("click", () => {
-          console.log(`Cat ${cat.cat_name} marked as adopted`);
-        });
-
-        catCard.querySelector(".edit-option").addEventListener("click", () => {
-          console.log(`Editing cat ${cat.cat_name}`);
-        });
-
-        catCard
-          .querySelector(".delete-option")
-          .addEventListener("click", () => {
-            console.log(`Deleting cat ${cat.cat_name}`);
-          });
       });
     } else {
+      // Display a message if no cats found
       const catsContainer = document.getElementById("cats-container");
       catsContainer.innerHTML = "<p>No cats found!</p>";
     }
@@ -121,6 +108,8 @@ const fetchCats = async () => {
     console.error("Error fetching cats:", error);
   }
 };
+
+fetchCats();
 const showSection = (sectionId, tabId) => {
   // Hide all sections
   document.getElementById("post-section").style.display = "none";
@@ -136,5 +125,3 @@ const showSection = (sectionId, tabId) => {
   // Add active class to the clicked tab
   document.getElementById(tabId).classList.add("active");
 };
-
-fetchCats();
