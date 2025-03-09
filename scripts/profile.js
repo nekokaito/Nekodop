@@ -67,20 +67,32 @@ const fetchCats = async () => {
 
     if (cats && cats.length > 0) {
       const catsContainer = document.getElementById("cats-container");
-      catsContainer.innerHTML = ""; 
+      catsContainer.innerHTML = "";
 
-      
       cats.forEach((cat) => {
         const catCard = document.createElement("div");
-        catCard.classList.add("card"); 
+        catCard.classList.add("card");
 
-        
         catCard.innerHTML = `
           <img src="${cat.cat_image}" alt="${cat.name}" class="cat-image" />
+          <div class="card-body">
           <div class="cat-info">
             <h3>${cat.cat_name}</h3>
             <p>Age: ${cat.cat_age}</p>
             <p>${cat.cat_gender}</p>
+          </div>
+          <div class="card-actions">
+
+  <div class="tooltip-container">
+    <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
+    <span class="tooltip-text">Edit Details</span>
+  </div>
+
+  <div class="tooltip-container">
+    <button class="btn"><i class="fa-solid fa-trash"></i></button>
+    <span class="tooltip-text">Delete</span>
+  </div>
+          </div>
           </div>
         `;
 
