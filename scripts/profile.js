@@ -87,7 +87,6 @@ const fetchCats = async () => {
     );
     const data = await response.json();
     const cats = data.cats;
-    // Assuming the API returns an array of cats
 
     if (cats && cats.length > 0) {
       const catsContainer = document.getElementById("cats-container");
@@ -113,18 +112,48 @@ const fetchCats = async () => {
   </div>
 
   <div class="tooltip-container">
-    <button class="btn"><i class="fa-solid fa-trash"></i></button>
+    <button class="btn delete-cat"><i class="fa-solid fa-trash "></i></button>
     <span class="tooltip-text">Delete</span>
   </div>
           </div>
           </div>
         `;
 
-        // Append the card to the container
+        const deleteBtn = catCard.querySelector(".delete-cat");
+
+        deleteBtn.addEventListener("click", async () => {
+          console.log("Delete button clicked for cat:", cat?.cat_name);
+          const confirmDelete = confirm(
+            `Are you sure you want to delete "${cat?.cat_name}"?`
+          );
+
+          if (!confirmDelete) return;
+
+          try {
+            const res = await fetch(
+              `http://nekodop-server.vercel.app/delete-cat/${cat?.id}`,
+              {
+                method: "DELETE",
+              }
+            );
+
+            if (!res.ok) {
+              throw new Error("Failed to delete cat");
+            }
+
+            catCard.remove();
+            alert(`"${cat.cat_name}" has been deleted successfully.`);
+          } catch (err) {
+            console.error("Delete failed:", err);
+            alert("Something went wrong while deleting.");
+          }
+        });
+
+        
         catsContainer.appendChild(catCard);
       });
     } else {
-      // Display a message if no cats found
+      //  if no cats found
       const catsContainer = document.getElementById("cats-container");
       catsContainer.innerHTML = "<p>No cats found!</p>";
     }
