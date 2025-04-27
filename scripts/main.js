@@ -32,13 +32,16 @@ window.onload = function () {
   // Get the preloader element
   const preloader = document.getElementById("preloader");
   const app = document.getElementById("main-content");
+  const footer = document.getElementById("footer-content");
 
   //Show the display of the preloader
   preloader.style.display = "flex";
   app.style.display = "none";
+  footer.style.display = "none";
 
   setTimeout(function () {
     preloader.style.display = "none";
     app.style.display = "block";
+    footer.style.display = "block";
   }, 2000);
 };

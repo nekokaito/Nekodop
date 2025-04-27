@@ -10,6 +10,7 @@ html,
 body {
   scroll-behavior: smooth;
   cursor: url("../images/cursor.png"), auto;
+  height: 100%;
 }
 
 input:hover,
@@ -29,6 +30,12 @@ select:hover,
 
 body {
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+main {
+  flex: 1;
 }
 
 a {
