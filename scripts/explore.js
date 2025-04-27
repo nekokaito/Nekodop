@@ -74,7 +74,7 @@ const fetchCatDetails = async () => {
 
     if (cat) {
       // Fetch owner details
-      let ownerImage = "default-owner.jpg"; // Default if fetch fails
+      let ownerImage = "default-owner.jpg"; 
       try {
         const ownerRes = await fetch(
           `https://nekodop-server.vercel.app/get-user/${cat.cat_owner_id}`
