@@ -1,31 +1,31 @@
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
+  initProfile();
+  initCameraUpload();
+  fetchCats();
+  setupEditForm();
+});
+
+// Initialize user profile
+const initProfile = async () => {
   const profileImg = document.querySelector(".profile-container img");
   const profileName = document.querySelector(".profile-info h1");
   const profileEmail = document.querySelector(".profile-info p:nth-of-type(1)");
   const profileDate = document.querySelector(".profile-info p:nth-of-type(2)");
 
-  // fetch user data from localstorage
   const localData = JSON.parse(localStorage.getItem("user"));
 
-  if (!localData || !localData.id) {
-    console.error("no user id found in localstorage");
+  if (!localData?.id) {
+    console.error("No user ID found in localStorage");
     return;
   }
-
-  console.log(localData.id);
 
   try {
     const response = await fetch(
       `http://nekodop-server.vercel.app/get-user/${localData.id}`
     );
+    if (!response.ok) throw new Error("Failed to fetch user data");
 
-    if (!response.ok) {
-      throw new Error("failed to fetch user data");
-    }
-
-    const data = await response.json();
-    const userData = data.user;
-
+    const { user: userData } = await response.json();
     if (userData) {
       profileImg.src = userData.profile_picture || "../images/profile.png";
       profileImg.alt = userData.name || "user profile";
@@ -37,47 +37,48 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (userData.created_at) {
         const createdDate = new Date(userData.created_at);
         const currentDate = new Date();
-        const diffTime = Math.abs(currentDate - createdDate);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const diffDays = Math.ceil(
+          (currentDate - createdDate) / (1000 * 60 * 60 * 24)
+        );
         profileDate.innerHTML = `<i class="fa-regular fa-calendar"></i> joined ${diffDays} days ago`;
       } else {
-        profileDate.textContent = "not available";
+        profileDate.textContent = "Join date not available";
       }
     }
   } catch (error) {
-    console.error("error fetching user data:", error.message);
+    console.error("Error fetching user data:", error.message);
   }
-});
+};
 
-document.addEventListener("DOMContentLoaded", () => {
+// Handle profile picture change
+const initCameraUpload = () => {
   const cameraButton = document.querySelector(".camera-button");
+  if (!cameraButton) return;
 
   cameraButton.addEventListener("click", () => {
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.accept = "image/*";
-
     fileInput.click();
 
     fileInput.addEventListener("change", () => {
-      if (fileInput.files && fileInput.files[0]) {
+      const file = fileInput.files?.[0];
+      if (file) {
         const reader = new FileReader();
-
         reader.onload = (e) => {
           document.querySelector(".profile-image img").src = e.target.result;
         };
-
-        reader.readAsDataURL(fileInput.files[0]);
+        reader.readAsDataURL(file);
       }
     });
   });
-});
+};
 
+// Fetch and display user cats
 const fetchCats = async () => {
   const localData = JSON.parse(localStorage.getItem("user"));
-
-  if (!localData || !localData.id) {
-    console.error("no user id found in localstorage");
+  if (!localData?.id) {
+    console.error("No user ID found in localStorage");
     return;
   }
 
@@ -85,76 +86,65 @@ const fetchCats = async () => {
     const response = await fetch(
       `http://nekodop-server.vercel.app/get-cats/${localData.id}`
     );
-    const data = await response.json();
-    const cats = data.cats;
+    const { cats } = await response.json();
+    const catsContainer = document.getElementById("cats-container");
+    catsContainer.innerHTML = "";
 
-    if (cats && cats.length > 0) {
-      const catsContainer = document.getElementById("cats-container");
-      catsContainer.innerHTML = "";
-
+    if (cats?.length) {
       cats.forEach((cat) => {
         const catCard = document.createElement("div");
         catCard.classList.add("card");
-
         catCard.innerHTML = `
-          <img src="${cat.cat_image}" alt="${cat.name}" class="cat-image" />
+          <img id="cat-image" src="${cat.cat_image}" alt="${cat.cat_name}" class="cat-image" />
           <div class="card-body">
-          <div class="cat-info">
-            <h3>${cat.cat_name}</h3>
-            <p>Age: ${cat.cat_age}</p>
-            <p>${cat.cat_gender}</p>
-          </div>
-          <div class="card-actions">
-
-  <div class="tooltip-container">
-    <button class="btn"><i class="fa-solid fa-pen-to-square"></i></button>
-    <span class="tooltip-text">Edit Details</span>
-  </div>
-
-  <div class="tooltip-container">
-    <button class="btn delete-cat"><i class="fa-solid fa-trash "></i></button>
-    <span class="tooltip-text">Delete</span>
-  </div>
-          </div>
+            <div class="cat-info">
+              <h3>${cat.cat_name}</h3>
+              <p>Age: ${cat.cat_age}</p>
+              <p>${cat.cat_gender}</p>
+            </div>
+            <div class="card-actions">
+              <div class="tooltip-container">
+                <button class="btn edit-cat"><i class="fa-solid fa-pen-to-square"></i></button>
+                <span class="tooltip-text">Edit Details</span>
+              </div>
+              <div class="tooltip-container">
+                <button class="btn delete-cat"><i class="fa-solid fa-trash"></i></button>
+                <span class="tooltip-text">Delete</span>
+              </div>
+            </div>
           </div>
         `;
 
-        const deleteBtn = catCard.querySelector(".delete-cat");
-
-        deleteBtn.addEventListener("click", async () => {
-          console.log("Delete button clicked for cat:", cat?.cat_name);
-          const confirmDelete = confirm(
-            `Are you sure you want to delete "${cat?.cat_name}"?`
-          );
-
-          if (!confirmDelete) return;
-
-          try {
-            const res = await fetch(
-              `http://nekodop-server.vercel.app/delete-cat/${cat?.id}`,
-              {
-                method: "DELETE",
+        // Delete functionality
+        catCard
+          .querySelector(".delete-cat")
+          .addEventListener("click", async () => {
+            if (confirm(`Are you sure you want to delete "${cat.cat_name}"?`)) {
+              try {
+                const res = await fetch(
+                  `http://nekodop-server.vercel.app/delete-cat/${cat.id}`,
+                  {
+                    method: "DELETE",
+                  }
+                );
+                if (!res.ok) throw new Error("Failed to delete cat");
+                catCard.remove();
+                alert(`"${cat.cat_name}" has been deleted.`);
+              } catch (err) {
+                console.error("Delete failed:", err);
+                alert("Failed to delete cat.");
               }
-            );
-
-            if (!res.ok) {
-              throw new Error("Failed to delete cat");
             }
+          });
 
-            catCard.remove();
-            alert(`"${cat.cat_name}" has been deleted successfully.`);
-          } catch (err) {
-            console.error("Delete failed:", err);
-            alert("Something went wrong while deleting.");
-          }
+        // Edit functionality
+        catCard.querySelector(".edit-cat").addEventListener("click", () => {
+          openEditModal(cat);
         });
 
-        
         catsContainer.appendChild(catCard);
       });
     } else {
-      //  if no cats found
-      const catsContainer = document.getElementById("cats-container");
       catsContainer.innerHTML = "<p>No cats found!</p>";
     }
   } catch (error) {
@@ -162,19 +152,112 @@ const fetchCats = async () => {
   }
 };
 
-fetchCats();
+// Show edit modal
+let currentEditingCat = null;
+
+const openEditModal = (cat) => {
+  currentEditingCat = cat; // store for use on submit
+
+  document.getElementById("edit-cat-name").value = cat.cat_name;
+  document.getElementById("edit-age").value = cat.cat_age;
+  document.getElementById("edit-gender").value = cat.cat_gender;
+  document.getElementById("edit-phone").value = cat.owner_phone;
+  document.getElementById("edit-address").value = cat.owner_address;
+  document.getElementById("edit-additional").value = cat.additional_information;
+  document.getElementById("edit-description").value = cat.cat_description;
+
+  // store current image in hidden input
+  document.getElementById("edit-cat-image-current").value = cat.cat_image;
+
+  document.getElementById("edit-post-modal").classList.remove("hidden");
+  document.getElementById("edit-post-form").dataset.postId = cat.id;
+};
+
+const closeEditModal = () => {
+  document.getElementById("edit-post-modal").classList.add("hidden");
+};
+
+// Handle form submit
+const setupEditForm = () => {
+  document
+    .getElementById("edit-post-form")
+    .addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const id = e.target.dataset.postId;
+
+      const fileInput = document.getElementById("edit-cat-image-new");
+      const currentImage = document.getElementById(
+        "edit-cat-image-current"
+      ).value;
+
+      let finalImageUrl = currentImage;
+
+  
+      if (fileInput.files.length > 0) {
+        const imageFile = fileInput.files[0];
+        const formData = new FormData();
+        formData.append("file", imageFile);
+        formData.append("upload_preset", "nekodop"); 
+
+        try {
+          const cloudRes = await fetch(
+            "https://api.cloudinary.com/v1_1/dyvqe1hgj/image/upload",
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+
+          const cloudData = await cloudRes.json();
+          finalImageUrl = cloudData.secure_url;
+        } catch (err) {
+          console.error("Image upload failed:", err);
+          alert("Image upload failed, please try again.");
+          return;
+        }
+      }
+
+      const updatedData = {
+        catName: document.getElementById("edit-cat-name").value,
+        catAge: Number(document.getElementById("edit-age").value),
+        catGender: document.getElementById("edit-gender").value,
+        ownerPhone: document.getElementById("edit-phone").value,
+        ownerAddress: document.getElementById("edit-address").value,
+        additionalInformation: document.getElementById("edit-additional").value,
+        catDescription: document.getElementById("edit-description").value,
+        catImage: finalImageUrl,
+      };
+
+      try {
+        const res = await fetch(
+          `http://nekodop-server.vercel.app/update-cat/${id}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedData),
+          }
+        );
+
+        if (!res.ok) throw new Error("Update failed");
+
+        alert("Cat details updated successfully.");
+        closeEditModal();
+        fetchCats();
+      } catch (err) {
+        console.error("Error updating cat:", err);
+        alert("Something went wrong while updating.");
+      }
+    });
+};
+
+
+// Section switching
 const showSection = (sectionId, tabId) => {
-  // Hide all sections
   document.getElementById("post-section").style.display = "none";
   document.getElementById("my-cats-section").style.display = "none";
-
-  // Show the selected section
   document.getElementById(sectionId).style.display = "block";
 
-  // Remove active class from all tabs
   document.getElementById("post-tab").classList.remove("active");
   document.getElementById("my-cats-tab").classList.remove("active");
-
-  // Add active class to the clicked tab
   document.getElementById(tabId).classList.add("active");
 };

@@ -132,6 +132,57 @@
 <!-- My Cats Section -->
 <div id="my-cats-section" style="display: none;">
   <div id="cats-container"></div>
+
+
+  <!-- Edit Post Modal -->
+<div id="edit-post-modal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeEditModal()">&times;</span>
+    <form id="edit-post-form">
+      <div class="form-group">
+        <label for="edit-cat-name">Cat Name</label>
+        <input type="text" id="edit-cat-name" required />
+      </div>
+      <div class="post-row">
+        <div class="form-group">
+          <label for="edit-age">Age</label>
+          <input type="number" id="edit-age" required />
+        </div>
+        <div class="form-group">
+          <label for="edit-gender">Gender</label>
+          <select id="edit-gender" required>
+            <option value="" disabled>Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="edit-phone">Phone Number</label>
+          <input type="text" id="edit-phone" required />
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="hidden" id="edit-cat-image-current" />
+      <input type="file" id="edit-cat-image-new" accept="image/*" />
+
+      </div>
+      <div class="form-group">
+        <label for="edit-address">Address</label>
+        <input type="text" id="edit-address" required />
+      </div>
+      <div class="form-group">
+        <label for="edit-additional">Additional Information</label>
+        <input type="text" id="edit-additional" required />
+      </div>
+      <div class="form-group">
+        <label for="edit-description">Cat Description</label>
+        <textarea id="edit-description" required></textarea>
+      </div>
+      <button type="submit">Update</button>
+    </form>
+  </div>
+</div>
+
   
 </div>
       </div>
