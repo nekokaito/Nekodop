@@ -165,10 +165,9 @@ const openEditModal = (cat) => {
   document.getElementById("edit-address").value = cat.owner_address;
   document.getElementById("edit-additional").value = cat.additional_information;
   document.getElementById("edit-description").value = cat.cat_description;
-
-  // store current image in hidden input
+  document.getElementById("edit-status").value =
+    cat.adopted === false ? "0" : "1";
   document.getElementById("edit-cat-image-current").value = cat.cat_image;
-
   document.getElementById("edit-post-modal").classList.remove("hidden");
   document.getElementById("edit-post-form").dataset.postId = cat.id;
 };
@@ -192,12 +191,11 @@ const setupEditForm = () => {
 
       let finalImageUrl = currentImage;
 
-  
       if (fileInput.files.length > 0) {
         const imageFile = fileInput.files[0];
         const formData = new FormData();
         formData.append("file", imageFile);
-        formData.append("upload_preset", "nekodop"); 
+        formData.append("upload_preset", "nekodop");
 
         try {
           const cloudRes = await fetch(
@@ -216,7 +214,7 @@ const setupEditForm = () => {
           return;
         }
       }
-
+      const adoptedValue = document.getElementById("edit-status").value;
       const updatedData = {
         catName: document.getElementById("edit-cat-name").value,
         catAge: Number(document.getElementById("edit-age").value),
@@ -226,6 +224,7 @@ const setupEditForm = () => {
         additionalInformation: document.getElementById("edit-additional").value,
         catDescription: document.getElementById("edit-description").value,
         catImage: finalImageUrl,
+        adopted: adoptedValue === "1" ? true : false,
       };
 
       try {
@@ -249,7 +248,6 @@ const setupEditForm = () => {
       }
     });
 };
-
 
 // Section switching
 const showSection = (sectionId, tabId) => {
