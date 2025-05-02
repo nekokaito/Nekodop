@@ -16,12 +16,16 @@ async function fetchCats() {
             const ownerData = await ownerRes.json();
             const ownerImage =
               ownerData.user.profile_picture || "../images/profile.png";
+            const optimizedImage = cat.cat_image.replace(
+              "/upload/",
+              "/upload/f_webp,q_40/"
+            );
 
             return `
               <a href="../pages/cat-details.html?id=${cat.id}">
                 <div class="card">
                   <div class="cat-img">
-                    <img src="${cat.cat_image}" alt="${cat.cat_name}" />
+                    <img src="${optimizedImage}" alt="${cat.cat_name}" />
                   </div>
                   <div class="card-body">
                     <div class="card-text">
@@ -74,7 +78,7 @@ const fetchCatDetails = async () => {
 
     if (cat) {
       // Fetch owner details
-      let ownerImage = "default-owner.jpg"; 
+      let ownerImage = "default-owner.jpg";
       try {
         const ownerRes = await fetch(
           `https://nekodop-server.vercel.app/get-user/${cat.cat_owner_id}`

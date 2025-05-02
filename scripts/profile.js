@@ -94,8 +94,12 @@ const fetchCats = async () => {
       cats.forEach((cat) => {
         const catCard = document.createElement("div");
         catCard.classList.add("card");
+        const optimizedImage = cat.cat_image.replace(
+          "/upload/",
+          "/upload/f_webp,q_40/"
+        );
         catCard.innerHTML = `
-          <img id="cat-image" src="${cat.cat_image}" alt="${cat.cat_name}" class="cat-image" />
+          <img id="cat-image" src="${optimizedImage}" alt="${cat.cat_name}" class="cat-image" />
           <div class="card-body">
             <div class="cat-info">
               <h3>${cat.cat_name}</h3>

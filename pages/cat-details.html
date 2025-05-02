@@ -8,9 +8,60 @@
       content="upgrade-insecure-requests"
     />
     <title>Cat Details - Nekodop</title>
-    <link rel="stylesheet" href="/styles/global.css" />
+   <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/navbar.css" />
+    <link rel="stylesheet" href="/styles/hero.css" />
+
+    <link rel="stylesheet" href="/styles/footer.css" />
+    <link rel="stylesheet" href="/styles/form.css" />
     <link rel="stylesheet" href="/styles/card.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="/styles/profile.css" />
+    <link rel="stylesheet" href="/styles/preloader.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
   </head>
+  <body>
+    <div id="preloader" class="preloader">
+      <img src="/images/preloader.gif" alt="" />
+    </div>
+    <div id="main-content" class="main-content">
+      <nav class="navbar">
+      <div class="logo-div">
+        <a href="#" class="logo">Nekodop</a>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li>
+          <a href="/#explore">Explore</a>
+        </li>
+        <li><a href="#">Service</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li>
+          <a href="/#contact">Contact</a>
+        </li>
+        <li class="login-phn">
+          <a href="/pages/login.html"
+            ><button class="login-btn">Login</button></a
+          >
+        </li>
+      </ul>
+
+      <div class="user-nav">
+        <a href="/pages/login.html">
+          <button class="login-btn login-desktop">Login</button>
+        </a>
+      </div>
+      <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
   <body>
     <div class="cat-details">
       <a href="/index.html#explore">⬅ Back to Explore</a>
@@ -34,5 +85,10 @@
     </footer>
     <script src="../scripts/explore.js"></script>
     <script src="../scripts/main.js"></script>
+     <script src="/scripts/reponsive.js"></script>
+  <script src="/scripts/main.js"></script>
+  <script src="/scripts/user.js"></script>
+  <script src="/scripts/profile.js"></script>
+  <script src="/scripts/post.js"></script>
   </body>
 </html>
