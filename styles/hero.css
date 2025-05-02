@@ -15,6 +15,7 @@
   margin: 0 auto;
   align-items: center;
   gap: 2rem;
+  margin-bottom: 400px;
 }
 
 .hero-content {
@@ -116,4 +117,15 @@
   height: 400px;
   right: 100px;
   top: 150px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  .hero h1 {
+    font-size: 2.5rem;
+  }
 }
