@@ -1,10 +1,8 @@
 const signup = async (user_name, email, password, profilePicture) => {
-  
-
   await fetch("https://nekodop-server.vercel.app/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ user_name, email, password, profilePicture}),
+    body: JSON.stringify({ user_name, email, password, profilePicture }),
   })
     .then((res) => res.json())
     .then((data) => {
@@ -53,13 +51,21 @@ if (signupForm) {
     };
 
     if (password !== rePassword) {
+      const errorDiv = document.getElementById("password-error");
+
+      errorDiv.textContent = "";
       console.error("Passwords do not match");
+      errorDiv.textContent = "Passwords do not match";
       return;
     }
 
     const passwordValidation = validatePassword(password);
     if (!passwordValidation.isValid) {
+      const errorDiv = document.getElementById("password-error");
+
+      errorDiv.textContent = "";
       console.error(passwordValidation.error);
+      errorDiv.textContent = passwordValidation.error;
       return;
     }
 

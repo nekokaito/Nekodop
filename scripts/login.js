@@ -14,6 +14,9 @@ const login = async (email, password) => {
         window.location.href = "/";
       } else {
         console.error("login failed", data.error);
+        const errorDiv = document.getElementById("login-error");
+        errorDiv.textContent = "";
+        errorDiv.textContent = "Invalid email or password";
       }
     })
     .catch((err) => console.error("error:", err));
