@@ -1,0 +1,179 @@
+.cat-details {
+  padding: 20px;
+  margin: 20px;
+  background-color: #c3b5fd77;
+  border-radius: 8px;
+  height: 100%;
+}
+
+.cat-card {
+  padding: 20px;
+}
+
+.header {
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #333;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.cat-content {
+  background-color: #f0f4f8;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .profile-content {
+    flex-direction: row;
+  }
+  .cat-content {
+    flex-direction: row;
+  }
+}
+
+.cat-image {
+  flex: 1;
+  max-width: 100%;
+}
+
+.cat-image img {
+  width: 80%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.cat-info {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.pet-name {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+}
+
+.pet-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detail {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.gender-icon {
+  margin-left: 5px;
+}
+
+.pet-description {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.more-info {
+  font-size: 15px;
+  color: #555;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.whatsapp-button,
+.email-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.whatsapp-button {
+  background-color: #25d366;
+  color: white;
+}
+
+.email-button {
+  background-color: #d9c8ff;
+  color: #333;
+}
+
+.whatsapp-button:hover {
+  background-color: #128c7e;
+}
+
+.email-button:hover {
+  background-color: #c4b0f0;
+}
+
+.posted-by {
+  margin-top: 20px;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 15px;
+}
+
+.posted-by h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.poster-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.poster-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.poster-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.poster-name {
+  font-size: 14px;
+  color: #555;
+}
