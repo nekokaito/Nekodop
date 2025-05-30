@@ -46,6 +46,8 @@ a {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
   padding-right: 1rem;
   padding-left: 1rem;
 }
@@ -92,6 +94,63 @@ a {
   border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
   transform: translateX(-50%);
 }
+
+.filter-section {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.filter-section input[type="text"] {
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.filter-section input[type="text"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+#gender-filters {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#gender-filters label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#gender-filters input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+@media (min-width: 640px) {
+  .filter-section {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #gender-filters {
+    gap: 30px;
+  }
+}
+
 
 @media (min-width: 640px) {
   .container {

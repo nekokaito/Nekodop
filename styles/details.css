@@ -25,6 +25,31 @@
   font-size: 16px;
 }
 
+.return-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  margin: 1.25rem auto;
+  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  color: white;
+  text-decoration: none;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.return-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+.return-btn i {
+  font-size: 18px;
+}
+
 .cat-content {
   background-color: #f0f4f8;
   border-radius: 15px;
