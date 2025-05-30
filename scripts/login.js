@@ -11,12 +11,16 @@ const login = async (email, password) => {
         localStorage.setItem("user", JSON.stringify(userData));
 
         console.log("login successful", userData);
-        window.location.href = "/";
+        showToast("Login successful!", "success");
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 2000);
       } else {
         console.error("login failed", data.error);
         const errorDiv = document.getElementById("login-error");
         errorDiv.textContent = "";
         errorDiv.textContent = "Invalid email or password";
+        showToast("An unexpected error occurred", "error");
       }
     })
     .catch((err) => console.error("error:", err));
@@ -38,3 +42,4 @@ if (loginForm) {
 } else {
   console.error("login-form not found in the DOM.");
 }
+

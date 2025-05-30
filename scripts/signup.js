@@ -9,9 +9,13 @@ const signup = async (user_name, email, password, profilePicture) => {
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
         console.log("Signup successful", data.user);
-        window.location.href = "/pages/login.html";
+        showToast("Signup successful! Redirecting...", "success");
+        setTimeout(() => {
+          window.location.href = "/pages/login.html";
+        }, 2000);
       } else {
         console.error("Signup failed", data.error);
+        showToast("Signup failed: " + (data.error || "Unknown error"), "error");
       }
     })
     .catch((err) => console.error("Error:", err));
