@@ -55,16 +55,21 @@
   border-radius: 15px;
   padding: 20px;
   display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .profile-content {
     flex-direction: row;
   }
   .cat-content {
+    flex-direction: column;
+    margin: auto;
+  }
+  .cat-info {
     flex-direction: row;
   }
 }
@@ -149,7 +154,7 @@
 }
 
 .whatsapp-button {
-  background-color: #25d366;
+  background-color: #40a164;
   color: white;
 }
 
@@ -199,6 +204,10 @@
 }
 
 .poster-name {
+  font-size: 18px;
+  color: #464545;
+}
+.poster-text {
   font-size: 14px;
   color: #555;
 }
