@@ -1,4 +1,5 @@
-function showToast(message, type = "info") {
+const showToast = (message, type = "info") => {
+  // Function to show a toast notification
   const container = document.getElementById("toast-container");
 
   if (!container) {
@@ -19,4 +20,4 @@ function showToast(message, type = "info") {
   setTimeout(() => {
     toast.remove();
   }, 3000);
-}
+};

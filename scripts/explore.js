@@ -56,7 +56,7 @@ async function renderCats(catList) {
 }
 
 // Fetch all cats
-async function fetchCats() {
+const fetchCats = async () => {
   try {
     const res = await fetch("https://nekodop-server.vercel.app/get-cats");
     const data = await res.json();
@@ -68,10 +68,10 @@ async function fetchCats() {
       "<p>Failed to load cats. Please try again later.</p>";
     console.error("Error fetching cats:", error);
   }
-}
+};
 
 // Combined Filter Handler
-function applyFilters() {
+const applyFilters = () => {
   const searchQuery =
     document.getElementById("search-input")?.value.toLowerCase() || "";
   const maleChecked = document.getElementById("male-filter")?.checked;
@@ -91,7 +91,7 @@ function applyFilters() {
   });
 
   renderCats(filteredCats);
-}
+};
 
 // Initialize on DOM load
 document.addEventListener("DOMContentLoaded", () => {
@@ -162,6 +162,7 @@ const fetchCatDetails = async () => {
       };
 
       document.getElementById("cat-info").innerHTML = ` 
+      
 <div class="cat-content">
                 <div class="cat-image">
                     <img src="${cat.cat_image}" alt="${cat.cat_name}">
@@ -250,6 +251,22 @@ ${
             </div>
         </div>
     </div>
+    <div class="cat-content">
+    <div>
+  <h1 class="poster-name">What is Nekodop?</h1>
+  <p class="poster-text">Nekodop is a community-driven online platform created to make the process of cat adoption easier, faster, and more accessible for everyone. Whether someone is trying to find a new home for their cat or looking to adopt one, Nekodop serves as a bridge that brings both sides together. The platform allows users to post information about cats available for adoption, including details like the cat’s name, age, gender, description, and images. At the same time, potential adopters can freely explore the listings without needing to register or go through complex procedures. Nekodop focuses on simplicity, transparency, and genuine human connection, all while promoting responsible pet ownership. It’s a place where cat lovers come together for one common goal—giving cats a second chance at a happy home.</p>
+  </div>
+  </div>
+  
+         <div class="cat-content"> 
+         <div><h1 class="poster-name">Why is Nekodop useful?</h1>
+  <p class="poster-text">Nekodop is useful because it removes the barriers that often make pet adoption overwhelming or inaccessible. Traditional adoption platforms or organizations may involve a long registration process, interviews, or delays, which can discourage both adopters and those giving up pets. Nekodop solves this by offering a direct, no-hassle solution that connects real people in real time. It’s designed to be lightweight and fast, making it possible to post or find a cat within minutes. Users don’t need to install an app or create an account—they simply visit the website and start browsing or posting. The platform also ensures transparency by allowing adopters to directly view the contact details of the owner, including their WhatsApp number and email, so that any questions or arrangements can be handled personally. By making the process direct and communication-focused, Nekodop creates a trustworthy space for cat adoption while helping reduce the number of abandoned or stray cats in the community..</p></div>
+         </div> 
+         <div class="cat-content"> 
+         <div><h1 class="poster-name">How can we adopt a cat using Nekodop?</h1>
+  <p class="poster-text">Adopting a cat on Nekodop is designed to be as smooth and straightforward as possible. First, you visit the platform and browse through the available cats listed by their current owners. Each listing contains key details such as the cat’s name, age, gender, a photo, and a short description that gives insight into the cat’s personality, background, or special needs. Once you find a cat you’re interested in, you don’t need to sign up or fill out any forms. Instead, you’ll see the owner’s contact information on the post. Nekodop allows you to instantly reach out to the owner through WhatsApp by clicking the provided link, which opens a chat directly, or you can choose to send them an email if that’s more convenient. From there, you can ask questions, set up a meeting, or plan the adoption—all in a way that feels natural and human. This personal approach helps build trust between both parties and ensures the cat finds a loving, suitable new home.</p></div>
+         </div>             
+            
       `;
     } else {
       document.getElementById("cat-info").innerHTML = "<p>Cat not found.</p>";

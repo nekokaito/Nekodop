@@ -31,7 +31,7 @@
   gap: 8px;
   padding: 10px 16px;
   margin: 1.25rem auto;
-  background: linear-gradient(135deg, #4f46e5, #3b82f6);
+  background: linear-gradient(135deg, #9e77d1, #c2a4e9);
   color: white;
   text-decoration: none;
   border-radius: 9999px;
@@ -58,6 +58,7 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  margin-bottom: 20px;
   gap: 20px;
 }
 
@@ -67,7 +68,6 @@
   }
   .cat-content {
     flex-direction: column;
-    margin: auto;
   }
   .cat-info {
     flex-direction: row;
