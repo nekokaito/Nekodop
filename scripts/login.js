@@ -1,5 +1,5 @@
 const login = async (email, password) => {
-  await fetch("https://nekodop-server.vercel.app/login", {
+  await fetch("http://localhost:5000/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
@@ -42,4 +42,3 @@ if (loginForm) {
 } else {
   console.error("login-form not found in the DOM.");
 }
-

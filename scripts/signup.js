@@ -1,5 +1,5 @@
 const signup = async (user_name, email, password, profilePicture) => {
-  await fetch("https://nekodop-server.vercel.app/register", {
+  await fetch("http://localhost:5000/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ user_name, email, password, profilePicture }),

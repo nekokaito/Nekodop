@@ -11,7 +11,7 @@ const postCat = async (
   ownerEmail,
   additionalInformation
 ) => {
-  await fetch("https://nekodop-server.vercel.app/create-cat", {
+  await fetch("http://localhost:5000/create-cat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

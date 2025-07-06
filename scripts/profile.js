@@ -21,7 +21,7 @@ const initProfile = async () => {
 
   try {
     const response = await fetch(
-      `http://nekodop-server.vercel.app/get-user/${localData.id}`
+      `http://localhost:5000/get-user/${localData.id}`
     );
     if (!response.ok) throw new Error("Failed to fetch user data");
 
@@ -84,7 +84,7 @@ const fetchCats = async () => {
 
   try {
     const response = await fetch(
-      `http://nekodop-server.vercel.app/get-cats/${localData.id}`
+      `http://localhost:5000/get-cats/${localData.id}`
     );
     const { cats } = await response.json();
     const catsContainer = document.getElementById("cats-container");
@@ -126,7 +126,7 @@ const fetchCats = async () => {
             if (confirm(`Are you sure you want to delete "${cat.cat_name}"?`)) {
               try {
                 const res = await fetch(
-                  `http://nekodop-server.vercel.app/delete-cat/${cat.id}`,
+                  `http://localhost:5000/delete-cat/${cat.id}`,
                   {
                     method: "DELETE",
                   }
@@ -232,14 +232,11 @@ const setupEditForm = () => {
       };
 
       try {
-        const res = await fetch(
-          `http://nekodop-server.vercel.app/update-cat/${id}`,
-          {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updatedData),
-          }
-        );
+        const res = await fetch(`http://localhost:5000/update-cat/${id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedData),
+        });
 
         if (!res.ok) throw new Error("Update failed");
 

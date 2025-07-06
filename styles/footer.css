@@ -12,6 +12,11 @@ footer {
   font-size: 40px;
   margin-bottom: 10px;
 }
+.footer-logo-img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
 
 .company-name {
   font-size: 20px;

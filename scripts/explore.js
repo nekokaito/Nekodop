@@ -9,7 +9,7 @@ async function renderCats(catList) {
       catList.map(async (cat) => {
         try {
           const ownerRes = await fetch(
-            `https://nekodop-server.vercel.app/get-user/${cat.cat_owner_id}`
+            `http://localhost:5000/get-user/${cat.cat_owner_id}`
           );
           const ownerData = await ownerRes.json();
           const ownerImage =
@@ -18,7 +18,6 @@ async function renderCats(catList) {
             "/upload/",
             "/upload/f_webp,q_40/"
           );
-          console.log(cat);
 
           return `
             <a href="../pages/cat-details.html?id=${cat.id}">
@@ -58,7 +57,7 @@ async function renderCats(catList) {
 // Fetch all cats
 const fetchCats = async () => {
   try {
-    const res = await fetch("https://nekodop-server.vercel.app/get-cats");
+    const res = await fetch("http://localhost:5000/get-cats");
     const data = await res.json();
     cats = data.cats;
 
@@ -120,20 +119,22 @@ const fetchCatDetails = async () => {
   }
 
   try {
-    const res = await fetch(
-      `https://nekodop-server.vercel.app/get-cat/${catId}`
-    );
+    const res = await fetch(`http://localhost:5000/get-cat/${catId}`);
     const data = await res.json();
     const cat = data.cat;
+    console.log(cat);
 
     if (cat) {
       // Fetch owner details
 
       try {
         const ownerRes = await fetch(
-          `https://nekodop-server.vercel.app/get-user/${cat?.cat_owner_id}`
+          `http://localhost:5000/get-user/${cat.cat_owner_id}`
         );
         const ownerData = await ownerRes.json();
+
+        console.log(` asasa${ownerData}`);
+
         ownerImage = ownerData.user.profile_picture || "../images/profile.png";
       } catch (ownerError) {
         console.error("Error fetching owner details:", ownerError);
