@@ -133,7 +133,6 @@ const fetchCatDetails = async () => {
         );
         const ownerData = await ownerRes.json();
 
-        console.log(` asasa${ownerData}`);
 
         ownerImage = ownerData.user.profile_picture || "../images/profile.png";
       } catch (ownerError) {

@@ -10,7 +10,6 @@ const login = async (email, password) => {
         const { password: _, ...userData } = data.user; // Exclude password
         localStorage.setItem("user", JSON.stringify(userData));
 
-        console.log("login successful", userData);
         showToast("Login successful!", "success");
         setTimeout(() => {
           window.location.href = "/";
