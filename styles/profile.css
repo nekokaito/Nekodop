@@ -122,3 +122,9 @@
   font-size: 2rem;
   cursor: pointer;
 }
+.error {
+  color: red;
+  font-size: 0.85em;
+  margin-top: 2px;
+  display: block;
+}

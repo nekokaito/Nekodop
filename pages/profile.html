@@ -93,8 +93,9 @@
     </div>
     <div class="post-row">
       <div class="form-group">
-        <label for="age">Age (If month then add 0.) </label>
+        <label for="age">Age</label>
         <input type="number" id="age" required />
+        <span class="error" id="error-age"></span>
       </div>
       <div class="form-group">
         <label for="gender">Gender</label>
@@ -105,13 +106,15 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="lastName">Phone Number</label>
-        <input type="text" id="lastName" required />
+        <label for="phone">Phone Number</label>
+        <input type="text" id="phone" required />
+        <span class="error" id="error-phone"></span>
       </div>
     </div>
     <div class="form-group">
       <label for="cat-image">Cat Image</label>
       <input type="file" id="cat-image" accept="image/*" />
+      <span class="error" id="error-image"></span>
     </div>
     <div class="form-group">
       <label for="address">Address</label>
