@@ -21,11 +21,23 @@
   margin-bottom: 40px;
   font-size: 20px;
 }
+.back-home {
+  border-radius: 100%;
+  padding: 10px;
+  margin: 10px;
+  background-color: #e2dff3;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.back-home:hover {
+  background-color: #1c1b1b;
+  color: white;
+}
 
 .form-section {
   flex: 1;
   padding: 40px;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 20px;
 }
 
@@ -149,9 +161,6 @@ button:hover {
     width: auto;
     margin: 10px;
     margin-top: 100px;
-  }
-  .login-body,
-  .signup-body {
   }
 
   .content-section {
