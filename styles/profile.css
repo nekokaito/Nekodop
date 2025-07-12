@@ -58,6 +58,14 @@
   font-size: 18px;
 }
 
+#post-section {
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #f8f2fe;
+  margin-top: 50px;
+  margin-bottom: 200px;
+}
+
 @keyframes borderAnimation {
   0% {
     border-color: #ebe6fe;
