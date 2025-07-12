@@ -32,6 +32,7 @@ const postCat = async (
     .then((res) => res.json())
     .then((data) => {
       if (data) {
+        showToast("Posted successfully!", "success");
         console.log("Cat posted successfully:", data);
         document.getElementById("post-form").reset();
       } else {
@@ -76,10 +77,8 @@ if (postForm) {
     const catImageFile = document.getElementById("cat-image").files[0];
 
     let hasError = false;
-    
 
     // Validate inputs
-
 
     //Cat name
 
@@ -88,7 +87,7 @@ if (postForm) {
         "Cat name is required.";
       hasError = true;
     }
-   
+
     //Age validation
 
     if (isNaN(catAge) || catAge <= 0.1 || catAge > 25) {
@@ -112,8 +111,8 @@ if (postForm) {
         "Phone number must start with '01'.";
       hasError = true;
     }
-   
-   // Image validation
+
+    // Image validation
 
     if (!catImageFile) {
       document.getElementById("error-image").textContent =
