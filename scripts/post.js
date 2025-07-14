@@ -120,6 +120,7 @@ if (postForm) {
       hasError = true;
     } else {
       const imageSizeMB = catImageFile.size / (1024 * 1024);
+      
       if (imageSizeMB > 2) {
         document.getElementById("error-image").textContent =
           "Image must be under 2MB.";

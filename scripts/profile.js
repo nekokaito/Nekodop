@@ -36,11 +36,15 @@ const initProfile = async () => {
 
       if (userData.created_at) {
         const utcDate = new Date(userData.created_at);
+        console.log(userData.created_at);
+        console.log(utcDate);
 
-        // convert UTC time to local time 
+        // convert UTC time to local time
         const localDate = new Date(
           utcDate.getTime() + utcDate.getTimezoneOffset() * -60000
         );
+
+        console.log(localDate);
 
         const now = new Date();
 
