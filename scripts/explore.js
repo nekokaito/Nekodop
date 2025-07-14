@@ -133,7 +133,6 @@ const fetchCatDetails = async () => {
         );
         const ownerData = await ownerRes.json();
 
-
         ownerImage = ownerData.user.profile_picture || "../images/profile.png";
       } catch (ownerError) {
         console.error("Error fetching owner details:", ownerError);
@@ -210,7 +209,7 @@ ${
                     <div class="action-buttons">
                     <a href="https://api.whatsapp.com/send?phone=88${
                       cat?.owner_phone
-                    }&text=NekoDop:Hello%2C%20I%20would%20like%20to%20ask%20about%20${encodeURIComponent(
+                    }&text=Message%20From%20NekoDop:%20Hello%2C%20I%20would%20like%20to%20ask%20about%20${encodeURIComponent(
         cat.cat_name
       )}." target="_blank" rel="noopener noreferrer">
                         <button class="whatsapp-button">

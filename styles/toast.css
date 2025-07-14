@@ -35,20 +35,20 @@
 }
 
 .toast-success {
-  background-color: #16a34a; /* deeper green */
+  background-color: #71cc93;
 }
 
 .toast-error {
-  background-color: #dc2626; /* deeper red */
+  background-color: #d46868;
 }
 
 .toast-info {
-  background-color: #2563eb; /* deeper blue */
+  background-color: #8aa6e0;
 }
 
 .toast-warning {
-  background-color: #fbbf24; /* darker yellow */
-  color: #111827; /* dark text for contrast */
+  background-color: #d4bf88;
+  color: #111827;
 }
 
 @keyframes slideIn {

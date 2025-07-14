@@ -35,12 +35,36 @@ const initProfile = async () => {
       }`;
 
       if (userData.created_at) {
-        const createdDate = new Date(userData.created_at);
-        const currentDate = new Date();
-        const diffDays = Math.ceil(
-          (currentDate - createdDate) / (1000 * 60 * 60 * 24)
+        const utcDate = new Date(userData.created_at);
+
+        // convert UTC time to local time 
+        const localDate = new Date(
+          utcDate.getTime() + utcDate.getTimezoneOffset() * -60000
         );
-        profileDate.innerHTML = `<i class="fa-regular fa-calendar"></i> joined ${diffDays} days ago`;
+
+        const now = new Date();
+
+        const diffMs = now.getTime() - localDate.getTime();
+        const diffSec = Math.floor(diffMs / 1000);
+        const diffMin = Math.floor(diffSec / 60);
+        const diffHr = Math.floor(diffMin / 60);
+        const diffDays = Math.floor(diffHr / 24);
+
+        let timeString = "";
+
+        if (diffSec < 60) {
+          timeString = "joined a few seconds ago";
+        } else if (diffMin < 60) {
+          timeString = `joined ${diffMin} minute${
+            diffMin === 1 ? "" : "s"
+          } ago`;
+        } else if (diffHr < 24) {
+          timeString = `joined ${diffHr} hour${diffHr === 1 ? "" : "s"} ago`;
+        } else {
+          timeString = `joined ${diffDays} day${diffDays === 1 ? "" : "s"} ago`;
+        }
+
+        profileDate.innerHTML = `<i class="fa-regular fa-calendar"></i> ${timeString}`;
       } else {
         profileDate.textContent = "Join date not available";
       }
