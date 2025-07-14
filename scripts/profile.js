@@ -36,8 +36,8 @@ const initProfile = async () => {
 
       if (userData.created_at) {
         const utcDate = new Date(userData.created_at);
-        console.log(userData.created_at);
-        console.log(utcDate);
+        console.log(userData.created_at, "user created");
+        console.log(utcDate, "utc date");
 
         // convert UTC time to local time
         const localDate = new Date(
