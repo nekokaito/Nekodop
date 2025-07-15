@@ -1,115 +1,4 @@
-let cats = [];
-
-// Reusable render function
-async function renderCats(catList) {
-  const container = document.getElementById("cat-container");
-
-  if (catList.length > 0) {
-    const catCards = await Promise.all(
-      catList.map(async (cat) => {
-        try {
-          const ownerRes = await fetch(
-            `http://localhost:5000/get-user/${cat.cat_owner_id}`
-          );
-          const ownerData = await ownerRes.json();
-          const ownerImage =
-            ownerData.user.profile_picture || "../images/profile.png";
-          const optimizedImage = cat.cat_image.replace(
-            "/upload/",
-            "/upload/f_webp,q_40/"
-          );
-
-          return `
-            <a href="../pages/cat-details.html?id=${cat.id}">
-              <div class="card">
-                <div class="cat-img">
-                  <img src="${optimizedImage}" alt="${cat.cat_name}" />
-                </div>
-                <div class="card-body">
-                  <div class="card-text">
-                    <h2>${cat.cat_name}</h2>
-                    <p>Age: ${cat.cat_age}Y</p>
-                    <p>${cat.cat_gender}</p>
-                  </div>
-                  <div class="owner-img">
-                    <img src="${ownerImage}" alt="Owner of ${cat.cat_name}" />
-                  </div>
-                </div>
-              </div>
-            </a>
-          `;
-        } catch (ownerError) {
-          console.error(
-            `Error fetching owner for ${cat.cat_name}:`,
-            ownerError
-          );
-          return "";
-        }
-      })
-    );
-
-    container.innerHTML = catCards.join("");
-  } else {
-    container.innerHTML = "<p>No cats available right now.</p>";
-  }
-}
-
-// Fetch all cats
-const fetchCats = async () => {
-  try {
-    const res = await fetch("http://localhost:5000/get-cats");
-    const data = await res.json();
-    cats = data.cats;
-
-    renderCats(cats); // Initial render of all cats
-  } catch (error) {
-    document.getElementById("cat-container").innerHTML =
-      "<p>Failed to load cats. Please try again later.</p>";
-    console.error("Error fetching cats:", error);
-  }
-};
-
-// Combined Filter Handler
-const applyFilters = () => {
-  const searchQuery =
-    document.getElementById("search-input")?.value.toLowerCase() || "";
-  const maleChecked = document.getElementById("male-filter")?.checked;
-  const femaleChecked = document.getElementById("female-filter")?.checked;
-
-  const filteredCats = cats.filter((cat) => {
-    const matchesSearch =
-      cat.cat_name.toLowerCase().includes(searchQuery) ||
-      cat.cat_gender.toLowerCase().includes(searchQuery) ||
-      String(cat.cat_age).includes(searchQuery);
-
-    const genderMatch =
-      (maleChecked && cat.cat_gender.toLowerCase() === "male") ||
-      (femaleChecked && cat.cat_gender.toLowerCase() === "female");
-
-    return matchesSearch && genderMatch;
-  });
-
-  renderCats(filteredCats);
-};
-
-// Initialize on DOM load
-document.addEventListener("DOMContentLoaded", () => {
-  fetchCats();
-
-  // Event listener for search input
-  const searchInput = document.getElementById("search-input");
-  if (searchInput) {
-    searchInput.addEventListener("input", applyFilters);
-  }
-
-  // Event listeners for gender checkboxes
-  const maleCheckbox = document.getElementById("male-filter");
-  const femaleCheckbox = document.getElementById("female-filter");
-  if (maleCheckbox) maleCheckbox.addEventListener("change", applyFilters);
-  if (femaleCheckbox) femaleCheckbox.addEventListener("change", applyFilters);
-});
-
-const fetchCatDetails = async () => {
+export const fetchCatDetails = async () => {
   const params = new URLSearchParams(window.location.search);
   const catId = params.get("id");
 
@@ -125,15 +14,15 @@ const fetchCatDetails = async () => {
     console.log(cat);
 
     if (cat) {
-      // Fetch owner details
-
+      let ownerImage = "../images/profile.png";
       try {
         const ownerRes = await fetch(
           `http://localhost:5000/get-user/${cat.cat_owner_id}`
         );
         const ownerData = await ownerRes.json();
 
-        ownerImage = ownerData.user.profile_picture || "../images/profile.png";
+        ownerImage =
+          ownerData?.user?.profile_picture || "../images/profile.png";
       } catch (ownerError) {
         console.error("Error fetching owner details:", ownerError);
       }
@@ -276,6 +165,3 @@ ${
     console.error("Error fetching cat details:", error);
   }
 };
-
-fetchCats();
-fetchCatDetails();
