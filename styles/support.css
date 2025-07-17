@@ -1,0 +1,14 @@
+.support-banner {
+  width: 80%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .support-banner {
+    width: 100%;
+    height: auto;
+  }
+}

@@ -1,5 +1,3 @@
-
-
 const login = async (email, password) => {
   await fetch("http://localhost:5000/login", {
     method: "POST",
@@ -21,10 +19,13 @@ const login = async (email, password) => {
         const errorDiv = document.getElementById("login-error");
         errorDiv.textContent = "";
         errorDiv.textContent = "Invalid email or password";
-        showToast("An unexpected error occurred", "error");
+        showToast("Invalid email or password", "error");
       }
     })
-    .catch((err) => console.error("error:", err));
+    .catch((err) => {
+      console.error("error:", err);
+      showToast(`${err.message}`, "error");
+    });
 };
 
 const loginForm = document.getElementById("login-form");
