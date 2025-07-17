@@ -1,5 +1,7 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const user = JSON.parse(localStorage.getItem("user"));
+import { getUser, checkIsAdmin } from "../auth/auth-utils.js";
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const user = getUser();
   const loginBtnDesktop = document.querySelector(".login-desktop");
   const loginBtnMobile = document.querySelector(".login-phn");
   const userNav = document.querySelector(".user-nav");
@@ -12,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Create user icon container
     const userIconContainer = document.createElement("div");
     userIconContainer.classList.add("user-menu");
+    
+    // Fetch admin status
+    const isAdmin = await checkIsAdmin();
 
     // User profile image
     userIconContainer.innerHTML = `
@@ -22,6 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
       <ul class="dropdown-menu">
         <li><a href="../pages/profile.html">My Profile</a></li>
+       ${
+         isAdmin
+           ? `<li><a href="../pages/dashboard.html">Dashboard</a></li>`
+           : ""
+       }
         <li><button id="logout-btn">Logout</button></li>
       </ul>
     `;

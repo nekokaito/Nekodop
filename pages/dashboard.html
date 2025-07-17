@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+    <title>Nekodop</title>
+    <link rel="icon" href="/images/NekoDopLogoAlt.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/toast.css" />
+    <link rel="stylesheet" href="/styles/navbar.css" />
+    <link rel="stylesheet" href="/styles/hero.css" />
+    <link rel="stylesheet" href="/styles/footer.css" />
+    <link rel="stylesheet" href="/styles/form.css" />
+    <link rel="stylesheet" href="/styles/card.css" />
+    <link rel="stylesheet" href="/styles/preloader.css" />
+    <link rel="stylesheet" href="/styles/feature.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="preloader" class="preloader">
+      <img src="/images/preloader.gif" alt="" />
+    </div>
+
+    <main id="main-content">
+      <nav class="navbar">
+        <div class="logo-div">
+          <a href="#" class="logo">Nekodop</a>
+        </div>
+
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li>
+            <a href="#explore">Users</a>
+          </li>
+          <li><a href="#">Posts</a></li>
+
+          <li class="login-phn">
+            <a href="/pages/login.html"
+              ><button class="login-btn">Login</button></a
+            >
+          </li>
+        </ul>
+
+        <div class="user-nav">
+          <a href="/pages/login.html">
+            <button class="login-btn login-desktop">Login</button>
+          </a>
+        </div>
+        <button class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+      <div id="toast-container"></div>
+      <div id="app" class="container">
+        <!-- Home Section -->
+
+        <!-- Explore Section -->
+        <div id="explore" class="explore"></div>
+
+        <!-- Contact Section -->
+        <div id="contact"></div>
+      </div>
+    </main>
+    <!-- Footer Section -->
+    <footer id="footer-content" class="footer">
+      <div class="footer-logo">
+        <img
+          class="footer-logo-img"
+          src="/images/NekoDopLogo.png"
+          alt="Nekodop Logo"
+        />
+      </div>
+      <div class="company-name">Nekodop</div>
+      <div class="tagline">Cozy community built for cat lovers</div>
+      <div class="copyright">Copyright © 2025 - All right reserved</div>
+      <div class="social-icons">
+        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+      </div>
+    </footer>
+  </body>
+  <script
+    src="https://kit.fontawesome.com/ef66a13064.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="/scripts/reponsive.js"></script>
+  <script type="module" src="/scripts/main.js"></script>
+  <script type="module" src="/scripts/auth/user.js"></script>
+  <script src="/scripts/explore.js"></script>
+  <script src="/scripts/profile.js"></script>
+</html>
