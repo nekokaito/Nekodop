@@ -1,5 +1,7 @@
 // Initializes the post form logic
 
+showToast("Make Sure Phone Number has WhatsApp", "info");
+
 export const initPostForm = () => {
   // Function to submit a new cat to the backend
 
