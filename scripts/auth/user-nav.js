@@ -1,4 +1,4 @@
-import { getUser, checkIsAdmin } from "../auth/auth-utils.js";
+import { getUser, checkIsAdmin } from "./auth-utils.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
   const user = getUser();

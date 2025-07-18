@@ -40,9 +40,9 @@
         <ul class="nav-links">
           <li><a href="#dashboard">Dashboard</a></li>
           <li>
-            <a href="#explore">Users</a>
+            <a href="#users">Users</a>
           </li>
-          <li><a href="#">Posts</a></li>
+          <li><a href="#posts">Posts</a></li>
 
           <li class="login-phn">
             <a href="/pages/login.html"
@@ -64,13 +64,23 @@
       </nav>
       <div id="toast-container"></div>
       <div id="app" class="container">
-        <!-- Home Section -->
-
-        <!-- Explore Section -->
-        <div id="explore" class="explore"></div>
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="dashboard">
+          <div class="hero">
+            <h1 class="hero-title">Welcome to Nekodop</h1>
+            <p class="hero-subtitle">A cozy community for cat lovers</p>
+            <a href="/pages/login.html" class="hero-button">Join Now</a>
+          </div>
+        </div>
+        <!-- Users Section -->
+        <div id="users" class="users">
+          <p>This is users section</p>
+        </div>
 
         <!-- Contact Section -->
-        <div id="contact"></div>
+        <div id="posts" class="posts">
+          <p>This is posts section</p>
+        </div>
       </div>
     </main>
     <!-- Footer Section -->
@@ -98,7 +108,7 @@
   ></script>
   <script src="/scripts/reponsive.js"></script>
   <script type="module" src="/scripts/main.js"></script>
-  <script type="module" src="/scripts/auth/user.js"></script>
+  <script type="module" src="/scripts/auth/user-nav.js"></script>
   <script src="/scripts/explore.js"></script>
   <script src="/scripts/profile.js"></script>
 </html>

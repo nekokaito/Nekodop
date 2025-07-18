@@ -30,10 +30,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location = "/";
   }
 
-  // Section Routing via Hash
   const showActiveSection = () => {
     const sections = document.querySelectorAll("#app > div");
-    const hash = window.location.hash || "#home";
+
+    let hash = window.location.hash;
+
+    // Set default hash
+    if (!hash) {
+      const path = window.location.pathname;
+      if (path.endsWith("/pages/dashboard.html")) {
+        hash = "#dashboard";
+      } else {
+        hash = "#home";
+      }
+    }
 
     sections.forEach((section) => {
       section.style.display = `#${section.id}` === hash ? "block" : "none";
