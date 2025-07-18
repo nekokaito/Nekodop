@@ -34,7 +34,6 @@ export const initProfile = async () => {
 
       let timeString = "";
 
-      
       if (diffSec < 60) timeString = "joined a few seconds ago";
       else if (diffMin < 60)
         timeString = `joined ${diffMin} minute${diffMin !== 1 ? "s" : ""} ago`;
@@ -60,15 +59,63 @@ export const initCameraUpload = () => {
     fileInput.accept = "image/*";
     fileInput.click();
 
-    fileInput.addEventListener("change", () => {
+    fileInput.addEventListener("change", async () => {
       const file = fileInput.files?.[0];
       if (!file) return;
 
+      // Preview selected image
       const reader = new FileReader();
       reader.onload = (e) => {
         document.querySelector(".profile-image img").src = e.target.result;
       };
       reader.readAsDataURL(file);
+
+      // Upload to Cloudinary
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "nekodop");
+      formData.append("cloud_name", "dyvqe1hgj");
+
+      try {
+        const cloudRes = await fetch(
+          "https://api.cloudinary.com/v1_1/dyvqe1hgj/image/upload",
+          {
+            method: "POST",
+            body: formData,
+          }
+        );
+
+        const cloudData = await cloudRes.json();
+        const imageUrl = cloudData.url;
+
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user || !user.id) {
+          console.error("User not logged in");
+          return;
+        }
+
+        // Update user profile on server
+        const res = await fetch(
+          `http://localhost:5000/update-user/${user.id}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ profilePicture: imageUrl }),
+          }
+        );
+
+        if (res.ok) {
+          const updatedUser = { ...user, profilePicture: imageUrl };
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+          showToast("Profile picture updated!", "success");
+        } else {
+          console.error("Failed to update user on server");
+          showToast("Server update failed", "error");
+        }
+      } catch (err) {
+        console.error("Failed to upload or update:", err);
+        showToast("Failed to update profile picture", "error");
+      }
     });
   });
 };
