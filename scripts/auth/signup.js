@@ -1,4 +1,5 @@
 const signup = async (user_name, email, password, profilePicture) => {
+  // Send signup data to backend
   await fetch("http://localhost:5000/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -6,6 +7,7 @@ const signup = async (user_name, email, password, profilePicture) => {
   })
     .then((res) => res.json())
     .then((data) => {
+      // On success, store user and redirect to login
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
         console.log("Signup successful", data.user);
@@ -14,6 +16,7 @@ const signup = async (user_name, email, password, profilePicture) => {
           window.location.href = "/pages/login.html";
         }, 2000);
       } else {
+        // Show error on failure
         console.error("Signup failed", data.error);
         showToast("Signup failed: " + (data.error || "Unknown error"), "error");
       }
@@ -27,12 +30,14 @@ if (signupForm) {
   signupForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
+    // Get form values
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
     const rePassword = document.getElementById("re-password").value;
     const profilePhotoFiles = document.getElementById("profile-photo").files[0];
 
+    // Validate password complexity
     const validatePassword = (password) => {
       let error = null;
 
@@ -44,7 +49,7 @@ if (signupForm) {
         error = "Password must contain at least one lowercase letter.";
       } else if (!/\d/.test(password)) {
         error = "Password must contain at least one digit.";
-      } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      } else if (!/[!@#$%^&*(),.?\":{}|<>]/.test(password)) {
         error = "Password must contain at least one special character.";
       }
 
@@ -54,6 +59,7 @@ if (signupForm) {
       };
     };
 
+    // Check if passwords match
     if (password !== rePassword) {
       const errorDiv = document.getElementById("password-error");
 
@@ -63,6 +69,7 @@ if (signupForm) {
       return;
     }
 
+    // Check password validity
     const passwordValidation = validatePassword(password);
     if (!passwordValidation.isValid) {
       const errorDiv = document.getElementById("password-error");
@@ -73,6 +80,7 @@ if (signupForm) {
       return;
     }
 
+    // Upload profile photo to Cloudinary if provided
     const handlePhotoUpload = async () => {
       if (!profilePhotoFiles) return null;
 
@@ -96,10 +104,11 @@ if (signupForm) {
     const profilePhoto = await handlePhotoUpload();
 
     console.log(name, email, password, profilePhoto);
+
+    // Call signup function
     await signup(name, email, password, profilePhoto);
   });
 } else {
   console.error("Signup form not found in the DOM.");
 }
 
-console.log("signup.js running");

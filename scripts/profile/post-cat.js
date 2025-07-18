@@ -1,4 +1,8 @@
+// Initializes the post form logic
+
 export const initPostForm = () => {
+  // Function to submit a new cat to the backend
+
   const postCat = async (
     catOwnerId,
     catName,
@@ -26,7 +30,7 @@ export const initPostForm = () => {
         ownerAddress,
         ownerPhone,
         ownerEmail,
-        adopted: false,
+        adopted: false, // always false when creating new
         additionalInformation,
       }),
     })
@@ -35,7 +39,7 @@ export const initPostForm = () => {
         if (data) {
           showToast("Posted successfully!", "success");
           console.log("Cat posted successfully:", data);
-          document.getElementById("post-form").reset();
+          document.getElementById("post-form").reset(); // Reset form
         } else {
           console.error("Failed to post cat:", data.error);
         }
@@ -46,15 +50,21 @@ export const initPostForm = () => {
   const postForm = document.getElementById("post-form");
 
   if (postForm) {
+    // Helper: Clear all previous error messages
+
     const clearErrors = () => {
       document.querySelectorAll(".error").forEach((el) => {
         el.textContent = "";
       });
     };
 
+    // Form submit listener
+
     postForm.addEventListener("submit", async function (e) {
       e.preventDefault();
       clearErrors();
+
+      // Get user data from localStorage
 
       const userData = JSON.parse(localStorage.getItem("user"));
       if (!userData || !userData.id) {
@@ -62,9 +72,13 @@ export const initPostForm = () => {
         return;
       }
 
+      // Extract user details
+
       const catOwnerId = userData.id;
       const ownerEmail = userData.email || "not available";
       const ownerName = userData.name || "not available";
+
+      // Collect form field values
 
       const catName = document.getElementById("cat-name").value.trim();
       const year = parseInt(document.getElementById("year").value.trim()) || 0;
@@ -83,9 +97,9 @@ export const initPostForm = () => {
 
       let hasError = false;
 
-      // Validate inputs
+      // --- VALIDATIONS ---
 
-      //Cat name
+      // Cat name required
 
       if (!catName) {
         document.getElementById("error-cat-name").textContent =
@@ -93,8 +107,7 @@ export const initPostForm = () => {
         hasError = true;
       }
 
-      //Age validation
-
+      // Year must be in range 0–25
 
       if (year < 0 || year > 25) {
         document.getElementById("error-year").textContent =
@@ -102,22 +115,29 @@ export const initPostForm = () => {
         hasError = true;
       }
 
+      // Month must be in range 0–12
+
       if (month < 0 || month > 12) {
         document.getElementById("error-month").textContent =
           "Month must be between 0 and 12.";
         hasError = true;
       }
 
+      // If both year and month are 0, show error
+
       if (year === 0 && month === 0) {
         document.getElementById("error-month").textContent =
           "Month is required if year is 0.";
         hasError = true;
       }
+
+      // Generate readable age label
+
       const yearLabel = year === 1 ? "year" : "years";
       const monthLabel = month === 1 ? "month" : "months";
       const catAge = `${year} ${yearLabel} ${month} ${monthLabel}`;
 
-      //Phone number validation
+      // Validate phone number format
 
       if (!/^\d+$/.test(ownerPhone)) {
         document.getElementById("error-phone").textContent =
@@ -133,7 +153,7 @@ export const initPostForm = () => {
         hasError = true;
       }
 
-      // Image validation
+      // Validate cat image
 
       if (!catImageFile) {
         document.getElementById("error-image").textContent =
@@ -141,7 +161,6 @@ export const initPostForm = () => {
         hasError = true;
       } else {
         const imageSizeMB = catImageFile.size / (1024 * 1024);
-
         if (imageSizeMB > 2) {
           document.getElementById("error-image").textContent =
             "Image must be under 2MB.";
@@ -149,7 +168,11 @@ export const initPostForm = () => {
         }
       }
 
+      // Stop form submission if any errors
+
       if (hasError) return;
+
+      // Upload image to Cloudinary
 
       const handlePhotoUpload = async () => {
         const img = new FormData();
@@ -166,8 +189,10 @@ export const initPostForm = () => {
         );
 
         const uploadedImg = await res.json();
-        return uploadedImg.url;
+        return uploadedImg.url; // Return image URL to save in DB
       };
+
+      // Upload the image and post the cat
 
       const catImage = await handlePhotoUpload();
 
@@ -186,6 +211,6 @@ export const initPostForm = () => {
       );
     });
   } else {
-    console.error("Post form not found in the DOM.");
+    showToast("Post form not found", "error");
   }
 };

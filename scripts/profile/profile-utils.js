@@ -1,3 +1,5 @@
+// Initialize and load the user profile info from backend and localStorage
+
 export const initProfile = async () => {
   const profileImg = document.querySelector(".profile-container img");
   const profileName = document.querySelector(".profile-info h1");
@@ -14,18 +16,25 @@ export const initProfile = async () => {
     const { user: userData } = await res.json();
     if (!userData) return;
 
+    // Set user profile picture or fallback
     profileImg.src = userData.profile_picture || "../images/profile.png";
     profileImg.alt = userData.name || "user profile";
+
+    // Set user name or fallback
     profileName.textContent = userData.name || "username";
+
+    // Display email with icon
     profileEmail.innerHTML = `<i class="fa-solid fa-at"></i> ${
       userData.email || "email@example.com"
     }`;
 
+    // Convert and show relative join date
     if (userData.created_at) {
       const utcDate = new Date(userData.created_at);
       const localDate = new Date(
         utcDate.getTime() + utcDate.getTimezoneOffset() * -60000
       );
+
       const now = new Date();
       const diffSec = Math.floor((now - localDate) / 1000);
       const diffMin = Math.floor(diffSec / 60);
@@ -49,11 +58,13 @@ export const initProfile = async () => {
   }
 };
 
+// Set up the camera button to let user upload and update profile photo
 export const initCameraUpload = () => {
   const cameraButton = document.querySelector(".camera-button");
   if (!cameraButton) return;
 
   cameraButton.addEventListener("click", () => {
+    // Dynamically create file input and trigger click
     const fileInput = document.createElement("input");
     fileInput.type = "file";
     fileInput.accept = "image/*";
@@ -63,20 +74,21 @@ export const initCameraUpload = () => {
       const file = fileInput.files?.[0];
       if (!file) return;
 
-      // Preview selected image
+      // Preview the selected image in the profile UI
       const reader = new FileReader();
       reader.onload = (e) => {
         document.querySelector(".profile-image img").src = e.target.result;
       };
       reader.readAsDataURL(file);
 
-      // Upload to Cloudinary
+      // Prepare image for Cloudinary upload
       const formData = new FormData();
       formData.append("file", file);
       formData.append("upload_preset", "nekodop");
       formData.append("cloud_name", "dyvqe1hgj");
 
       try {
+        // Upload to Cloudinary
         const cloudRes = await fetch(
           "https://api.cloudinary.com/v1_1/dyvqe1hgj/image/upload",
           {
@@ -88,13 +100,14 @@ export const initCameraUpload = () => {
         const cloudData = await cloudRes.json();
         const imageUrl = cloudData.url;
 
+        // Get current user
         const user = JSON.parse(localStorage.getItem("user"));
         if (!user || !user.id) {
           console.error("User not logged in");
           return;
         }
 
-        // Update user profile on server
+        // Update user profile picture in backend
         const res = await fetch(
           `http://localhost:5000/update-user/${user.id}`,
           {
@@ -104,6 +117,7 @@ export const initCameraUpload = () => {
           }
         );
 
+        // On successful update, also update localStorage
         if (res.ok) {
           const updatedUser = { ...user, profilePicture: imageUrl };
           localStorage.setItem("user", JSON.stringify(updatedUser));
@@ -120,11 +134,12 @@ export const initCameraUpload = () => {
   });
 };
 
+// Controls which dashboard section (post or my cats) is visible
+
 export const showSection = (sectionId, tabId) => {
   document.getElementById("post-section").style.display = "none";
   document.getElementById("my-cats-section").style.display = "none";
   document.getElementById(sectionId).style.display = "block";
-
   document.getElementById("post-tab").classList.remove("active");
   document.getElementById("my-cats-tab").classList.remove("active");
   document.getElementById(tabId).classList.add("active");
