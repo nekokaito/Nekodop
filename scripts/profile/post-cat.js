@@ -67,7 +67,9 @@ export const initPostForm = () => {
       const ownerName = userData.name || "not available";
 
       const catName = document.getElementById("cat-name").value.trim();
-      const catAge = parseInt(document.getElementById("age").value);
+      const year = parseInt(document.getElementById("year").value.trim()) || 0;
+      const month =
+        parseInt(document.getElementById("month").value.trim()) || 0;
       const catGender = document.getElementById("gender").value;
       const ownerPhone = document.getElementById("phone").value.trim();
       const ownerAddress = document.getElementById("address").value.trim();
@@ -93,11 +95,27 @@ export const initPostForm = () => {
 
       //Age validation
 
-      if (isNaN(catAge) || catAge <= 0.1 || catAge > 25) {
-        document.getElementById("error-age").textContent =
-          "Age must be between 1 and 25.";
+
+      if (year < 0 || year > 25) {
+        document.getElementById("error-year").textContent =
+          "Year must be between 0 and 25.";
         hasError = true;
       }
+
+      if (month < 0 || month > 12) {
+        document.getElementById("error-month").textContent =
+          "Month must be between 0 and 12.";
+        hasError = true;
+      }
+
+      if (year === 0 && month === 0) {
+        document.getElementById("error-month").textContent =
+          "Month is required if year is 0.";
+        hasError = true;
+      }
+      const yearLabel = year === 1 ? "year" : "years";
+      const monthLabel = month === 1 ? "month" : "months";
+      const catAge = `${year} ${yearLabel} ${month} ${monthLabel}`;
 
       //Phone number validation
 
