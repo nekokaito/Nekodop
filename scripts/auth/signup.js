@@ -1,9 +1,9 @@
-const signup = async (user_name, email, password, profilePicture) => {
+const signup = async (userName, email, password, profilePicture) => {
   // Send signup data to backend
   await fetch("http://localhost:5000/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ user_name, email, password, profilePicture }),
+    body: JSON.stringify({ userName, email, password, profilePicture }),
   })
     .then((res) => res.json())
     .then((data) => {
@@ -111,4 +111,3 @@ if (signupForm) {
 } else {
   console.error("Signup form not found in the DOM.");
 }
-

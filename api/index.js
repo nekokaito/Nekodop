@@ -7,11 +7,11 @@ dotenv.config();
 const sql = neon(process.env.DATABASE_URL);
 
 // Create User
-const createUser = async (user_name, email, password, profilePicture) => {
+const createUser = async (userName, email, password, profilePicture) => {
   try {
     const result = await sql`
       INSERT INTO public.users (name, email, password, profile_picture)
-      VALUES (${user_name}, ${email}, ${password}, ${profilePicture})
+      VALUES (${userName}, ${email}, ${password}, ${profilePicture})
       RETURNING id, name, email, profile_picture;
     `;
     return result[0];
@@ -149,10 +149,10 @@ const requestHandler = async (req, res) => {
       body += chunk;
     });
     req.on("end", async () => {
-      const { user_name, email, password, profilePicture } = JSON.parse(body);
+      const { userName, email, password, profilePicture } = JSON.parse(body);
       try {
         const user = await createUser(
-          user_name,
+          userName,
           email,
           password,
           profilePicture
