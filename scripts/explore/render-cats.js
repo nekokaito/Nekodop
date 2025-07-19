@@ -1,16 +1,30 @@
 export const renderCats = async (catList) => {
+  // get container element
+
   const container = document.getElementById("cat-container");
 
+  // check if cats exist
+
   if (catList.length > 0) {
+    // create cat cards
+
     const catCards = await Promise.all(
       catList.map(async (cat) => {
         try {
+          // fetch owner data
+
           const ownerRes = await fetch(
             `http://localhost:5000/get-user/${cat.cat_owner_id}`
           );
           const ownerData = await ownerRes.json();
+
+          // owner image fallback
+
           const ownerImage =
             ownerData.user.profile_picture || "../images/profile.png";
+
+          // optimize cat image url
+
           const optimizedImage = cat.cat_image.replace(
             "/upload/",
             "/upload/f_webp,q_40/"
@@ -36,6 +50,8 @@ export const renderCats = async (catList) => {
             </a>
           `;
         } catch (ownerError) {
+          // error fetching owner
+
           console.error(
             `Error fetching owner for ${cat.cat_name}:`,
             ownerError
@@ -45,8 +61,12 @@ export const renderCats = async (catList) => {
       })
     );
 
+    // update container content
+
     container.innerHTML = catCards.join("");
   } else {
+    // no cats message
+
     container.innerHTML = "<p>No cats available right now.</p>";
   }
 };

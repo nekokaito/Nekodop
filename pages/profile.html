@@ -94,9 +94,18 @@
     </div>
     <div class="post-row">
       <div class="form-group">
-        <label for="age">Age</label>
-        <input type="number" id="age" required />
-        <span class="error" id="error-age"></span>
+        <div class="post-row">
+          <div class="form-group">
+        <label for="year">Year</label>
+        <input min="0" max="25" type="number" id="year"/>
+        <span class="error" id="error-year"></span>
+          </div>
+          <div class="form-group">
+        <label for="month">Month</label>
+        <input min="0" max="12" type="number" id="month" required />
+        <span class="error" id="error-month"></span>
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label for="gender">Gender</label>
@@ -108,7 +117,7 @@
       </div>
       <div class="form-group">
         <label for="phone">Phone Number</label>
-        <input type="text" id="phone" required />
+        <input type="text" id="phone" required  placeholder="01XXXXXXXXX - Only WhatsApp"/>
         <span class="error" id="error-phone"></span>
       </div>
     </div>
@@ -141,16 +150,28 @@
   <!-- Edit Post Modal -->
 <div id="edit-post-modal" class="modal hidden">
   <div class="modal-content">
-    <span class="close-btn" onclick="closeEditModal()">&times;</span>
+    <span class="close-btn">&times;</span>
     <form id="edit-post-form">
       <div class="form-group">
         <label for="edit-cat-name">Cat Name</label>
         <input type="text" id="edit-cat-name" required />
+        <span class="error" id="edit-error-cat-name"></span>
       </div>
       <div class="post-row">
+        <!-- Start  -->
         <div class="form-group">
-          <label for="edit-age">Age</label>
-          <input type="number" id="edit-age" required />
+          <div class="post-row">
+          <div class="form-group">
+        <label for="year">Year</label>
+        <input min="0" max="25" type="number" id="edit-year"/>
+        <span class="error" id="edit-error-year"></span>
+          </div>
+          <div class="form-group">
+        <label for="month">Month</label>
+        <input min="0" max="12" type="number" id="edit-month" required />
+        <span class="error" id="edit-error-month"></span>
+          </div>
+        </div>
         </div>
         <div class="form-group">
           <label for="edit-gender">Gender</label>
@@ -171,11 +192,14 @@
         <div class="form-group">
           <label for="edit-phone">Phone Number</label>
           <input type="text" id="edit-phone" required />
+          <span class="error" id="edit-error-phone"></span>
         </div>
+        <!-- End  -->
       </div>
       <div class="form-group">
         <input type="hidden" id="edit-cat-image-current" />
-      <input type="file" id="edit-cat-image-new" accept="image/*" />
+      <input type="file" id="edit-cat-image-new" accept="image/*" />  
+        <span class="error" id="edit-error-image"></span>
 
       </div>
       <div class="form-group">
@@ -226,7 +250,7 @@
   <script src="/scripts/reponsive.js"></script>
   <script src="../scripts/toast.js"></script>
   <script type="module" src="/scripts/main.js"></script>
-  <script src="/scripts/auth/user.js"></script>
+  <script type="module" src="/scripts/auth/user-nav.js"></script>
   <script type="module" src="/scripts/profile/profile.js"></script>
   
 </html>

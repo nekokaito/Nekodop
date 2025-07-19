@@ -1,3 +1,4 @@
+// Fetch all cats belonging to the logged-in user
 export const fetchCats = async () => {
   const localData = JSON.parse(localStorage.getItem("user"));
   if (!localData?.id) return console.error("No user ID found in localStorage");
@@ -16,10 +17,13 @@ export const fetchCats = async () => {
       const catCard = document.createElement("div");
       catCard.classList.add("card");
 
+      // Optimize image loading from Cloudinary
       const optimizedImage = cat.cat_image.replace(
         "/upload/",
         "/upload/f_webp,q_40/"
       );
+
+      // Render each cat card
       catCard.innerHTML = `
         <img id="cat-image" src="${optimizedImage}" alt="${cat.cat_name}" class="cat-image" />
         <div class="card-body">
@@ -40,6 +44,7 @@ export const fetchCats = async () => {
           </div>
         </div>`;
 
+      // Handle delete cat action
       catCard
         .querySelector(".delete-cat")
         .addEventListener("click", async () => {
@@ -49,13 +54,12 @@ export const fetchCats = async () => {
           try {
             const delRes = await fetch(
               `http://localhost:5000/delete-cat/${cat.id}`,
-              {
-                method: "DELETE",
-              }
+              { method: "DELETE" }
             );
 
             if (!delRes.ok) throw new Error("Failed to delete cat");
-            catCard.remove();
+
+            catCard.remove(); // Remove card from DOM
             alert(`"${cat.cat_name}" has been deleted.`);
           } catch (err) {
             console.error("Delete failed:", err);
@@ -63,6 +67,7 @@ export const fetchCats = async () => {
           }
         });
 
+      // Handle edit cat action
       catCard.querySelector(".edit-cat").addEventListener("click", () => {
         openEditModal(cat);
       });
@@ -74,13 +79,22 @@ export const fetchCats = async () => {
   }
 };
 
+// Holds the current cat being edited
 let currentEditingCat = null;
 
+// Open edit modal and prefill with cat data
 export const openEditModal = (cat) => {
   currentEditingCat = cat;
 
   document.getElementById("edit-cat-name").value = cat.cat_name;
-  document.getElementById("edit-age").value = cat.cat_age;
+
+  const [yearMatch, monthMatch] = [
+    cat.cat_age.match(/(\d+)\s*year/),
+    cat.cat_age.match(/(\d+)\s*month/),
+  ];
+
+  document.getElementById("edit-year").value = yearMatch ? yearMatch[1] : 0;
+  document.getElementById("edit-month").value = monthMatch ? monthMatch[1] : 0;
   document.getElementById("edit-gender").value = cat.cat_gender;
   document.getElementById("edit-phone").value = cat.owner_phone;
   document.getElementById("edit-address").value = cat.owner_address;
@@ -93,10 +107,17 @@ export const openEditModal = (cat) => {
   document.getElementById("edit-post-form").dataset.postId = cat.id;
 };
 
+// Close the edit modal
 export const closeEditModal = () => {
   document.getElementById("edit-post-modal").classList.add("hidden");
 };
 
+// JavaScript after DOM loaded
+document.querySelector(".close-btn").addEventListener("click", closeEditModal);
+window.closeEditModal = closeEditModal;
+
+
+// Setup the edit form functionality
 export const setupEditForm = () => {
   document
     .getElementById("edit-post-form")
@@ -104,11 +125,96 @@ export const setupEditForm = () => {
       e.preventDefault();
       const id = e.target.dataset.postId;
 
+      // Get form values
+      const catName = document.getElementById("edit-cat-name").value.trim();
+      const year =
+        parseInt(document.getElementById("edit-year").value.trim()) || 0;
+      const month =
+        parseInt(document.getElementById("edit-month").value.trim()) || 0;
+      const catGender = document.getElementById("edit-gender").value;
+      const ownerPhone = document.getElementById("edit-phone").value.trim();
+      const ownerAddress = document.getElementById("edit-address").value.trim();
+      const additionalInformation = document
+        .getElementById("edit-additional")
+        .value.trim();
+      const catDescription = document
+        .getElementById("edit-description")
+        .value.trim();
+      const adoptedValue = document.getElementById("edit-status").value;
       const fileInput = document.getElementById("edit-cat-image-new");
       const currentImage = document.getElementById(
         "edit-cat-image-current"
       ).value;
+
       let finalImageUrl = currentImage;
+
+      // Clear previous error messages
+      document.getElementById("edit-error-cat-name").textContent = "";
+      document.getElementById("edit-error-year").textContent = "";
+      document.getElementById("edit-error-month").textContent = "";
+      document.getElementById("edit-error-phone").textContent = "";
+      document.getElementById("edit-error-image").textContent = "";
+
+      let hasError = false;
+
+      // Input validations
+
+      // Cat name validation
+
+      if (!catName) {
+        document.getElementById("edit-error-cat-name").textContent =
+          "Cat name is required.";
+        hasError = true;
+      }
+      // Age validation
+
+      if (year < 0 || year > 25) {
+        document.getElementById("edit-error-year").textContent =
+          "Year must be between 0 and 25.";
+        hasError = true;
+      }
+
+      if (month < 0 || month > 12) {
+        document.getElementById("edit-error-month").textContent =
+          "Month must be between 0 and 12.";
+        hasError = true;
+      }
+
+      if (year === 0 && month === 0) {
+        document.getElementById("edit-error-month").textContent =
+          "Month is required if year is 0.";
+        hasError = true;
+      }
+      // Phone number validation
+
+      if (!/^\d+$/.test(ownerPhone)) {
+        document.getElementById("edit-error-phone").textContent =
+          "Phone number must be numeric.";
+        hasError = true;
+      } else if (ownerPhone.length !== 11) {
+        document.getElementById("edit-error-phone").textContent =
+          "Phone number must be exactly 11 digits.";
+        hasError = true;
+      } else if (!/^01/.test(ownerPhone)) {
+        document.getElementById("edit-error-phone").textContent =
+          "Phone number must start with '01'.";
+        hasError = true;
+      }
+
+      // Image validation if new image is selected
+      if (fileInput.files.length > 0) {
+        const catImageFile = fileInput.files[0];
+        const imageSizeMB = catImageFile.size / (1024 * 1024);
+        if (imageSizeMB > 2) {
+          document.getElementById("edit-error-image").textContent =
+            "Image must be under 2MB.";
+          hasError = true;
+        }
+      }
+
+      if (hasError) return; // Stop if validation failed
+
+      // Upload image to Cloudinary if new file selected
 
       if (fileInput.files.length > 0) {
         const imageFile = fileInput.files[0];
@@ -119,10 +225,7 @@ export const setupEditForm = () => {
         try {
           const cloudRes = await fetch(
             "https://api.cloudinary.com/v1_1/dyvqe1hgj/image/upload",
-            {
-              method: "POST",
-              body: formData,
-            }
+            { method: "POST", body: formData }
           );
           const cloudData = await cloudRes.json();
           finalImageUrl = cloudData.secure_url;
@@ -133,18 +236,28 @@ export const setupEditForm = () => {
         }
       }
 
-      const adoptedValue = document.getElementById("edit-status").value;
+      // Format age string
+
+      let catAge = "";
+      if (year > 0) catAge += `${year} year${year > 1 ? "s" : ""} `;
+      if (year === 0 || month > 0)
+        catAge += `${month} month${month > 1 ? "s" : ""}`;
+
+      // Prepare update payload
+
       const updatedData = {
-        catName: document.getElementById("edit-cat-name").value,
-        catAge: Number(document.getElementById("edit-age").value),
-        catGender: document.getElementById("edit-gender").value,
-        ownerPhone: document.getElementById("edit-phone").value,
-        ownerAddress: document.getElementById("edit-address").value,
-        additionalInformation: document.getElementById("edit-additional").value,
-        catDescription: document.getElementById("edit-description").value,
+        catName,
+        catAge,
+        catGender,
+        ownerPhone,
+        ownerAddress,
+        additionalInformation,
+        catDescription,
         catImage: finalImageUrl,
         adopted: adoptedValue === "1",
       };
+
+      // Send update request to server
 
       try {
         const res = await fetch(`http://localhost:5000/update-cat/${id}`, {
@@ -155,12 +268,12 @@ export const setupEditForm = () => {
 
         if (!res.ok) throw new Error("Update failed");
 
-        alert("Cat details updated successfully.");
+        showToast("Cat details updated successfully!", "success");
         closeEditModal();
-        fetchCats();
+        fetchCats(); // Refresh the UI
       } catch (err) {
         console.error("Error updating cat:", err);
-        alert("Something went wrong while updating.");
+        showToast("Something went wrong while updating.", "error");
       }
     });
 };

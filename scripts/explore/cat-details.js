@@ -3,11 +3,14 @@ export const fetchCatDetails = async () => {
   const catId = params.get("id");
 
   if (!catId) {
+    // Show message if no cat ID found in URL
+    
     document.getElementById("cat-info").innerHTML = "<p>Cat not found.</p>";
     return;
   }
 
   try {
+    // Fetch cat details from server
     const res = await fetch(`http://localhost:5000/get-cat/${catId}`);
     const data = await res.json();
     const cat = data.cat;
@@ -15,7 +18,9 @@ export const fetchCatDetails = async () => {
 
     if (cat) {
       let ownerImage = "../images/profile.png";
+
       try {
+        // Fetch owner details
         const ownerRes = await fetch(
           `http://localhost:5000/get-user/${cat.cat_owner_id}`
         );
@@ -27,6 +32,7 @@ export const fetchCatDetails = async () => {
         console.error("Error fetching owner details:", ownerError);
       }
 
+      // Format date to readable string
       const date = new Date(cat.created_at);
       const formattedDate = date.toLocaleDateString("en-US", {
         day: "numeric",
@@ -34,6 +40,7 @@ export const fetchCatDetails = async () => {
         year: "numeric",
       });
 
+      // Format cat age into years and months
       const formatCatAge = (age) => {
         const years = Math.floor(age);
         const months = Math.round((age - years) * 12);

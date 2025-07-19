@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="/styles/card.css" />
     <link rel="stylesheet" href="/styles/preloader.css" />
     <link rel="stylesheet" href="/styles/feature.css" />
+    <link rel="stylesheet" href="/styles/support.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -42,7 +43,7 @@
           <li>
             <a href="#explore">Explore</a>
           </li>
-          <li><a href="#">Service</a></li>
+          <li><a href="#support">Support</a></li>
           <li><a href="#">Gallery</a></li>
           <li>
             <a href="#contact">Contact</a>
@@ -193,7 +194,9 @@
 
         <!-- Explore Section -->
         <div id="explore" class="explore">
-          <h1>Explorer Our Cats</h1>
+          <h1 class="section-title">
+            Explorer Our <span class="highlight">Cats</span>
+          </h1>
           <div class="filter-section">
             <input
               type="text"
@@ -216,7 +219,54 @@
             <p>Loading cats...</p>
           </div>
         </div>
-
+        <!-- Support Section -->
+        <div id="support" class="support">
+          <div>
+            <img
+              class="support-banner"
+              src="/images/support_banner.jpg"
+              alt="Support Image"
+            />
+          </div>
+          <div class="support-content">
+            <h2>We're Here to Help</h2>
+            <p>
+              If you have any questions or need assistance, feel free to reach
+              out to our support team. We're dedicated to ensuring the best
+              experience for you and your pets. It is a community-driven
+              platform dedicated to helping stray and rescued cats find loving
+              homes. By donating, you’re not just supporting a website — you’re
+              changing lives.
+            </p>
+          </div>
+          <section class="how-it-section">
+            <div class="support-img">
+              <img class="" src="/images/heart_donation.png" alt="" />
+            </div>
+            <div class="text-content">
+              <h2>Donate to Support Our Cause</h2>
+              <p>
+                Your contributions help us maintain the platform and support our
+                mission of finding homes for cats in need. Every donation, big
+                or small, makes a difference.
+              </p>
+            </div>
+          </section>
+          <section class="how-it-section">
+            <div class="support-img">
+              <img class="" src="/images/question.png" alt="" />
+            </div>
+            <div class="text-content">
+              <h2>Why Your Support Matters</h2>
+              <ul class="support-list">
+                <li>Provide food, shelter, and medical care for stray cats.</li>
+                <li>Maintain and improve the Nekodop platform.</li>
+                <li>Organize adoption events and awareness campaigns.</li>
+                <li>Support verified rescuers and foster homes.</li>
+              </ul>
+            </div>
+          </section>
+        </div>
         <!-- Contact Section -->
         <div id="contact">
           <div class="contact-container">
@@ -294,7 +344,8 @@
   ></script>
   <script src="/scripts/reponsive.js"></script>
   <script type="module" src="/scripts/main.js"></script>
-  <script src="/scripts/auth/user.js"></script>
+  <script type="module" src="/scripts/auth/user-nav.js"></script>
   <script src="/scripts/explore.js"></script>
   <script src="/scripts/profile.js"></script>
+  <script src="/scripts/toast.js"></script>
 </html>

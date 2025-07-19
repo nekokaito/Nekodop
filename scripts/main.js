@@ -1,17 +1,20 @@
 import { fetchCats } from "./explore/fetch-cats.js";
 import { applyFilters } from "./explore/filters.js";
 import { fetchCatDetails } from "./explore/cat-details.js";
+import { getUser, checkIsAdmin } from "./auth/auth-utils.js";
 
 // -----------------------------
 // DOM Ready
 // -----------------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+document.addEventListener("DOMContentLoaded", async () => {
+  const user = getUser();
+  const isAdmin = await checkIsAdmin();
   const currentPath = window.location.pathname;
 
   // Protected Routes Handling
   const loginPages = ["/pages/login.html", "/pages/sign-up.html"];
   const profilePages = ["/pages/profile.html", "/pages/cat-details.html"];
+  const dashboardPages = ["/pages/dashboard.html"];
 
   if (user && loginPages.includes(currentPath)) {
     console.log("Already Has Been Logged In");
@@ -22,11 +25,25 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Please Login First");
     window.location = "/pages/login.html";
   }
+  if (user && dashboardPages.includes(currentPath) && !isAdmin) {
+    console.log("You are not an admin");
+    window.location = "/";
+  }
 
-  // Section Routing via Hash
   const showActiveSection = () => {
     const sections = document.querySelectorAll("#app > div");
-    const hash = window.location.hash || "#home";
+
+    let hash = window.location.hash;
+
+    // Set default hash
+    if (!hash) {
+      const path = window.location.pathname;
+      if (path.endsWith("/pages/dashboard.html")) {
+        hash = "#dashboard";
+      } else {
+        hash = "#home";
+      }
+    }
 
     sections.forEach((section) => {
       section.style.display = `#${section.id}` === hash ? "block" : "none";

@@ -1,0 +1,44 @@
+.support-banner {
+  width: 80%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+.support-content {
+  text-align: center;
+  margin-top: 60px;
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+
+.support-content h2 {
+  font-size: 2em;
+  color: #333;
+}
+.support-content p {
+  margin-top: 10px;
+  color: #797979;
+  line-height: 1.5;
+}
+
+.support-img {
+  width: 400px;
+}
+
+.support-img img {
+  width: 100%;
+  height: 100%;
+}
+.support-list li {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+@media screen and (max-width: 768px) {
+  .support-banner {
+    width: 100%;
+    height: auto;
+  }
+}
