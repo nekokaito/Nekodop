@@ -48,6 +48,20 @@ export const fetchCatDetails = async () => {
         cat.cat_name
       )}`;
 
+      if (checkIsAdmin) {
+        const navHome = document.getElementById("nav-home");
+
+        const morePostsLink = document.createElement("a");
+        morePostsLink.href = "/pages/dashboard.html#posts";
+        morePostsLink.className = "return-btn";
+        morePostsLink.innerHTML = `
+    <i class="fa-solid fa-file"></i>
+    More Posts
+  `;
+
+        navHome.appendChild(morePostsLink);
+      }
+
       // cat details in the HTML
 
       document.getElementById("cat-info").innerHTML = ` 
@@ -177,8 +191,12 @@ ${
          <div class="cat-content"> 
          <div><h1 class="poster-name">How can we adopt a cat using Nekodop?</h1>
   <p class="poster-text">Adopting a cat on Nekodop is designed to be as smooth and straightforward as possible. First, you visit the platform and browse through the available cats listed by their current owners. Each listing contains key details such as the cat’s name, age, gender, a photo, and a short description that gives insight into the cat’s personality, background, or special needs. Once you find a cat you’re interested in, you don’t need to sign up or fill out any forms. Instead, you’ll see the owner’s contact information on the post. Nekodop allows you to instantly reach out to the owner through WhatsApp by clicking the provided link, which opens a chat directly, or you can choose to send them an email if that’s more convenient. From there, you can ask questions, set up a meeting, or plan the adoption—all in a way that feels natural and human. This personal approach helps build trust between both parties and ensures the cat finds a loving, suitable new home.</p></div>
-         </div>             
-            
+         </div>
+         <a href="/index.html#support">
+         <div class="support-banner">
+      <img src="/images/support_banner.jpg" alt="Nekodop Logo" class="nekodop-logo">
+                      </div> 
+                      </a>
       `;
     } else {
       document.getElementById("cat-info").innerHTML = "<p>Cat not found.</p>";

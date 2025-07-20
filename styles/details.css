@@ -3,7 +3,7 @@
   margin: 20px;
   background-color: #c3b5fd77;
   border-radius: 8px;
-  height: 100%;
+  height: auto;
 }
 
 .cat-card {
@@ -226,4 +226,15 @@
 .poster-text {
   font-size: 14px;
   color: #555;
+}
+.support-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.support-banner img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
 }
