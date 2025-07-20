@@ -87,6 +87,32 @@
   border-radius: 20px;
   margin-top: 50px;
 }
+.cat-name {
+  display: flex;
+  gap: 10px;
+}
+.badge {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-approved {
+  background-color: #6ddd96; /* green */
+  color: white;
+}
+
+.badge-rejected {
+  background-color: #e96d6d; /* red */
+  color: white;
+}
+
+.badge-pending {
+  background-color: #e2ddc9; /* yellow */
+  color: black;
+}
 
 @keyframes borderAnimation {
   0% {
