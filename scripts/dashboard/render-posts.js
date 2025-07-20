@@ -1,7 +1,7 @@
-export const renderCats = async (catList) => {
+export const renderPosts = async (catList) => {
   // get container element
 
-  const container = document.getElementById("cat-container");
+  const container = document.getElementById("post-container");
 
   // check if cats exist
 
