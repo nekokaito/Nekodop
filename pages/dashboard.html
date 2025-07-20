@@ -11,6 +11,7 @@
     <link rel="icon" href="/images/NekoDopLogoAlt.png" type="image/x-icon" />
     <link rel="stylesheet" href="/styles/global.css" />
     <link rel="stylesheet" href="/styles/dashboard.css" />
+    <link rel="stylesheet" href="/styles/table.css" />
     <link rel="stylesheet" href="/styles/toast.css" />
     <link rel="stylesheet" href="/styles/navbar.css" />
     <link rel="stylesheet" href="/styles/hero.css" />
@@ -72,11 +73,28 @@
             <p class="hero-subtitle">A cozy community for cat lovers</p>
             <a href="/pages/login.html" class="hero-button">Join Now</a>
           </div>
+          <div class="overflow-x-auto"></div>
         </div>
         <!-- Users Section -->
         <div id="users" class="users">
-          <div class="card-container" id="user-container">
-            <p>Loading users...</p>
+          <div id="user-container">
+            <table class="table">
+              <!-- head -->
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Created At</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="user-list">
+                <!-- user list  -->
+                <tr>
+                  <td colspan="4" class="text-center">Loading users...</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 

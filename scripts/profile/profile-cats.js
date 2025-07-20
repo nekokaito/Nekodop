@@ -11,7 +11,12 @@ export const fetchCats = async () => {
     catsContainer.innerHTML = "";
 
     if (!cats?.length)
-      return (catsContainer.innerHTML = "<p>No cats found!</p>");
+      return (catsContainer.innerHTML = `
+    <div class='no-cats'>
+      <img src='/images/No_Cats.png' alt='No Cats Found' />
+      <p>No Cat Posts Found.</p>
+    </div>
+  `);
 
     cats.forEach((cat) => {
       const catCard = document.createElement("div");
@@ -115,7 +120,6 @@ export const closeEditModal = () => {
 // JavaScript after DOM loaded
 document.querySelector(".close-btn").addEventListener("click", closeEditModal);
 window.closeEditModal = closeEditModal;
-
 
 // Setup the edit form functionality
 export const setupEditForm = () => {

@@ -25,6 +25,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("Please Login First");
     window.location = "/pages/login.html";
   }
+
+  if (
+    !user &&
+    (profilePages.includes(currentPath) || dashboardPages.includes(currentPath))
+  ) {
+    console.log("Please login first");
+    window.location = "/pages/login.html";
+  }
+
   if (user && dashboardPages.includes(currentPath) && !isAdmin) {
     console.log("You are not an admin");
     window.location = "/";

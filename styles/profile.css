@@ -58,12 +58,34 @@
   font-size: 18px;
 }
 
+.no-cats {
+  display: flex;
+  color: gray;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+.no-cats img {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+}
+
 #post-section {
   border-radius: 20px;
   padding: 20px;
   background-color: #f8f2fe;
   margin-top: 50px;
   margin-bottom: 200px;
+}
+#my-cats-section {
+  height: 100vh;
+  border: #8e7bdb52 2px solid;
+  border-radius: 20px;
+  margin-top: 50px;
 }
 
 @keyframes borderAnimation {
