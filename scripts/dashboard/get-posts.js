@@ -1,9 +1,8 @@
 import { renderPosts } from "./render-posts.js";
 
-
-export const fetchPosts= async () => {
+export const fetchPosts = async () => {
   try {
-    const res = await fetch("http://localhost:5000/get-cats");
+    const res = await fetch("http://localhost:5000/admin/get-cats");
     const data = await res.json();
 
     const postList = data.cats;

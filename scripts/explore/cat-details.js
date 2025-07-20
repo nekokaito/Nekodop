@@ -3,7 +3,8 @@ import { checkIsAdmin } from "../auth/auth-utils.js";
 export const fetchCatDetails = async () => {
   const params = new URLSearchParams(window.location.search);
   const catId = params.get("id");
-
+  const isAdmin = await checkIsAdmin();
+  console.log(isAdmin)
   if (!catId) {
     // Show message if no cat ID found in URL
 
@@ -48,7 +49,7 @@ export const fetchCatDetails = async () => {
         cat.cat_name
       )}`;
 
-      if (checkIsAdmin) {
+      if (isAdmin) {
         const navHome = document.getElementById("nav-home");
 
         const morePostsLink = document.createElement("a");
@@ -131,7 +132,7 @@ ${
                         </button>
                       
                         ${
-                          checkIsAdmin
+                          isAdmin
                             ? ` <button data-id="${
                                 cat.id
                               }" class="approve-button" ${

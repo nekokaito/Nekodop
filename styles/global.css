@@ -139,6 +139,15 @@ a {
   height: 18px;
 }
 
+#contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  height: 100vh;
+}
+
 @media (min-width: 640px) {
   .filter-section {
     flex-direction: row;
@@ -150,7 +159,6 @@ a {
     gap: 30px;
   }
 }
-
 
 @media (min-width: 640px) {
   .container {
