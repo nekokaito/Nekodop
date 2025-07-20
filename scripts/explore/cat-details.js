@@ -114,26 +114,33 @@ ${
                             </svg>
                         </button>
                         </a>
+                        ${console.log(cat.is_approved)}
                         ${
                           checkIsAdmin
-                            ? ` <button class="approve-button">
-                            Approve Adoption
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9 12L11 14L15 10" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M21 12C21 16.4183 17.4183 20 13 20C8.58172 20 5 16.4183 5 12C5 7.58172 8.58172 4 13 4C17.4183 4 21 7.58172 21 12Z" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                        <button class="reject-button">
-                            Reject Adoption
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M15 9L9 15" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M9 9L15 15" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M21 12C21 16.4183 17.4183 20 13 20C8.58172 20 5 16.4183 5 12C5 7.58172 8.58172 4 13 4C17.4183 4 21 7.58172 21 12Z" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
-                        </button>`
+                            ? ` <button data-id="${
+                                cat.id
+                              }" class="approve-button" ${
+                                cat.is_approved === 1
+                                  ? "disabled style='opacity:0.6;cursor:not-allowed; background-color: #d1d1d1ff;'"
+                                  : ""
+                              }>
+         ${cat.is_approved === 1 ? "Approved" : "Approve Post"}
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 12L11 14L15 10" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M21 12C21 16.4183 17.4183 20 13 20C8.58172 20 5 16.4183 5 12C5 7.58172 8.58172 4 13 4C17.4183 4 21 7.58172 21 12Z" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button data-id="${cat.id}" class="reject-button">
+        Reject Post
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 9L9 15" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 9L15 15" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M21 12C21 16.4183 17.4183 20 13 20C8.58172 20 5 16.4183 5 12C5 7.58172 8.58172 4 13 4C17.4183 4 21 7.58172 21 12Z" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>`
                             : ``
                         }
+
                        
                     </div>
                     
