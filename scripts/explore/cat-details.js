@@ -1,10 +1,12 @@
+import { checkIsAdmin } from "../auth/auth-utils.js";
+
 export const fetchCatDetails = async () => {
   const params = new URLSearchParams(window.location.search);
   const catId = params.get("id");
 
   if (!catId) {
     // Show message if no cat ID found in URL
-    
+
     document.getElementById("cat-info").innerHTML = "<p>Cat not found.</p>";
     return;
   }
@@ -40,21 +42,7 @@ export const fetchCatDetails = async () => {
         year: "numeric",
       });
 
-      // Format cat age into years and months
-      const formatCatAge = (age) => {
-        const years = Math.floor(age);
-        const months = Math.round((age - years) * 12);
-
-        let result = "";
-
-        if (years > 0) result += `${years} year${years > 1 ? "s" : ""}`;
-        if (months > 0) {
-          if (result) result += " ";
-          result += `${months} month${months > 1 ? "s" : ""}`;
-        }
-
-        return result || "0 months";
-      };
+      // cat details in the HTML
 
       document.getElementById("cat-info").innerHTML = ` 
       
@@ -67,9 +55,9 @@ export const fetchCatDetails = async () => {
                     <h1 class="pet-name">${cat.cat_name}</h1>
                     
                     <div class="pet-details">
-                        <p class="detail"><span class="label">Age:</span> ${formatCatAge(
+                        <p class="detail"><span class="label">Age:</span> ${
                           cat.cat_age
-                        )}</p>
+                        }</p>
                         <p class="detail">
                             <span class="label">Gender:</span> ${cat.cat_gender}
 ${
@@ -126,6 +114,27 @@ ${
                             </svg>
                         </button>
                         </a>
+                        ${
+                          checkIsAdmin
+                            ? ` <button class="approve-button">
+                            Approve Adoption
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 12L11 14L15 10" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M21 12C21 16.4183 17.4183 20 13 20C8.58172 20 5 16.4183 5 12C5 7.58172 8.58172 4 13 4C17.4183 4 21 7.58172 21 12Z" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="reject-button">
+                            Reject Adoption
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M15 9L9 15" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M9 9L15 15" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M21 12C21 16.4183 17.4183 20 13 20C8.58172 20 5 16.4183 5 12C5 7.58172 8.58172 4 13 4C17.4183 4 21 7.58172 21 12Z" stroke="#ffffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+                        </button>`
+                            : ``
+                        }
+                       
                     </div>
                     
                     <div class="posted-by">

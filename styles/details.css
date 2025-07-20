@@ -139,7 +139,9 @@
 }
 
 .whatsapp-button,
-.email-button {
+.email-button,
+.approve-button,
+.reject-button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,6 +171,20 @@
 
 .email-button:hover {
   background-color: #c4b0f0;
+}
+.approve-button {
+  background-color: #65ad67;
+  color: white;
+}
+.reject-button {
+  background-color: #bd5c55;
+  color: white;
+}
+.approve-button:hover {
+  background-color: #406e43;
+}
+.reject-button:hover {
+  background-color: #e53935;
 }
 
 .posted-by {
