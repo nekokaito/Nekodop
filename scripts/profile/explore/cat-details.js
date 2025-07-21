@@ -1,4 +1,4 @@
-import { checkIsAdmin } from "../auth/auth-utils.js";
+import { checkIsAdmin } from "../../auth/auth-utils.js";
 
 export const fetchCatDetails = async () => {
   const params = new URLSearchParams(window.location.search);

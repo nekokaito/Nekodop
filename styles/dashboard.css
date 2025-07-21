@@ -3,3 +3,14 @@
 .dashboard {
   height: 100vh;
 }
+
+.time-section {
+  font-size: larger;
+}
+.posts-tools {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
