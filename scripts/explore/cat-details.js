@@ -1,23 +1,18 @@
-import { checkIsAdmin } from "../../auth/auth-utils.js";
+import { checkIsAdmin } from "../auth/auth-utils.js";
 
 export const fetchCatDetails = async () => {
   const params = new URLSearchParams(window.location.search);
   const catId = params.get("id");
   const isAdmin = await checkIsAdmin();
-  console.log(isAdmin)
-  if (!catId) {
-    // Show message if no cat ID found in URL
 
-    document.getElementById("cat-info").innerHTML = "<p>Cat not found.</p>";
-    return;
-  }
+  if (!catId) return;
 
   try {
     // Fetch cat details from server
     const res = await fetch(`http://localhost:5000/get-cat/${catId}`);
     const data = await res.json();
     const cat = data.cat;
-    console.log(cat);
+    
 
     if (cat) {
       let ownerImage = "../images/profile.png";

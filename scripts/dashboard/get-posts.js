@@ -8,7 +8,6 @@ export const fetchPosts = async () => {
     const res = await fetch("http://localhost:5000/admin/get-cats");
     const data = await res.json();
     allCats = data.cats || [];
-    console.log("Posts fetched successfully:", allCats);
     return allCats;
   } catch (error) {
     console.error("Error fetching posts:", error);

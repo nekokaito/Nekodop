@@ -3,7 +3,6 @@ import { deleteUser } from "./delete-user.js"; // adjust path if needed
 export const renderUsers = (users) => {
   const userContainer = document.getElementById("user-list");
   userContainer.innerHTML = "";
-  console.log("Rendering users:", users);
 
   if (users && users.length > 0) {
     users.forEach((user) => {

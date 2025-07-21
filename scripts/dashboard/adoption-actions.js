@@ -10,7 +10,6 @@ export const setupAdoptionActions = () => {
       await updateAdoptionStatus(catId, 1);
     } else if (rejectBtn) {
       const catId = rejectBtn.getAttribute("data-id");
-      console.log(`Rejecting cat with ID: ${catId}`);
       await updateAdoptionStatus(catId, 2);
     }
   });
