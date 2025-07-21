@@ -7,7 +7,6 @@ export const fetchUsers = async () => {
 
     const userList = data.users;
     renderUsers(userList);
-    console.log("Users fetched successfully:", userList);
   } catch (error) {
     console.error("Error fetching users:", error);
   }

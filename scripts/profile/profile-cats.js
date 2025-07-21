@@ -11,7 +11,12 @@ export const fetchCats = async () => {
     catsContainer.innerHTML = "";
 
     if (!cats?.length)
-      return (catsContainer.innerHTML = "<p>No cats found!</p>");
+      return (catsContainer.innerHTML = `
+    <div class='no-cats'>
+      <img src='/images/No_Cats.png' alt='No Cats Found' />
+      <p>No Cat Posts Found.</p>
+    </div>
+  `);
 
     cats.forEach((cat) => {
       const catCard = document.createElement("div");
@@ -25,11 +30,29 @@ export const fetchCats = async () => {
 
       // Render each cat card
       catCard.innerHTML = `
-        <img id="cat-image" src="${optimizedImage}" alt="${cat.cat_name}" class="cat-image" />
+        <img id="cat-image" src="${optimizedImage}" alt="${
+        cat.cat_name
+      }" class="cat-image" />
         <div class="card-body">
           <div class="cat-info">
-            <h3>${cat.cat_name}</h3>
-            <p>Age: ${cat.cat_age}</p>
+            <div class="cat-name">
+              <h3>${cat.cat_name}</h3>
+              <span class="badge ${
+        cat.is_approved === 1
+          ? "badge-approved"
+          : cat.is_approved === 2
+          ? "badge-rejected"
+          : "badge-pending"
+      }">
+  ${
+    cat.is_approved === 1
+      ? "Approved"
+      : cat.is_approved === 2
+      ? "Rejected"
+      : "Pending"
+  }
+</span></div>
+            <p>${cat.cat_age}</p>
             <p>${cat.cat_gender}</p>
           </div>
           <div class="card-actions">
@@ -115,7 +138,6 @@ export const closeEditModal = () => {
 // JavaScript after DOM loaded
 document.querySelector(".close-btn").addEventListener("click", closeEditModal);
 window.closeEditModal = closeEditModal;
-
 
 // Setup the edit form functionality
 export const setupEditForm = () => {

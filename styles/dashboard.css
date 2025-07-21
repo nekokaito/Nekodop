@@ -1,0 +1,34 @@
+.posts,
+.users,
+.dashboard {
+  height: 100vh;
+}
+
+.time-section {
+  font-size: larger;
+}
+.posts-tools {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+.posts-header,
+.user-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.posts-title,
+.user-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.posts-description,
+.user-description {
+  color: gray;
+}

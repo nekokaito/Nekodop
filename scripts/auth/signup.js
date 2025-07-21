@@ -10,7 +10,7 @@ const signup = async (userName, email, password, profilePicture) => {
       // On success, store user and redirect to login
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
-        console.log("Signup successful", data.user);
+        
         showToast("Signup successful! Redirecting...", "success");
         setTimeout(() => {
           window.location.href = "/pages/login.html";
@@ -102,8 +102,6 @@ if (signupForm) {
     };
 
     const profilePhoto = await handlePhotoUpload();
-
-    console.log(name, email, password, profilePhoto);
 
     // Call signup function
     await signup(name, email, password, profilePhoto);

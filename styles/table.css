@@ -1,0 +1,90 @@
+/* Container scroll */
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+/* Table base styling */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+}
+
+/* Table headers and footers */
+.table thead th,
+.table tfoot th {
+  background-color: #f5f5f5;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Table body rows */
+.table tbody td,
+.table tbody th {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Hover effect */
+.table tbody tr:hover {
+  background-color: #c3b5fd57;
+}
+
+/* Checkbox styling */
+.checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Avatar container */
+.avatar {
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.mask-squircle img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+/* Flex container for name & country */
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+  font-size: 0.85em;
+}
+
+/* Badge style */
+.badge {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  border-radius: 12px;
+}
+
+.badge-ghost {
+  background-color: #f0f0f0;
+  color: #868686;
+}
+
+.badge-sm {
+  font-size: 0.7rem;
+}

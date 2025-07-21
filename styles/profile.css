@@ -58,12 +58,60 @@
   font-size: 18px;
 }
 
+.no-cats {
+  display: flex;
+  color: gray;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+.no-cats img {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+}
+
 #post-section {
   border-radius: 20px;
   padding: 20px;
   background-color: #f8f2fe;
   margin-top: 50px;
   margin-bottom: 200px;
+}
+#my-cats-section {
+  height: 100vh;
+  border: #8e7bdb52 2px solid;
+  border-radius: 20px;
+  margin-top: 50px;
+}
+.cat-name {
+  display: flex;
+  gap: 10px;
+}
+.badge {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-approved {
+  background-color: #6ddd96; /* green */
+  color: white;
+}
+
+.badge-rejected {
+  background-color: #e96d6d; /* red */
+  color: white;
+}
+
+.badge-pending {
+  background-color: #e2ddc9; /* yellow */
+  color: black;
 }
 
 @keyframes borderAnimation {

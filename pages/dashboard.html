@@ -10,6 +10,8 @@
     <title>Nekodop</title>
     <link rel="icon" href="/images/NekoDopLogoAlt.png" type="image/x-icon" />
     <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/dashboard.css" />
+    <link rel="stylesheet" href="/styles/table.css" />
     <link rel="stylesheet" href="/styles/toast.css" />
     <link rel="stylesheet" href="/styles/navbar.css" />
     <link rel="stylesheet" href="/styles/hero.css" />
@@ -17,6 +19,7 @@
     <link rel="stylesheet" href="/styles/form.css" />
     <link rel="stylesheet" href="/styles/card.css" />
     <link rel="stylesheet" href="/styles/preloader.css" />
+    <link rel="stylesheet" href="/styles/profile.css" />
     <link rel="stylesheet" href="/styles/feature.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -67,20 +70,68 @@
         <!-- Dashboard Section -->
         <div id="dashboard" class="dashboard">
           <div class="hero">
-            <h1 class="hero-title">Welcome to Nekodop</h1>
-            <p class="hero-subtitle">A cozy community for cat lovers</p>
-            <a href="/pages/login.html" class="hero-button">Join Now</a>
+            <h1 class="hero-title">Welcome to Dashboard</h1>
+            <div class="time-section">
+              <div class="current-time" id="currentTime">12:00:00</div>
+              <div class="current-date" id="currentDate">
+                Monday, January 1, 2024
+              </div>
+            </div>
           </div>
+          <div class="overflow-x-auto"></div>
         </div>
         <!-- Users Section -->
         <div id="users" class="users">
-          <div class="card-container" id="user-container">
-            <p>Loading users...</p>
+          <div class="user-header">
+            <h2 class="user-title">Users List</h2>
+            <div class="user-description">
+              All registered users are listed here.
+            </div>
+          </div>
+          <div id="user-container">
+            <table class="table">
+              <!-- head -->
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Created At</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="user-list">
+                <!-- user list  -->
+                <tr>
+                  <td colspan="4" class="text-center">Loading users...</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
-        <!-- Contact Section -->
+        <!-- Posts Section -->
         <div id="posts" class="posts">
+          <div class="posts-header">
+            <h2 class="posts-title">Recent Posts</h2>
+            <div class="posts-description">
+              Here you can find the latest posts from our community.
+            </div>
+          </div>
+          <div class="posts-tools">
+            <div class="posts-actions">
+              <button id="refresh-posts" class="refresh-btn">
+                <i class="fa-solid fa-arrows-rotate"></i>
+              </button>
+            </div>
+            <div class="posts-filter">
+              <select id="filter" class="filter-select">
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+                <option value="all">All</option>
+              </select>
+            </div>
+          </div>
           <div class="card-container" id="post-container">
             <p>Loading posts...</p>
           </div>
@@ -117,4 +168,5 @@
   <script src="/scripts/profile.js"></script>
   <script type="module" src="/scripts/dashboard/dashboard.js"></script>
   <script src="/scripts/toast.js"></script>
+  <script src="/scripts/dashboard/update-time.js"></script>
 </html>

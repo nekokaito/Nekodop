@@ -67,6 +67,9 @@ export const renderCats = async (catList) => {
   } else {
     // no cats message
 
-    container.innerHTML = "<p>No cats available right now.</p>";
+    container.innerHTML = `<div class='no-cats'>
+      <img src='/images/No_Cats.png' alt='No Cats Found' />
+      <p>No Cat Posts Found.</p>
+    </div>`;
   }
 };
