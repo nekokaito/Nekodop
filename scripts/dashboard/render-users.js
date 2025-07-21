@@ -1,7 +1,8 @@
-import { deleteUser } from "./delete-user.js"; // adjust path if needed
+import { deleteUser } from "./delete-user.js";
 
 export const renderUsers = (users) => {
   const userContainer = document.getElementById("user-list");
+
   userContainer.innerHTML = "";
 
   if (users && users.length > 0) {
@@ -34,7 +35,12 @@ export const renderUsers = (users) => {
         </td>
         <td>${user.created_at || "N/A"}</td>
         <td>
-          <button class="delete-btn" data-user-id="${user.id}">Delete</button>
+           ${
+             user.user_role === "user"
+               ? `<button class="delete-btn" data-user-id="${user.id}">Delete</button>`
+               : ""
+           }
+          
         </td>
       `;
 
@@ -42,19 +48,19 @@ export const renderUsers = (users) => {
     });
 
     // Add delete button functionality
-    
+
     const deleteButtons = document.querySelectorAll(".delete-btn");
     deleteButtons.forEach((btn) => {
       btn.addEventListener("click", async (e) => {
         const userId = e.target.dataset.userId;
-        const currentUser = JSON.parse(localStorage.getItem("user")); 
+        const currentUser = JSON.parse(localStorage.getItem("user"));
         const reqId = currentUser?.id;
 
         if (confirm("Are you sure you want to delete this user?")) {
           const success = await deleteUser(reqId, userId);
           if (success) {
             // Reload or re-fetch user list
-            location.reload(); 
+            location.reload();
           }
         }
       });

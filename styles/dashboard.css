@@ -14,3 +14,21 @@
   align-items: center;
   margin-top: 1rem;
 }
+.posts-header,
+.user-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.posts-title,
+.user-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.posts-description,
+.user-description {
+  color: gray;
+}
