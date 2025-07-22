@@ -99,7 +99,7 @@ const fillEditForm = async () => {
     });
   } catch (err) {
     console.error("Failed to fetch user details:", err);
-    alert("Failed to load user data.");
+    showToast("Failed to load user details. Please try again later.", "error");
   }
 };
 
@@ -164,15 +164,17 @@ personalForm.addEventListener("submit", async (e) => {
       throw new Error(data.error || "Failed to update user.");
     }
 
-    console.log("User updated:", data);
-    alert("Profile updated successfully.");
+    showToast("Profile updated successfully.", "success");
     editProfileModal.classList.add("hidden");
 
     // Update localStorage user data to keep frontend in sync
     localStorage.setItem("user", JSON.stringify(data.updatedUser));
   } catch (err) {
     console.error("Error updating profile:", err);
-    alert(err.message || "Something went wrong while updating user.");
+    showToast(
+      err.message || "Something went wrong while updating user.",
+      "error"
+    );
   }
 });
 
@@ -196,5 +198,5 @@ changePasswordForm.addEventListener("submit", async (e) => {
   // TODO: Replace with your password change API call
   console.log("Password change data:", { currentPassword, newPassword });
 
-  alert("Password change functionality not implemented yet.");
+  showToast("Password change functionality not implemented yet.", "info");
 });
