@@ -1,28 +1,28 @@
+//Do this One
+
+// Elements
 const closeBtnProfile = document.querySelector(".close-btn-profile");
 const editProfileModal = document.getElementById("edit-profile-modal");
 const openBtnProfile = document.querySelector(".edit-profile-btn");
-
 const tabPersonal = document.getElementById("tab-personal");
 const tabPassword = document.getElementById("tab-password");
-
 const personalForm = document.getElementById("edit-profile-form");
 const changePasswordForm = document.getElementById("change-password-form");
 
-const userId = JSON.parse(localStorage.getItem("user")).id;
-
-// Open modal and pre-fill form
+// Open modal and load user data into form
 openBtnProfile.addEventListener("click", () => {
   editProfileModal.classList.remove("hidden");
   fillEditForm();
   console.log("Edit profile modal opened");
 });
 
+// Close modal
 closeBtnProfile.addEventListener("click", () => {
   editProfileModal.classList.add("hidden");
   console.log("Edit profile modal closed");
 });
 
-// Tab switching
+// Tab click handlers: Personal Details / Change Password
 tabPersonal.addEventListener("click", () => {
   tabPersonal.classList.add("active");
   tabPassword.classList.remove("active");
@@ -39,48 +39,83 @@ tabPassword.addEventListener("click", () => {
   personalForm.classList.add("hidden");
 });
 
-// Fetch and fill profile details
+// Get logged-in user ID from localStorage
+const userId = JSON.parse(localStorage.getItem("user")).id;
+
+// Store user data globally
+let currentUserData = null;
+
+// Fetch user data and fill the edit form
 const fillEditForm = async () => {
   try {
     const res = await fetch(`http://localhost:5000/get-user/${userId}`);
     const data = await res.json();
-    console.log("Fetched user data:", data);
+
     if (!data || !data.user) {
       console.error("User not found");
+      alert("Could not load user data.");
       return;
     }
 
-    document.getElementById("edit-name").value = data.user.name || "";
-    document.getElementById("edit-email").value = data.user.email || "";
+    currentUserData = data.user;
 
+    // fill name and email
+    document.getElementById("edit-name").value = currentUserData.name || "";
+    document.getElementById("edit-email").value = currentUserData.email || "";
+
+    // elements
     const profilePicPreview = document.getElementById(
       "profile-picture-preview"
     );
-    if (profilePicPreview) {
-      if (data.user.profile_picture) {
-        profilePicPreview.src = data.user.profile_picture;
-        profilePicPreview.classList.remove("hidden");
-      } else {
-        profilePicPreview.classList.add("hidden");
-      }
+    const profilePictureContainer = document.getElementById(
+      "profile-picture-preview-container"
+    );
+    const profilePictureInput = document.getElementById("edit-profile-picture");
+
+    // set existing picture from DB
+    if (currentUserData.profile_picture) {
+      profilePicPreview.src = currentUserData.profile_picture;
+      profilePicPreview.classList.remove("hidden");
+      profilePictureContainer.classList.remove("hidden");
+    } else {
+      profilePicPreview.src = "";
+      profilePicPreview.classList.add("hidden");
+      profilePictureContainer.classList.add("hidden");
     }
+
+    // handle new image selection
+    profilePictureInput.addEventListener("change", () => {
+      const file = profilePictureInput.files[0];
+      if (file) {
+        const previewURL = URL.createObjectURL(file);
+        profilePicPreview.src = previewURL;
+        profilePicPreview.classList.remove("hidden");
+        profilePictureContainer.classList.remove("hidden");
+      } else {
+        profilePicPreview.src = "";
+        profilePicPreview.classList.add("hidden");
+        profilePictureContainer.classList.add("hidden");
+      }
+    });
   } catch (err) {
     console.error("Failed to fetch user details:", err);
+    alert("Failed to load user data.");
   }
-}
+};
 
-// Handle personal details submit
+// Update user profile details
 personalForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const name = document.getElementById("edit-name").value;
-  const email = document.getElementById("edit-email").value;
+  const name = document.getElementById("edit-name").value.trim();
+  const email = document.getElementById("edit-email").value.trim();
   const profilePictureInput = document.getElementById("edit-profile-picture");
   const file = profilePictureInput.files[0];
 
   let profilePictureUrl = "";
 
   if (file) {
+    // Upload new image to Cloudinary
     const cloudForm = new FormData();
     cloudForm.append("file", file);
     cloudForm.append("upload_preset", "nekodop");
@@ -102,8 +137,12 @@ personalForm.addEventListener("submit", async (e) => {
       alert("Image upload failed.");
       return;
     }
+  } else {
+    // No new image uploaded, keep previous picture URL
+    profilePictureUrl = currentUserData?.profile_picture || "";
   }
 
+  // Prepare data to send to backend
   const formData = {
     userName: name,
     email: email,
@@ -112,7 +151,7 @@ personalForm.addEventListener("submit", async (e) => {
 
   try {
     const res = await fetch(`http://localhost:5000/update-user/${userId}`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -120,38 +159,42 @@ personalForm.addEventListener("submit", async (e) => {
     });
 
     const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Failed to update user.");
+    }
+
     console.log("User updated:", data);
     alert("Profile updated successfully.");
     editProfileModal.classList.add("hidden");
 
-    // Update localStorage to keep in sync
+    // Update localStorage user data to keep frontend in sync
     localStorage.setItem("user", JSON.stringify(data.updatedUser));
   } catch (err) {
     console.error("Error updating profile:", err);
-    alert("Something went wrong while updating user.");
+    alert(err.message || "Something went wrong while updating user.");
   }
 });
 
-// Handle password change submit
-changePasswordForm.addEventListener("submit", (e) => {
+// Update user password
+changePasswordForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const currentPassword = document.getElementById("current-password").value;
-  const newPassword = document.getElementById("new-password").value;
-  const confirmPassword = document.getElementById("confirm-password").value;
+  const currentPassword = document
+    .getElementById("current-password")
+    .value.trim();
+  const newPassword = document.getElementById("new-password").value.trim();
+  const confirmPassword = document
+    .getElementById("confirm-password")
+    .value.trim();
 
   if (newPassword !== confirmPassword) {
     alert("New passwords do not match!");
     return;
   }
 
-  // TODO: Implement password change API call here
-  console.log({
-    currentPassword,
-    newPassword,
-  });
+  // TODO: Replace with your password change API call
+  console.log("Password change data:", { currentPassword, newPassword });
 
-  alert("Password change function not implemented yet.");
+  alert("Password change functionality not implemented yet.");
 });
-
-console.log("Edit profile script loaded");

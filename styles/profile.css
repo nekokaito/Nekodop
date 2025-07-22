@@ -211,6 +211,20 @@
   display: none;
 }
 
+#profile-picture-preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  border: #8976d4 2px dashed;
+  border-radius: 10px;
+}
+#profile-picture-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .close-btn,
 .close-btn-profile {
   position: absolute;

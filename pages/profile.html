@@ -108,7 +108,10 @@
           </div>
           <div class="form-group">
             <label for="edit-profile-picture">Profile Picture</label>
-            <input type="file" id="edit-profile-picture" accept="image/*" />  
+            <input type="file" id="edit-profile-picture" accept="image/*" />
+            <div id="profile-picture-preview-container" class="hidden">
+              <img src="" id="profile-picture-preview" class="hidden" alt="Profile Picture Preview" />
+            </div>
           </div>
           <button type="submit">Save Changes</button>
         </form>
