@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Nekodop</title>
+    <link rel="icon" href="/images/NekoDopLogoAlt.png" type="image/x-icon" />
     <link rel="stylesheet" href="/styles/global.css" />
     <link rel="stylesheet" href="/styles/navbar.css" />
     <link rel="stylesheet" href="/styles/hero.css" />
@@ -37,7 +38,7 @@
         <li>
           <a href="/#explore">Explore</a>
         </li>
-        <li><a href="#">Service</a></li>
+        <li><a href="/#support">Support</a></li>
         <li><a href="#">Gallery</a></li>
         <li>
           <a href="/#contact">Contact</a>
@@ -72,12 +73,71 @@
           </div>
 
           <div class="profile-info">
-            <h1></h1>
+            <div class="profile-name">
+            <h1></h1> <span class="edit-profile-btn"><i class="fa-solid fa-pen-to-square"></i></span>
+            </div>
             <p></p>
             <p></p>
           </div>
         </div>
         <div>
+
+    <!-- Edit  Profile Modal -->
+  <div id="edit-profile-modal" class="modal hidden">
+   <div class="modal-content">
+    <span class="close-btn-profile">&times;</span>
+    <div class="sidebar-layout">
+      
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <button id="tab-personal" class="active">Personal Details</button>
+        <button id="tab-password">Change Password</button>
+      </div>
+
+      <!-- Content -->
+      <div class="content-area">
+        <!-- Personal Details Form -->
+        <form id="edit-profile-form" class="tab-content">
+          <div class="form-group">
+            <label for="edit-name">Name</label>
+            <input type="text" id="edit-name" required />
+          </div>
+          <div class="form-group">
+            <label for="edit-email">Email</label>
+            <input type="email" id="edit-email" required />
+          </div>
+          <div class="form-group">
+            <label for="edit-profile-picture">Profile Picture</label>
+            <input type="file" id="edit-profile-picture" accept="image/*" />
+            <div id="profile-picture-preview-container" class="hidden">
+              <img src="" id="profile-picture-preview" class="hidden" alt="Profile Picture Preview" />
+            </div>
+          </div>
+          <button type="submit">Save Changes</button>
+        </form>
+
+        <!-- Change Password Form -->
+        <form id="change-password-form" class="tab-content hidden">
+          <div class="form-group">
+            <label for="current-password">Current Password</label>
+            <input type="password" id="current-password" required />
+          </div>
+          <div class="form-group">
+            <label for="new-password">New Password</label>
+            <input type="password" id="new-password" required />
+          </div>
+          <div class="form-group">
+            <label for="confirm-password">Confirm New Password</label>
+            <input type="password" id="confirm-password" required />
+          </div>
+          <button type="submit">Change Password</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
          <!-- Profile Links -->
 <ul class="profile-links">
   <li id="post-tab" class="active" onclick="showSection('post-section', 'post-tab')">Post</li>
@@ -253,6 +313,6 @@
   <script type="module" src="/scripts/main.js"></script>
   <script type="module" src="/scripts/auth/user-nav.js"></script>
   <script type="module" src="/scripts/profile/profile.js"></script>
-  
-  
+  <script src="/scripts/profile/update-profile.js"></script>
+
 </html>

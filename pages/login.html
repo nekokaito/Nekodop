@@ -1,85 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+    <title>Login - Nekodop</title>
+    <link rel="icon" href="/images/NekoDopLogoAlt.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/navbar.css" />
+    <link rel="stylesheet" href="/styles/hero.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  <title>Login Page</title>
-  <link rel="stylesheet" href="/styles/global.css" />
-  <link rel="stylesheet" href="/styles/navbar.css" />
-  <link rel="stylesheet" href="/styles/hero.css" />
+    <link rel="stylesheet" href="/styles/footer.css" />
+    <link rel="stylesheet" href="/styles/form.css" />
+    <link rel="stylesheet" href="/styles/card.css" />
+    <link rel="stylesheet" href="/styles/toast.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <link rel="stylesheet" href="/styles/footer.css" />
-  <link rel="stylesheet" href="/styles/form.css" />
-  <link rel="stylesheet" href="/styles/card.css" />
-  <link rel="stylesheet" href="/styles/toast.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet" />
-</head>
-
-<body class="login-body">
-  <div id="toast-container"></div>
-  <div class="back">
-    <a href="/">
-      <div class="back-home">
-      <i class="fa-solid fa-house-chimney"></i>
-      </div>
-    </a>
-  </div>
-
-  <div class="contact-container">
-    
-    <section class="form-section">
-      <div class="logo">
-        <span class="logo-text">Login</span>
-      </div>
-
-      <form id="login-form">
-        <div class="form-row"></div>
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" required />
+  <body class="login-body">
+    <div id="toast-container"></div>
+    <div class="back">
+      <a href="/">
+        <div class="back-home">
+          <i class="fa-solid fa-house-chimney"></i>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" required />
-          <div id="login-error" style="
+      </a>
+    </div>
+
+    <div class="contact-container">
+      <section class="form-section">
+        <div class="logo">
+          <span class="logo-text">Login</span>
+        </div>
+
+        <form id="login-form">
+          <div class="form-row"></div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" required />
+            <div
+              id="login-error"
+              style="
                 color: rgb(230, 112, 112);
                 margin-top: 5px;
                 font-size: small;
-              "></div>
-        </div>
-        <button type="submit">Submit</button>
-        <span class="form-footer">
-          <p>
-            Don't You have an account?
-            <a href="../pages/sign-up.html">Register</a>
-          </p>
-        </span>
-      </form>
-    </section>
+              "
+            ></div>
+          </div>
+          <button type="submit">Submit</button>
+          <span class="form-footer">
+            <p>
+              Don't You have an account?
+              <a href="../pages/sign-up.html">Register</a>
+            </p>
+          </span>
+        </form>
+      </section>
 
-    <section class="content-section">
-      <div class="content">
-        <div class="illustration">
-          <div class="paper-plane-wrapper">
-            <div class="plane">
-              <div class="trail">
-                <img class="paper-plane paper-plane-img" src="/images/paperfly.png" alt="Paper Plane" />
+      <section class="content-section">
+        <div class="content">
+          <div class="illustration">
+            <div class="paper-plane-wrapper">
+              <div class="plane">
+                <div class="trail">
+                  <img
+                    class="paper-plane paper-plane-img"
+                    src="/images/paperfly.png"
+                    alt="Paper Plane"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  </div>
-</body>
+      </section>
+    </div>
+  </body>
 
-<script src="../scripts/toast.js"></script>
-<script src="../scripts/auth/login.js"></script>
-<script src="../scripts/main.js"></script>
-<script src="https://kit.fontawesome.com/ef66a13064.js" crossorigin="anonymous"></script>
-
+  <script src="../scripts/toast.js"></script>
+  <script src="../scripts/auth/login.js"></script>
+  <script src="../scripts/main.js"></script>
+  <script
+    src="https://kit.fontawesome.com/ef66a13064.js"
+    crossorigin="anonymous"
+  ></script>
 </html>

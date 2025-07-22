@@ -3,7 +3,8 @@
   font-size: 3rem;
   margin-bottom: 3rem;
 }
-.section-title span {
+.section-title span,
+.highlight {
   color: #c4b5fd;
 }
 
