@@ -65,12 +65,12 @@ Thank you for your generosity 🐾💕
 
 ## 👥 Contributors
 
-| Name | GitHub Profile | Role |
-|------|----------------|------|
-| **Abubakar Siddiq Sazzad (Kaito)** | [@nekokaito](https://github.com/nekokaito) | Fullstack Developer, Project Lead |
-| **Ruhan Rouf** | [@Ruhannn](https://github.com/Ruhannn) | Backend (Python) |
-| **Maliha Benta Mobarak** | [@mlhsumu](https://github.com/mlhsumu) |  Front-end, Marketing |
-| **Adil Rahman** | [@mursalindev](https://github.com/Coded-Adil) | Front-end |
+Profile | Name | GitHub Profile | Role |
+|-------|------|----------------|------|
+|  <img src="https://avatars.githubusercontent.com/u/13916007" alt="Profile" width="64" style="border-radius: 100%;"/>| **Abubakar Siddiq Sazzad (Kaito)** | [@nekokaito](https://github.com/nekokaito) | Fullstack Developer, Project Lead |
+| <img src="https://avatars.githubusercontent.com/u/130210417" alt="Profile" width="64" style="border-radius: 100%;"/>| **Ruhan Rouf** | [@Ruhannn](https://github.com/Ruhannn) | Backend (Python) |
+|  <img src="https://avatars.githubusercontent.com/u/122691655" alt="Profile" width="64" style="border-radius: 100%;"/>|**Maliha Benta Mobarak** | [@mlhsumu](https://github.com/mlhsumu) |  Front-end, Marketing |
+| <img src="https://avatars.githubusercontent.com/u/151057563" alt="Profile" width="64" style="border-radius: 100%;"/>|**Adil Rahman** | [@mursalindev](https://github.com/Coded-Adil) | Front-end |
 
 ---
 
