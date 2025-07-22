@@ -12,8 +12,7 @@
 
 ## 📌 Project Summary
 
-Nekodop allows users to register, log in, and post cats they want to give up for adoption. Admins can manage users and moderate the adoption posts by approving, rejecting, or deleting them. The platform also includes a simple **donation section** via **bKash**, encouraging community support.
-Your contributions help us maintain the platform and support our mission of finding homes for cats in need. Every donation, big or small, makes a difference. Cozy community built for cat lovers
+Nekodop allows users to register, log in, and post cats they want to give up for adoption. Admins can manage users and moderate the adoption posts by approving, rejecting, or deleting them. Cozy community built for cat lovers
 
 ---
 
@@ -29,10 +28,6 @@ Your contributions help us maintain the platform and support our mission of find
 - View all users
 - Delete any user
 - View, approve, reject, or delete cat adoption posts
-
-### 💰 Donation Section
-- bKash Payment Integration (manual)
-- Users can support the platform through donations
 
 ---
 
