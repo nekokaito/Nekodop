@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="/styles/table.css" />
     <link rel="stylesheet" href="/styles/toast.css" />
     <link rel="stylesheet" href="/styles/navbar.css" />
-    <link rel="stylesheet" href="/styles/hero.css" />
     <link rel="stylesheet" href="/styles/footer.css" />
     <link rel="stylesheet" href="/styles/form.css" />
     <link rel="stylesheet" href="/styles/card.css" />
@@ -69,33 +68,72 @@
       <div id="app" class="container">
         <!-- Dashboard Section -->
         <div id="dashboard" class="dashboard">
-          <div class="hero">
-            <h1 class="hero-title">Welcome to Dashboard</h1>
-            <div class="time-section">
-              <div class="current-time" id="currentTime">12:00:00</div>
-              <div class="current-date" id="currentDate">
-                Monday, January 1, 2024
+          <div class="dashboard-header">
+            <div class="hero">
+              <h1 class="hero-title">Welcome to Dashboard</h1>
+              <div class="time-section">
+                <div class="current-time" id="currentTime">12:00:00</div>
+                <div class="current-date" id="currentDate">
+                  Monday, January 1, 2024
+                </div>
+              </div>
+            </div>
+            <div class="dashboard-menu">
+              <a href="/">
+                <div class="counter-item">
+                  <h3>Home</h3>
+                  <p id=""><i class="fa-solid fa-house"></i></p>
+                </div>
+              </a>
+              <a href="#users">
+                <div class="counter-item">
+                  <h3>Users</h3>
+                  <p id=""><i class="fa-solid fa-users"></i></p>
+                </div>
+              </a>
+              <a href="#posts">
+                <div class="counter-item">
+                  <h3>Posts</h3>
+                  <p id=""><i class="fa-solid fa-file"></i></p>
+                </div>
+              </a>
+              <a href="/pages/profile.html">
+                <div class="counter-item">
+                  <h3>Profile</h3>
+                  <p id=""><i class="fa-solid fa-user"></i></p>
+                </div>
+              </a>
+            </div>
+            <div class="user-profile">
+              <img
+                id="dashboard-profile-picture"
+                src=""
+                alt="User Profile"
+                class="profile-picture"
+              />
+              <div class="user-info">
+                <h3 id="dashboard-username">John Doe</h3>
+                <p>Administrator</p>
               </div>
             </div>
           </div>
-            
-          
+
           <div class="dashboard-counters">
             <div class="counter-item">
               <h3>Total Users</h3>
-              <p id="total-users">0</p>
+              <p id="total-users">1,247</p>
             </div>
             <div class="counter-item">
               <h3>Approved Posts</h3>
-              <p id="approved-count">0</p>
+              <p id="approved-count">856</p>
             </div>
             <div class="counter-item">
               <h3>Pending Posts</h3>
-              <p id="pending-count">0</p>
+              <p id="pending-count">23</p>
             </div>
             <div class="counter-item">
               <h3>Rejected Posts</h3>
-              <p id="rejected-count">0</p>
+              <p id="rejected-count">12</p>
             </div>
           </div>
         </div>
