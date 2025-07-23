@@ -55,12 +55,21 @@ const setupPostActions = () => {
   });
 };
 
-// Initial load
 window.addEventListener("DOMContentLoaded", async () => {
-  await fetchPosts();
+  await fetchPosts(); // first fetch the data
   setupPostActions();
 
   const initialFilter = document.getElementById("filter")?.value || "all";
   const filtered = filterCats(initialFilter);
   renderPosts(filtered);
+
+  
+  const approvedCount = filterCats("approved").length;
+  const pendingCount = filterCats("pending").length;
+  const rejectedCount = filterCats("rejected").length;
+
+  // update to UI
+  document.getElementById("approved-count").textContent = approvedCount;
+  document.getElementById("pending-count").textContent = pendingCount;
+  document.getElementById("rejected-count").textContent = rejectedCount;
 });
