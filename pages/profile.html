@@ -101,15 +101,18 @@
           <div class="form-group">
             <label for="edit-name">Name</label>
             <input type="text" id="edit-name" required />
+            <span class="error" id="edit-name-error"></span>
           </div>
           <div class="form-group">
             <label for="edit-email">Email</label>
             <input type="email" id="edit-email" required />
+            <span class="error" id="edit-email-error"></span>
           </div>
           <div class="form-group">
             <label for="edit-profile-picture">Profile Picture</label>
             <input type="file" id="edit-profile-picture" accept="image/*" />
             <div id="profile-picture-preview-container" class="hidden">
+              <span class="error" id="edit-profile-picture-error"></span>
               <img src="" id="profile-picture-preview" class="hidden" alt="Profile Picture Preview" />
             </div>
           </div>
@@ -121,14 +124,17 @@
           <div class="form-group">
             <label for="current-password">Current Password</label>
             <input type="password" id="current-password" required />
+            <span class="error" id="current-password-error"></span>
           </div>
           <div class="form-group">
             <label for="new-password">New Password</label>
             <input type="password" id="new-password" required />
+            <span class="error" id="new-password-error"></span>
           </div>
           <div class="form-group">
             <label for="confirm-password">Confirm New Password</label>
             <input type="password" id="confirm-password" required />
+            <span class="error" id="confirm-password-error"></span>
           </div>
           <button type="submit">Change Password</button>
         </form>
@@ -313,6 +319,4 @@
   <script type="module" src="/scripts/main.js"></script>
   <script type="module" src="/scripts/auth/user-nav.js"></script>
   <script type="module" src="/scripts/profile/profile.js"></script>
-  <script src="/scripts/profile/update-profile.js"></script>
-
 </html>

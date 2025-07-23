@@ -1,3 +1,5 @@
+import { validatePassword } from "../utils/check-password.js";
+
 const signup = async (userName, email, password, profilePicture) => {
   // Send signup data to backend
   await fetch("http://localhost:5000/register", {
@@ -10,7 +12,7 @@ const signup = async (userName, email, password, profilePicture) => {
       // On success, store user and redirect to login
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
-        
+
         showToast("Signup successful! Redirecting...", "success");
         setTimeout(() => {
           window.location.href = "/pages/login.html";
@@ -37,27 +39,13 @@ if (signupForm) {
     const rePassword = document.getElementById("re-password").value;
     const profilePhotoFiles = document.getElementById("profile-photo").files[0];
 
-    // Validate password complexity
-    const validatePassword = (password) => {
-      let error = null;
-
-      if (password.length < 8) {
-        error = "Password must be at least 8 characters long.";
-      } else if (!/[A-Z]/.test(password)) {
-        error = "Password must contain at least one uppercase letter.";
-      } else if (!/[a-z]/.test(password)) {
-        error = "Password must contain at least one lowercase letter.";
-      } else if (!/\d/.test(password)) {
-        error = "Password must contain at least one digit.";
-      } else if (!/[!@#$%^&*(),.?\":{}|<>]/.test(password)) {
-        error = "Password must contain at least one special character.";
-      }
-
-      return {
-        isValid: error === null,
-        error,
-      };
-    };
+    // Validate password
+    const validation = validatePassword(password);
+    if (!validation.isValid) {
+      const errorDiv = document.getElementById("password-error");
+      errorDiv.textContent = validation.error;
+      return;
+    }
 
     // Check if passwords match
     if (password !== rePassword) {
