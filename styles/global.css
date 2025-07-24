@@ -42,6 +42,20 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+input::file-selector-button {
+  font-family: "DynaPuff", serif;
+  background-color: #9c8aa5;
+  color: white;
+  border: none;
+  margin-right: 3px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
 .container {
   width: 100%;
   margin-right: auto;
@@ -119,6 +133,9 @@ a {
   border-color: #007bff;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
 }
+.explore {
+  height: 100vh;
+}
 
 #gender-filters {
   display: flex;
@@ -139,6 +156,15 @@ a {
   height: 18px;
 }
 
+#contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  height: 100vh;
+}
+
 @media (min-width: 640px) {
   .filter-section {
     flex-direction: row;
@@ -150,7 +176,6 @@ a {
     gap: 30px;
   }
 }
-
 
 @media (min-width: 640px) {
   .container {

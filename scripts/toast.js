@@ -12,7 +12,7 @@ const showToast = (message, type = "info") => {
 
   toast.innerHTML = `
     <span>${message}</span>
-    <button onclick="this.parentElement.remove()">×</button>
+    
   `;
 
   container.appendChild(toast);

@@ -17,16 +17,25 @@ document.addEventListener("DOMContentLoaded", async () => {
   const dashboardPages = ["/pages/dashboard.html"];
 
   if (user && loginPages.includes(currentPath)) {
-    console.log("Already Has Been Logged In");
+    showToast("Already Logged In", "info");
     window.location = "/";
   }
 
   if (!user && profilePages.includes(currentPath)) {
-    console.log("Please Login First");
+    showToast("Please Login First", "warning");
     window.location = "/pages/login.html";
   }
+
+  if (
+    !user &&
+    (profilePages.includes(currentPath) || dashboardPages.includes(currentPath))
+  ) {
+    showToast("Please Login First", "warning");
+    window.location = "/pages/login.html";
+  }
+
   if (user && dashboardPages.includes(currentPath) && !isAdmin) {
-    console.log("You are not an admin");
+    showToast("You are not an admin", "warning");
     window.location = "/";
   }
 

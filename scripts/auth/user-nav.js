@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Create user icon container
     const userIconContainer = document.createElement("div");
     userIconContainer.classList.add("user-menu");
-    
+
     // Fetch admin status
     const isAdmin = await checkIsAdmin();
 
@@ -26,13 +26,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         }" alt="User" class="profile-img" />
       </div>
       <ul class="dropdown-menu">
-        <li><a href="../pages/profile.html">My Profile</a></li>
+        <li><a href="../pages/profile.html"><i class="fa-regular fa-circle-user" style="margin-right: 3px;"></i> My Profile</a></li>
        ${
          isAdmin
-           ? `<li><a href="../pages/dashboard.html">Dashboard</a></li>`
+           ? `<li><a href="../pages/dashboard.html"><i class="fa-solid fa-calendar" style="margin-right: 3px;"></i> Dashboard</a></li>`
            : ""
        }
-        <li><button id="logout-btn">Logout</button></li>
+        <li><button id="logout-btn"><i class="fa-solid fa-right-from-bracket" style="margin-right: 3px;"></i> Logout</button></li>
       </ul>
     `;
 

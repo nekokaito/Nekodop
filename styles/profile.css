@@ -58,12 +58,60 @@
   font-size: 18px;
 }
 
+.no-cats {
+  display: flex;
+  color: gray;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+.no-cats img {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+}
+
 #post-section {
   border-radius: 20px;
   padding: 20px;
   background-color: #f8f2fe;
   margin-top: 50px;
   margin-bottom: 200px;
+}
+#my-cats-section {
+  height: 100vh;
+  border: #8e7bdb52 2px solid;
+  border-radius: 20px;
+  margin-top: 50px;
+}
+.cat-name {
+  display: flex;
+  gap: 10px;
+}
+.badge {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.badge-approved {
+  background-color: #6ddd96; /* green */
+  color: white;
+}
+
+.badge-rejected {
+  background-color: #e96d6d; /* red */
+  color: white;
+}
+
+.badge-pending {
+  background-color: #e2ddc9; /* yellow */
+  color: black;
 }
 
 @keyframes borderAnimation {
@@ -91,6 +139,21 @@
   justify-content: center;
   margin-bottom: 20px;
 }
+.profile-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+}
+.edit-profile-btn {
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+.edit-profile-btn:hover {
+  color: #8976d4;
+}
 
 .modal {
   display: flex;
@@ -115,7 +178,55 @@
   max-width: 600px;
   position: relative;
 }
-.close-btn {
+
+.sidebar-layout {
+  display: flex;
+}
+.sidebar {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-right: 20px;
+}
+.sidebar button {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+}
+.sidebar button.active {
+  background-color: #9c8aa5;
+  color: white;
+}
+.content-area {
+  flex: 1;
+}
+.tab-content {
+  display: block;
+}
+.tab-content.hidden {
+  display: none;
+}
+
+#profile-picture-preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  border: #8976d4 2px dashed;
+  border-radius: 10px;
+}
+#profile-picture-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.close-btn,
+.close-btn-profile {
   position: absolute;
   top: 10px;
   right: 20px;

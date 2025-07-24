@@ -40,7 +40,7 @@ export const initPostForm = () => {
       .then((data) => {
         if (data) {
           showToast("Posted successfully!", "success");
-          console.log("Cat posted successfully:", data);
+        
           document.getElementById("post-form").reset(); // Reset form
         } else {
           console.error("Failed to post cat:", data.error);
