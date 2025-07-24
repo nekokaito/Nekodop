@@ -7,10 +7,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const userName = user?.name || "Admin";
   const profilePicture = user?.profilePicture || "../images/profile.png";
 
-  document.getElementById("dashboard-username").textContent = userName;
-  document.getElementById("dashboard-profile-picture").src = profilePicture;
+
 
   await fetchUsers();
   await fetchPosts();
   setupAdoptionActions();
+    document.getElementById("dashboard-username").textContent = userName;
+  document.getElementById("dashboard-profile-picture").src = profilePicture;
 });

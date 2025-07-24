@@ -1,3 +1,6 @@
+
+export const galleryImages =() => {
+  console.log("Gallery Images Loaded");
 const images = [
       "cat1.jpg",
       "cat2.jpg",
@@ -38,3 +41,4 @@ const images = [
     } else {
       console.error('Element with id "galleryTable" not found.');
     }
+  }
