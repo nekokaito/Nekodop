@@ -2,6 +2,7 @@ import { fetchCats } from "./explore/fetch-cats.js";
 import { applyFilters } from "./explore/filters.js";
 import { fetchCatDetails } from "./explore/cat-details.js";
 import { getUser, checkIsAdmin } from "./auth/auth-utils.js";
+import { galleryImages } from "./utils/gallery.js";
 
 // -----------------------------
 // DOM Ready
@@ -65,6 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Initial Cat Data
   fetchCats();
   fetchCatDetails();
+  galleryImages();
 
   // Filter Events
   const searchInput = document.getElementById("search-input");
