@@ -3,7 +3,7 @@ let isAdminCache = null;
 // Get user data from localStorage
 export const getUser = () => JSON.parse(localStorage.getItem("user"));
 
-// Check if user is admin with caching
+// Check if user is admin 
 export const checkIsAdmin = async () => {
   if (isAdminCache !== null) return isAdminCache;
 
@@ -14,6 +14,7 @@ export const checkIsAdmin = async () => {
     // Request admin status from backend
     const res = await fetch(`http://localhost:5000/is-admin/${user.id}`);
     isAdminCache = await res.json();
+    console.log(isAdminCache);
     return isAdminCache;
   } catch (err) {
     // Handle errors

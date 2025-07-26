@@ -13,9 +13,9 @@ const signup = async (userName, email, password, profilePicture) => {
       if (data.user) {
         localStorage.setItem("user", JSON.stringify(data.user));
 
-        showToast("Signup successful! Redirecting...", "success");
+        showToast("Signup successful!", "success");
         setTimeout(() => {
-          window.location.href = "/pages/login.html";
+          window.location = "/"; // Redirect to Home
         }, 2000);
       } else {
         // Show error on failure

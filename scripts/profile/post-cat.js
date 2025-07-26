@@ -1,6 +1,6 @@
 // Initializes the post form logic
 
-showToast("Make Sure Phone Number has WhatsApp", "info");
+showToast("Make Sure Phone Number has WhatsApp");
 
 export const initPostForm = () => {
   // Function to submit a new cat to the backend
@@ -40,7 +40,7 @@ export const initPostForm = () => {
       .then((data) => {
         if (data) {
           showToast("Posted successfully!", "success");
-        
+
           document.getElementById("post-form").reset(); // Reset form
         } else {
           console.error("Failed to post cat:", data.error);

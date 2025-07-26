@@ -44,10 +44,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const sections = document.querySelectorAll("#app > div");
 
     let hash = window.location.hash;
-
+  
     // Set default hash
     if (!hash) {
       const path = window.location.pathname;
+      
       if (path.endsWith("/pages/dashboard.html")) {
         hash = "#dashboard";
       } else {
