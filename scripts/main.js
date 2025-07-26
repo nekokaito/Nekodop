@@ -2,7 +2,8 @@ import { fetchCats } from "./explore/fetch-cats.js";
 import { applyFilters } from "./explore/filters.js";
 import { fetchCatDetails } from "./explore/cat-details.js";
 import { getUser, checkIsAdmin } from "./auth/auth-utils.js";
-import { galleryImages } from "./gallery/pic-bk.js";
+import { galleryImages } from "./utils/gallery.js";
+
 // -----------------------------
 // DOM Ready
 // -----------------------------
@@ -71,7 +72,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const searchInput = document.getElementById("search-input");
   const maleCheckbox = document.getElementById("male-filter");
   const femaleCheckbox = document.getElementById("female-filter");
-  
 
   if (searchInput) searchInput.addEventListener("input", applyFilters);
   if (maleCheckbox) maleCheckbox.addEventListener("change", applyFilters);
