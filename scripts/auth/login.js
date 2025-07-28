@@ -9,9 +9,9 @@ const login = async (email, password) => {
     .then((data) => {
       // On success, save user data excluding password
       if (data.user) {
-        const { password: _, ...userData } = data.user; // Exclude password
-        localStorage.setItem("user", JSON.stringify(userData));
-
+        // Exclude password
+        localStorage.setItem("user", JSON.stringify(data.user));
+        console.log("Login successful", data.user);
         showToast("Login successful!", "success");
         setTimeout(() => {
           window.location.href = "/";
@@ -20,7 +20,6 @@ const login = async (email, password) => {
         // Show error message for failed login
         console.error("login failed", data.error);
         const errorDiv = document.getElementById("login-error");
-        errorDiv.textContent = "";
         errorDiv.textContent = "Invalid email or password";
         showToast("Invalid email or password", "error");
       }
@@ -42,9 +41,6 @@ if (loginForm) {
     const password = document.getElementById("password").value;
 
     login(email, password);
-
-    // Clear password field after submission
-    document.getElementById("password").value = "";
   });
 } else {
   console.error("login-form not found in the DOM.");

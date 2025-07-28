@@ -26,10 +26,11 @@ const signup = async (userName, email, password, profilePicture) => {
     .catch((err) => console.error("Error:", err));
 };
 
-const signupForm = document.getElementById("login-form");
+const signupForm = document.getElementById("signup-form");
 
 if (signupForm) {
   signupForm.addEventListener("submit", async function (e) {
+    
     e.preventDefault();
 
     // Get form values
@@ -57,17 +58,6 @@ if (signupForm) {
       return;
     }
 
-    // Check password validity
-    const passwordValidation = validatePassword(password);
-    if (!passwordValidation.isValid) {
-      const errorDiv = document.getElementById("password-error");
-
-      errorDiv.textContent = "";
-      console.error(passwordValidation.error);
-      errorDiv.textContent = passwordValidation.error;
-      return;
-    }
-
     // Upload profile photo to Cloudinary if provided
     const handlePhotoUpload = async () => {
       if (!profilePhotoFiles) return null;
@@ -76,6 +66,8 @@ if (signupForm) {
       img.append("file", profilePhotoFiles);
       img.append("upload_preset", "nekodop");
       img.append("cloud_name", "dyvqe1hgj");
+
+      
 
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/dyvqe1hgj/image/upload",
@@ -86,7 +78,7 @@ if (signupForm) {
       );
 
       const uploadedImg = await res.json();
-      return uploadedImg.url;
+      return uploadedImg.url; 
     };
 
     const profilePhoto = await handlePhotoUpload();
