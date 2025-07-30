@@ -12,8 +12,8 @@ export const fetchCatDetails = async () => {
     const res = await fetch(`http://localhost:5000/get-cat/${catId}`);
     const data = await res.json();
     const cat = data.cat;
-    
 
+    // If cat is found, display its details
     if (cat) {
       let ownerImage = "../images/profile.png";
 
