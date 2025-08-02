@@ -71,16 +71,6 @@ export const galleryImages = () => {
         "https://cats.com/wp-content/uploads/2020/10/Bombay-Cat-540x360.png",
     },
     {
-      title: "Brazilian Shorthair",
-      img_src:
-        "https://cats.com/wp-content/uploads/2020/10/Brazilian-Shorthair-cats-400x360.jpg",
-    },
-    {
-      title: "British Longhair",
-      img_src:
-        "https://cats.com/wp-content/uploads/2020/10/The-British-Longhair-540x360.jpg",
-    },
-    {
       title: "British Shorthair",
       img_src:
         "https://cats.com/wp-content/uploads/2020/10/British-shorthair-cat-compressed-1-540x360.jpg",
@@ -131,11 +121,6 @@ export const galleryImages = () => {
         "https://cats.com/wp-content/uploads/2020/10/Cornish-Rex-cat-compressed-540x360.jpg",
     },
     {
-      title: "Cymric",
-      img_src:
-        "https://cats.com/wp-content/uploads/2020/10/Cymric-1-346x360.jpg",
-    },
-    {
       title: "Devon Rex",
       img_src:
         "https://cats.com/wp-content/uploads/2020/10/Devon-Rex-cat-compressed-1-540x360.jpg",
@@ -169,11 +154,6 @@ export const galleryImages = () => {
       title: "German Rex",
       img_src:
         "https://cats.com/wp-content/uploads/2020/10/German-Rex-cat-compressed-540x360.jpg",
-    },
-    {
-      title: "Havana Brown",
-      img_src:
-        "https://cats.com/wp-content/uploads/2020/10/havana-brown-feat-540x360.jpg",
     },
     {
       title: "Himalayan",
@@ -245,8 +225,8 @@ export const galleryImages = () => {
     imgElement.src = image.img_src;
     imgElement.alt = image.title;
 
-    imgDiv.appendChild(title);
     imgDiv.appendChild(imgElement);
+    imgDiv.appendChild(title);
 
     galleryContainer.appendChild(imgDiv);
   });
