@@ -32,7 +32,7 @@
   animation: borderAnimation 2s infinite linear;
 }
 
-.camera-button {
+/* .camera-button {
   position: absolute;
   bottom: 15px;
   right: 32px;
@@ -56,7 +56,7 @@
 .camera-button i {
   color: white;
   font-size: 18px;
-}
+} */
 
 .no-cats {
   display: flex;

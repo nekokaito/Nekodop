@@ -1,4 +1,4 @@
-import { initProfile, initCameraUpload, showSection } from "./profile-utils.js";
+import { initProfile, showSection } from "./profile-utils.js";
 import { fetchCats, setupEditForm } from "./profile-cats.js";
 import { initPostForm } from "./post-cat.js";
 import { updateProfile } from "./update-profile.js";
@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const userId = user.id;
 
   initProfile();
-  initCameraUpload();
   fetchCats();
   initPostForm();
   setupEditForm();

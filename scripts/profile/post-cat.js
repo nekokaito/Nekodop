@@ -42,6 +42,11 @@ export const initPostForm = () => {
           showToast("Posted successfully!", "success");
 
           document.getElementById("post-form").reset(); // Reset form
+           
+          setTimeout(()=>{
+            location.reload();
+          }, 3000)
+          
         } else {
           console.error("Failed to post cat:", data.error);
         }

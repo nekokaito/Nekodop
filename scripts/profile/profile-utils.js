@@ -58,81 +58,81 @@ export const initProfile = async () => {
   }
 };
 
-// Set up the camera button to let user upload and update profile photo
-export const initCameraUpload = () => {
-  const cameraButton = document.querySelector(".camera-button");
-  if (!cameraButton) return;
 
-  cameraButton.addEventListener("click", () => {
-    // Dynamically create file input and trigger click
-    const fileInput = document.createElement("input");
-    fileInput.type = "file";
-    fileInput.accept = "image/*";
-    fileInput.click();
+// export const initCameraUpload = () => {
+//   const cameraButton = document.querySelector(".camera-button");
+//   if (!cameraButton) return;
 
-    fileInput.addEventListener("change", async () => {
-      const file = fileInput.files?.[0];
-      if (!file) return;
+//   cameraButton.addEventListener("click", () => {
+//     // Dynamically create file input and trigger click
+//     const fileInput = document.createElement("input");
+//     fileInput.type = "file";
+//     fileInput.accept = "image/*";
+//     fileInput.click();
 
-      // Preview the selected image in the profile UI
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        document.querySelector(".profile-image img").src = e.target.result;
-      };
-      reader.readAsDataURL(file);
+//     fileInput.addEventListener("change", async () => {
+//       const file = fileInput.files?.[0];
+//       if (!file) return;
 
-      // Prepare image for Cloudinary upload
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("upload_preset", "nekodop");
-      formData.append("cloud_name", "dyvqe1hgj");
+//       // Preview the selected image in the profile UI
+//       const reader = new FileReader();
+//       reader.onload = (e) => {
+//         document.querySelector(".profile-image img").src = e.target.result;
+//       };
+//       reader.readAsDataURL(file);
 
-      try {
-        // Upload to Cloudinary
-        const cloudRes = await fetch(
-          "https://api.cloudinary.com/v1_1/dyvqe1hgj/image/upload",
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
+//       // Prepare image for Cloudinary upload
+//       const formData = new FormData();
+//       formData.append("file", file);
+//       formData.append("upload_preset", "nekodop");
+//       formData.append("cloud_name", "dyvqe1hgj");
 
-        const cloudData = await cloudRes.json();
-        const imageUrl = cloudData.url;
+//       try {
+//         // Upload to Cloudinary
+//         const cloudRes = await fetch(
+//           "https://api.cloudinary.com/v1_1/dyvqe1hgj/image/upload",
+//           {
+//             method: "POST",
+//             body: formData,
+//           }
+//         );
 
-        // Get current user
-        const user = JSON.parse(localStorage.getItem("user"));
-        if (!user || !user.id) {
-          console.error("User not logged in");
-          return;
-        }
+//         const cloudData = await cloudRes.json();
+//         const imageUrl = cloudData.url;
 
-        // Update user profile picture in backend
-        const res = await fetch(
-          `http://localhost:5000/update-user/${user.id}`,
-          {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ profilePicture: imageUrl }),
-          }
-        );
+//         // Get current user
+//         const user = JSON.parse(localStorage.getItem("user"));
+//         if (!user || !user.id) {
+//           console.error("User not logged in");
+//           return;
+//         }
 
-        // On successful update, also update localStorage
-        if (res.ok) {
-          const updatedUser = { ...user, profilePicture: imageUrl };
-          localStorage.setItem("user", JSON.stringify(updatedUser));
-          showToast("Profile picture updated!", "success");
-        } else {
-          console.error("Failed to update user on server");
-          showToast("Server update failed", "error");
-        }
-      } catch (err) {
-        console.error("Failed to upload or update:", err);
-        showToast("Failed to update profile picture", "error");
-      }
-    });
-  });
-};
+//         // Update user profile picture in backend
+//         const res = await fetch(
+//           `http://localhost:5000/update-user/${user.id}`,
+//           {
+//             method: "PUT",
+//             headers: { "Content-Type": "application/json" },
+//             body: JSON.stringify({ profilePicture: imageUrl }),
+//           }
+//         );
+
+//         // On successful update, also update localStorage
+//         if (res.ok) {
+//           const updatedUser = { ...user, profilePicture: imageUrl };
+//           localStorage.setItem("user", JSON.stringify(updatedUser));
+//           showToast("Profile picture updated!", "success");
+//         } else {
+//           console.error("Failed to update user on server");
+//           showToast("Server update failed", "error");
+//         }
+//       } catch (err) {
+//         console.error("Failed to upload or update:", err);
+//         showToast("Failed to update profile picture", "error");
+//       }
+//     });
+//   });
+// };
 
 // Controls which dashboard section (post or my cats) is visible
 

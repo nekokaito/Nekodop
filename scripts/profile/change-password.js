@@ -51,6 +51,7 @@ export const changePassword = (userId) => {
       if (res.status === 200) {
         showToast("Password updated successfully.", "success");
         document.getElementById("edit-profile-modal").classList.add("hidden");
+        
 
         // Clear all fields
         changePasswordForm.reset();

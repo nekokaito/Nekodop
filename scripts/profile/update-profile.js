@@ -168,6 +168,10 @@ export const updateProfile = (userId) => {
       showToast("Profile updated successfully.", "success");
       editProfileModal.classList.add("hidden");
 
+      setTimeout(() => {
+        location.reload();
+      }, 3000);
+
       // Update localStorage user data to keep frontend in sync
       localStorage.setItem("user", JSON.stringify(data.updatedUser));
     } catch (err) {
@@ -179,4 +183,3 @@ export const updateProfile = (userId) => {
     }
   });
 };
-
