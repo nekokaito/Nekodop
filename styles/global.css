@@ -43,6 +43,10 @@ a {
   color: inherit;
 }
 
+.hidden {
+  display: none;
+}
+
 input::file-selector-button {
   font-family: "DynaPuff", serif;
   background-color: #9c8aa5;

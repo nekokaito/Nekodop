@@ -12,13 +12,11 @@ export const updateProfile = (userId) => {
   openBtnProfile.addEventListener("click", () => {
     editProfileModal.classList.remove("hidden");
     fillEditForm();
-    console.log("Edit profile modal opened");
   });
 
   // Close modal
   closeBtnProfile.addEventListener("click", () => {
     editProfileModal.classList.add("hidden");
-    console.log("Edit profile modal closed");
   });
 
   // Tab click handlers: Personal Details / Change Password
@@ -49,7 +47,7 @@ export const updateProfile = (userId) => {
 
       if (!data || !data.user) {
         console.error("User not found");
-        alert("Could not load user data.");
+        showToast("User Not Found", error);
         return;
       }
 
@@ -79,13 +77,16 @@ export const updateProfile = (userId) => {
         profilePicPreview.src = "";
         profilePicPreview.classList.add("hidden");
         profilePictureContainer.classList.add("hidden");
+        profilePictureContainer.styles = "border: none";
       }
 
       // handle new image selection
       profilePictureInput.addEventListener("change", () => {
         const file = profilePictureInput.files[0];
+
         if (file) {
           const previewURL = URL.createObjectURL(file);
+          console.log(previewURL);
           profilePicPreview.src = previewURL;
           profilePicPreview.classList.remove("hidden");
           profilePictureContainer.classList.remove("hidden");
@@ -132,6 +133,7 @@ export const updateProfile = (userId) => {
         );
 
         const cloudData = await cloudRes.json();
+        console.log(cloudData);
         profilePictureUrl = cloudData.secure_url;
       } catch (uploadErr) {
         console.error("Cloudinary upload error:", uploadErr);
@@ -140,7 +142,8 @@ export const updateProfile = (userId) => {
       }
     } else {
       // No new image uploaded, keep previous picture URL
-      profilePictureUrl = currentUserData?.profile_picture || "";
+      profilePictureUrl =
+        currentUserData?.profile_picture || "../images/profile.png";
     }
 
     // Prepare data to send to backend
@@ -172,7 +175,7 @@ export const updateProfile = (userId) => {
         location.reload();
       }, 3000);
 
-      // Update localStorage user data to keep frontend in sync
+      // Update localStorage 
       localStorage.setItem("user", JSON.stringify(data.updatedUser));
     } catch (err) {
       console.error("Error updating profile:", err);

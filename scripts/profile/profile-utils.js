@@ -14,6 +14,7 @@ export const initProfile = async () => {
     if (!res.ok) throw new Error("Failed to fetch user data");
 
     const { user: userData } = await res.json();
+    console.log(userData);
     if (!userData) return;
 
     // Set user profile picture or fallback
@@ -57,7 +58,6 @@ export const initProfile = async () => {
     console.error("Error fetching user data:", err.message);
   }
 };
-
 
 // export const initCameraUpload = () => {
 //   const cameraButton = document.querySelector(".camera-button");
