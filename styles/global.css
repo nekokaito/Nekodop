@@ -168,6 +168,38 @@ input::file-selector-button {
   flex-wrap: wrap;
   height: 100vh;
 }
+.loader-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100vw;
+  height: 100vh;
+}
+.loader-purple {
+  border: 5px solid #cfadee;
+}
+.loader-white {
+  border: 5px solid #000000;
+}
+.loader {
+  width: 48px;
+  height: 48px;
+  border-bottom-color: transparent;
+  margin-top: 100px;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 @media (min-width: 640px) {
   .filter-section {

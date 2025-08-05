@@ -3,6 +3,7 @@ import { applyFilters } from "./explore/filters.js";
 import { fetchCatDetails } from "./explore/cat-details.js";
 import { getUser, checkIsAdmin } from "./auth/auth-utils.js";
 import { galleryImages } from "./utils/gallery.js";
+import { preLoading } from "./utils/pre-loading.js";
 
 // -----------------------------
 // DOM Ready
@@ -44,11 +45,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const sections = document.querySelectorAll("#app > div");
 
     let hash = window.location.hash;
-  
+
     // Set default hash
     if (!hash) {
       const path = window.location.pathname;
-      
+
       if (path.endsWith("/pages/dashboard.html")) {
         hash = "#dashboard";
       } else {
@@ -82,18 +83,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 // -----------------------------
 // Page Preloader
 // -----------------------------
-window.onload = function () {
-  const preloader = document.getElementById("preloader");
-  const app = document.getElementById("main-content");
-  const footer = document.getElementById("footer-content");
-
-  preloader.style.display = "flex";
-  app.style.display = "none";
-  footer.style.display = "none";
-
-  setTimeout(() => {
-    preloader.style.display = "none";
-    app.style.display = "block";
-    footer.style.display = "block";
-  }, 2000);
-};
+preLoading();

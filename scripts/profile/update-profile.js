@@ -77,7 +77,7 @@ export const updateProfile = (userId) => {
         profilePicPreview.src = "";
         profilePicPreview.classList.add("hidden");
         profilePictureContainer.classList.add("hidden");
-        profilePictureContainer.styles = "border: none";
+        profilePictureContainer.style.border = "none";
       }
 
       // handle new image selection
@@ -175,7 +175,7 @@ export const updateProfile = (userId) => {
         location.reload();
       }, 3000);
 
-      // Update localStorage 
+      // Update localStorage
       localStorage.setItem("user", JSON.stringify(data.updatedUser));
     } catch (err) {
       console.error("Error updating profile:", err);
