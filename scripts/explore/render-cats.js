@@ -7,7 +7,7 @@ export const renderCats = async (catList) => {
 
   if (catList.length > 0) {
     // create cat cards
-
+    container.style.height = "auto";
     const catCards = await Promise.all(
       catList.map(async (cat) => {
         try {
@@ -66,7 +66,7 @@ export const renderCats = async (catList) => {
     container.innerHTML = catCards.join("");
   } else {
     // no cats message
-
+    container.style.height = "100vh";
     container.innerHTML = `<div class='no-cats'>
       <img src='/images/No_Cats.png' alt='No Cats Found' />
       <p>No Cat Posts Found.</p>

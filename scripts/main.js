@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Initial Cat Data
   fetchCats();
+  
   fetchCatDetails();
   galleryImages();
 

@@ -30,7 +30,7 @@ export const fetchCatDetails = async () => {
         console.error("Error fetching owner details:", ownerError);
       }
 
-      // Format date to readable string
+      // Format date 
       const date = new Date(cat.created_at);
       const formattedDate = date.toLocaleDateString("en-US", {
         day: "numeric",
@@ -62,7 +62,7 @@ export const fetchCatDetails = async () => {
 
       document.getElementById("cat-info").innerHTML = ` 
       
-<div class="cat-content">
+               <div class="cat-content">
                 <div class="cat-image">
                     <img src="${cat.cat_image}" alt="${cat.cat_name}">
                 </div>

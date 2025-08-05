@@ -1,75 +1,62 @@
 export const renderPosts = async (catList) => {
-  // get container element
-
   const container = document.getElementById("post-container");
 
-  // check if cats exist
+  // Clear container
+  container.innerHTML = "";
 
-  if (catList.length > 0) {
-    // create cat cards
+  if (catList.length === 0 || catList.length < 0) {
+    container.style.height = "100vh";
+    container.innerHTML = `
+      <div class='no-cats'>
+        <img src='/images/No_Cats.png' alt='No Cats Found' />
+        <p>No Cat Posts Found.</p>
+      </div>`;
+    return;
+  }
 
-    const catCards = await Promise.all(
-      catList.map(async (cat) => {
-        try {
-          // fetch owner data
+  container.style.height = "auto";
 
-          const ownerRes = await fetch(
-            `http://localhost:5000/get-user/${cat.cat_owner_id}`
-          );
-          const ownerData = await ownerRes.json();
-
-          // owner image fallback
-
-          const ownerImage =
-            ownerData.user.profile_picture || "../images/profile.png";
-
-          // optimize cat image url
-
-          const optimizedImage = cat.cat_image.replace(
-            "/upload/",
-            "/upload/f_webp,q_40/"
-          );
-
-          return `
-            <a href="../pages/cat-details.html?id=${cat.id}">
-              <div class="card">
-                <div class="cat-img">
-                  <img src="${optimizedImage}" alt="${cat.cat_name}" />
-                </div>
-                <div class="card-body">
-                  <div class="card-text">
-                    <h2>${cat.cat_name}</h2>
-                    <p>${cat.cat_age}</p>
-                    <p>${cat.cat_gender}</p>
-                  </div>
-                  <div class="owner-img">
-                    <img src="${ownerImage}" alt="Owner of ${cat.cat_name}" />
-                  </div>
-                </div>
-              </div>
-            </a>
-          `;
-        } catch (ownerError) {
-          // error fetching owner
-
-          console.error(
-            `Error fetching owner for ${cat.cat_name}:`,
-            ownerError
-          );
-          return "";
-        }
-      })
+  catList.forEach((cat) => {
+    // Optimize image URL
+    const optimizedImage = cat.cat_image.replace(
+      "/upload/",
+      "/upload/f_webp,q_40/"
     );
 
-    // update container content
+    // Create card element
+    const card = document.createElement("a");
+    card.href = `../pages/cat-details.html?id=${cat.id}`;
+    card.className = "card";
+    card.innerHTML = `
+      <div class="cat-img">
+        <img src="${optimizedImage}" alt="${cat.cat_name}" loading="lazy" />
+      </div>
+      <div class="card-body">
+        <div class="card-text">
+          <h2>${cat.cat_name}</h2>
+          <p>${cat.cat_age}</p>
+          <p>${cat.cat_gender}</p>
+        </div>
+        <div class="owner-img">
+          <img id="owner-${cat.id}" src="../images/profile.png" alt="Owner of ${cat.cat_name}" loading="lazy" />
+        </div>
+      </div>
+    `;
 
-    container.innerHTML = catCards.join("");
-  } else {
-    // no cats message
+    // Append the card immediately
+    container.appendChild(card);
 
-    container.innerHTML = `<div class='no-cats'>
-      <img src='/images/No_Cats.png' alt='No Cats Found' />
-      <p>No Cat Posts Found.</p>
-    </div>`;
-  }
+    // Fetch owner data in background and update image
+    fetch(`http://localhost:5000/get-user/${cat.cat_owner_id}`)
+      .then((res) => res.json())
+      .then((ownerData) => {
+        const ownerImage =
+          ownerData.user?.profile_picture || "../images/profile.png";
+        const ownerImgEl = document.getElementById(`owner-${cat.id}`);
+        if (ownerImgEl) ownerImgEl.src = ownerImage;
+      })
+      .catch((err) => {
+        console.error(`Error fetching owner for ${cat.cat_name}:`, err);
+      });
+  });
 };
