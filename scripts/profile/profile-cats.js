@@ -38,12 +38,12 @@ export const fetchCats = async () => {
             <div class="cat-name">
               <h3>${cat.cat_name}</h3>
               <span class="badge ${
-        cat.is_approved === 1
-          ? "badge-approved"
-          : cat.is_approved === 2
-          ? "badge-rejected"
-          : "badge-pending"
-      }">
+                cat.is_approved === 1
+                  ? "badge-approved"
+                  : cat.is_approved === 2
+                  ? "badge-rejected"
+                  : "badge-pending"
+              }">
   ${
     cat.is_approved === 1
       ? "Approved"
@@ -83,10 +83,10 @@ export const fetchCats = async () => {
             if (!delRes.ok) throw new Error("Failed to delete cat");
 
             catCard.remove(); // Remove card from DOM
-            alert(`"${cat.cat_name}" has been deleted.`);
+            showToast("Cat Has Been Deleted", "Success")
           } catch (err) {
             console.error("Delete failed:", err);
-            alert("Failed to delete cat.");
+            showToast("Cat Has Been Deleted", "Error");
           }
         });
 
@@ -103,6 +103,7 @@ export const fetchCats = async () => {
 };
 
 // Holds the current cat being edited
+
 let currentEditingCat = null;
 
 // Open edit modal and prefill with cat data
@@ -127,7 +128,7 @@ export const openEditModal = (cat) => {
   document.getElementById("edit-cat-image-current").value = cat.cat_image;
 
   document.getElementById("edit-post-modal").classList.remove("hidden");
-  document.getElementById("edit-post-form").dataset.postId = cat.id;
+  document.getElementById("edit-post-form").dataset.postId = cat.id; // data-post-id
 };
 
 // Close the edit modal

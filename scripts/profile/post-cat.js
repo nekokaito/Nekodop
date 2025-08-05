@@ -82,8 +82,8 @@ export const initPostForm = () => {
       // Extract user details
 
       const catOwnerId = userData.id;
-      const ownerEmail = userData.email || "not available";
-      const ownerName = userData.name || "not available";
+      const ownerEmail = userData.email;
+      const ownerName = userData.name;
 
       // Collect form field values
 
@@ -116,7 +116,7 @@ export const initPostForm = () => {
 
       // Year must be in range 0–25
 
-      if (year < 0 || year > 25) {
+      if (year < 0 || year >= 25) {
         document.getElementById("error-year").textContent =
           "Year must be between 0 and 25.";
         hasError = true;
@@ -142,7 +142,10 @@ export const initPostForm = () => {
 
       const yearLabel = year === 1 ? "year" : "years";
       const monthLabel = month === 1 ? "month" : "months";
+
+      //Final Cat Age
       const catAge = `${year} ${yearLabel} ${month} ${monthLabel}`;
+      
 
       // Validate phone number format
 
@@ -199,7 +202,7 @@ export const initPostForm = () => {
         return uploadedImg.url; // Return image URL to save in DB
       };
 
-      // Upload the image and post the cat
+      // Final Cat Image
 
       const catImage = await handlePhotoUpload();
 

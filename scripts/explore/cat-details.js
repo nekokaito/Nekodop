@@ -2,7 +2,9 @@ import { checkIsAdmin } from "../auth/auth-utils.js";
 
 export const fetchCatDetails = async () => {
   const params = new URLSearchParams(window.location.search);
+
   const catId = params.get("id");
+
   const isAdmin = await checkIsAdmin();
 
   if (!catId) return;
@@ -30,7 +32,7 @@ export const fetchCatDetails = async () => {
         console.error("Error fetching owner details:", ownerError);
       }
 
-      // Format date 
+      // Format date
       const date = new Date(cat.created_at);
       const formattedDate = date.toLocaleDateString("en-US", {
         day: "numeric",

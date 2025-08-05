@@ -15,11 +15,13 @@ export const applyFilters = () => {
   //filter cat
   const filteredCats = cats.filter((cat) => {
     const nameMatch = cat.cat_name.toLowerCase().includes(searchQuery);
-
+                     
     const genderMatch =
       (!maleChecked && !femaleChecked) || // No filter applied
       (maleChecked && cat.cat_gender.toLowerCase() === "male") ||
       (femaleChecked && cat.cat_gender.toLowerCase() === "female");
+
+      console.log(genderMatch)
 
     return nameMatch && genderMatch;
   });

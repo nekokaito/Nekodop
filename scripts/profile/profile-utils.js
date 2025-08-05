@@ -137,10 +137,17 @@ export const initProfile = async () => {
 // Controls which dashboard section (post or my cats) is visible
 
 export const showSection = (sectionId, tabId) => {
+  
+  //section
   document.getElementById("post-section").style.display = "none";
   document.getElementById("my-cats-section").style.display = "none";
+
+
   document.getElementById(sectionId).style.display = "block";
+
+  // tab
   document.getElementById("post-tab").classList.remove("active");
   document.getElementById("my-cats-tab").classList.remove("active");
+  
   document.getElementById(tabId).classList.add("active");
 };

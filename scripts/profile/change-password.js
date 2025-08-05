@@ -22,7 +22,7 @@ export const changePassword = (userId) => {
       return;
     }
 
-    // Check if new passwords match
+    // Check if confirm passwords match
     if (newPassword !== confirmPassword) {
       const errorDiv = document.getElementById("confirm-password-error");
       errorDiv.textContent = "New passwords do not match!";
