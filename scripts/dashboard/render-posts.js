@@ -34,11 +34,13 @@ export const renderPosts = async (catList) => {
       <div class="card-body">
         <div class="card-text">
           <h2>${cat.cat_name}</h2>
-          <p>${cat.cat_age}</p>
+          <p>${cat.cat_age.replace(/^0 years\s*/, "")}</p>
           <p>${cat.cat_gender}</p>
         </div>
         <div class="owner-img">
-          <img id="owner-${cat.id}" src="../images/profile.png" alt="Owner of ${cat.cat_name}" loading="lazy" />
+          <img id="owner-${cat.id}" src="../images/profile.png" alt="Owner of ${
+      cat.cat_name
+    }" loading="lazy" />
         </div>
       </div>
     `;

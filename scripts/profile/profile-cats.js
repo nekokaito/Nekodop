@@ -52,7 +52,7 @@ export const fetchCats = async () => {
       : "Pending"
   }
 </span></div>
-            <p>${cat.cat_age}</p>
+            <p>${cat.cat_age.replace(/^0 years\s*/, "")}</p>
             <p>${cat.cat_gender}</p>
           </div>
           <div class="card-actions">
@@ -83,7 +83,7 @@ export const fetchCats = async () => {
             if (!delRes.ok) throw new Error("Failed to delete cat");
 
             catCard.remove(); // Remove card from DOM
-            showToast("Cat Has Been Deleted", "Success")
+            showToast("Cat Has Been Deleted", "Success");
           } catch (err) {
             console.error("Delete failed:", err);
             showToast("Cat Has Been Deleted", "Error");

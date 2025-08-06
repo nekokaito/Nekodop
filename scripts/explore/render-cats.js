@@ -39,7 +39,7 @@ export const renderCats = async (catList) => {
                 <div class="card-body">
                   <div class="card-text">
                     <h2>${cat.cat_name}</h2>
-                    <p>${cat.cat_age}</p>
+                    <p>${cat.cat_age.replace(/^0 years\s*/, "")}</p>
                     <p>${cat.cat_gender}</p>
                   </div>
                   <div class="owner-img">

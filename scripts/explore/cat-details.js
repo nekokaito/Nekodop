@@ -73,9 +73,10 @@ export const fetchCatDetails = async () => {
                     <h1 class="pet-name">${cat.cat_name}</h1>
                     
                     <div class="pet-details">
-                        <p class="detail"><span class="label">Age:</span> ${
-                          cat.cat_age
-                        }</p>
+                        <p class="detail"><span class="label">Age:</span>${cat.cat_age.replace(
+                          /^0 years\s*/,
+                          ""
+                        )}</p>
                         <p class="detail">
                             <span class="label">Gender:</span> ${cat.cat_gender}
 ${
