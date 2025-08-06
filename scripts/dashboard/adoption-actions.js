@@ -7,7 +7,7 @@ export const setupAdoptionActions = () => {
     if (approveBtn) {
       if (approveBtn.disabled) return;
       const catId = approveBtn.getAttribute("data-id");
-      console.log(`Approving adoption for cat ID: ${catId}`);
+      
       await updateAdoptionStatus(catId, 1);
     } else if (rejectBtn) {
       const catId = rejectBtn.getAttribute("data-id");
