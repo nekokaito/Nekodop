@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="/styles/feature.css" />
     <link rel="stylesheet" href="/styles/support.css" />
     <link rel="stylesheet" href="/styles/gallery.css" />
-
+    <link rel="stylesheet" href="/styles/video.css" />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -122,12 +122,20 @@
                     </svg>
                   </div>
                 </a>
-                <a href="#" class="watch-video">
+                <a href="#" id="custom-watch-video" class="watch-video">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="#000">
                     <path d="M8 5v14l11-7z" />
                   </svg>
                   Watch Video
                 </a>
+                <div id="custom-video-modal" class="custom-video-modal">
+                  <div class="custom-modal-content">
+                    <video id="custom-video-player" controls>
+                      <source src="/feature/feature.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -447,4 +455,5 @@
   <script type="module" src="./scripts/main.js"></script>
   <script type="module" src="/scripts/auth/user-nav.js"></script>
   <script src="/scripts/toast.js"></script>
+  <script src="/scripts/utils/video.js"></script>
 </html>
