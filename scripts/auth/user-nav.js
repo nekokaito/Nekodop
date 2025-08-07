@@ -2,6 +2,8 @@ import { getUser, checkIsAdmin } from "./auth-utils.js";
 
 document.addEventListener("DOMContentLoaded", async function () {
   const user = getUser();
+  // Fetch admin status
+  const isAdmin = await checkIsAdmin();
   const loginBtnDesktop = document.querySelector(".login-desktop");
   const loginBtnMobile = document.querySelector(".login-phn");
   const userNav = document.querySelector(".user-nav");
@@ -14,9 +16,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Create user icon container
     const userIconContainer = document.createElement("div");
     userIconContainer.classList.add("user-menu");
-
-    // Fetch admin status
-    const isAdmin = await checkIsAdmin();
 
     // User profile image
     userIconContainer.innerHTML = `
@@ -61,7 +60,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       .getElementById("logout-btn")
       .addEventListener("click", function () {
         localStorage.removeItem("user");
-        window.location.reload();
+        showToast("Logged Out", "success");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       });
   }
 });

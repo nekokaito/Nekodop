@@ -19,32 +19,27 @@ document.addEventListener("DOMContentLoaded", async () => {
   const dashboardPages = ["/pages/dashboard.html"];
 
   if (user && loginPages.includes(currentPath)) {
-    showToast("Already Logged In", "info");
     window.location = "/";
   }
-
-  if (!user && profilePages.includes(currentPath)) {
-    showToast("Please Login First", "warning");
-    window.location = "/pages/login.html";
-  }
-
   if (
     !user &&
     (profilePages.includes(currentPath) || dashboardPages.includes(currentPath))
   ) {
-    showToast("Please Login First", "warning");
     window.location = "/pages/login.html";
   }
 
   if (user && dashboardPages.includes(currentPath) && !isAdmin) {
-    showToast("You are not an admin", "warning");
     window.location = "/";
   }
 
+  // SPA
+
   const showActiveSection = () => {
     const sections = document.querySelectorAll("#app > div");
+    console.log(sections);
 
     let hash = window.location.hash;
+    console.log(hash);
 
     // Set default hash
     if (!hash) {
@@ -61,13 +56,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       section.style.display = `#${section.id}` === hash ? "block" : "none";
     });
   };
-
   showActiveSection();
   window.addEventListener("hashchange", showActiveSection);
 
   // Initial Cat Data
   fetchCats();
-  
   fetchCatDetails();
   galleryImages();
 
@@ -84,4 +77,5 @@ document.addEventListener("DOMContentLoaded", async () => {
 // -----------------------------
 // Page Preloader
 // -----------------------------
+
 preLoading();
