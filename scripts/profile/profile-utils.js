@@ -33,7 +33,7 @@ export const initProfile = async () => {
     if (userData.created_at) {
       const utcDate = new Date(userData.created_at);
       const localDate = new Date(
-        utcDate.getTime() + utcDate.getTimezoneOffset() * -60000
+        utcDate.getTime() + -utcDate.getTimezoneOffset() * 60000
       );
 
       const now = new Date();
@@ -137,17 +137,15 @@ export const initProfile = async () => {
 // Controls which dashboard section (post or my cats) is visible
 
 export const showSection = (sectionId, tabId) => {
-  
   //section
   document.getElementById("post-section").style.display = "none";
   document.getElementById("my-cats-section").style.display = "none";
-
 
   document.getElementById(sectionId).style.display = "block";
 
   // tab
   document.getElementById("post-tab").classList.remove("active");
   document.getElementById("my-cats-tab").classList.remove("active");
-  
+
   document.getElementById(tabId).classList.add("active");
 };
