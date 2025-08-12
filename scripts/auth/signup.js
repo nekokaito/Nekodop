@@ -30,7 +30,6 @@ const signupForm = document.getElementById("signup-form");
 
 if (signupForm) {
   signupForm.addEventListener("submit", async function (e) {
-    
     e.preventDefault();
 
     // Get form values
@@ -67,8 +66,6 @@ if (signupForm) {
       img.append("upload_preset", "nekodop");
       img.append("cloud_name", "dyvqe1hgj");
 
-      
-
       const res = await fetch(
         "https://api.cloudinary.com/v1_1/dyvqe1hgj/image/upload",
         {
@@ -78,7 +75,7 @@ if (signupForm) {
       );
 
       const uploadedImg = await res.json();
-      return uploadedImg.url; 
+      return uploadedImg.url;
     };
 
     const profilePhoto = await handlePhotoUpload();
