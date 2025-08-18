@@ -7,7 +7,7 @@ export const setupAdoptionActions = () => {
     if (approveBtn) {
       if (approveBtn.disabled) return;
       const catId = approveBtn.getAttribute("data-id");
-      
+
       await updateAdoptionStatus(catId, 1);
     } else if (rejectBtn) {
       const catId = rejectBtn.getAttribute("data-id");
@@ -27,7 +27,7 @@ const updateAdoptionStatus = async (catId, isApproved) => {
     const data = await res.json();
     if (res.ok) {
       showToast(
-        `Adoption ${isApproved ? "approved" : "rejected"} successfully.`,
+        `Adoption ${isApproved === 1 ? "approved" : "rejected"} successfully.`,
         "success"
       );
       setTimeout(() => {

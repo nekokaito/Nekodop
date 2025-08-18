@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     userIconContainer.innerHTML = `
       <div class="user-icon">
         <img src="${
-          user?.profilePicture || "../images/profile.png"
+          user?.profile_picture || "../images/profile.png"
         }" alt="User" class="profile-img" />
       </div>
       <ul class="dropdown-menu">

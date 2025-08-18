@@ -9,7 +9,7 @@ export const checkIsAdmin = async () => {
   try {
     const res = await fetch(`http://localhost:5000/is-admin/${user.id}`);
     const data = await res.json();
-    return data; // true/false
+    return data.isAdmin; // true/false
   } catch (err) {
     console.error("Admin check failed:", err);
     return false;
