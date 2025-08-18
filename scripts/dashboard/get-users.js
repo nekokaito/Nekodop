@@ -14,7 +14,7 @@ export const fetchUsers = async () => {
     // Update user details in the dashboard
     const user = JSON.parse(localStorage.getItem("user"));
     const userName = user?.name || "Admin";
-    const profilePicture = user?.profilePicture || "../images/profile.png";
+    const profilePicture = user?.profile_picture || "../images/profile.png";
     document.getElementById("dashboard-username").textContent =
       userName || "Admin";
     document.getElementById("dashboard-profile-picture").src =
