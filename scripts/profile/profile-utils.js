@@ -10,7 +10,9 @@ export const initProfile = async () => {
   if (!localData?.id) return console.error("No user ID found in localStorage");
 
   try {
-    const res = await fetch(`http://localhost:5000/get-user/${localData.id}`);
+    const res = await fetch(
+      `https://nekodop-api.vercel.app/get-user/${localData.id}`
+    );
     if (!res.ok) throw new Error("Failed to fetch user data");
 
     const { user: userData } = await res.json();
@@ -108,7 +110,7 @@ export const initCameraUpload = () => {
 
         // Update user profile picture in backend
         const res = await fetch(
-          `http://localhost:5000/update-user/${user.id}`,
+          `https://nekodop-api.vercel.app/update-user/${user.id}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },

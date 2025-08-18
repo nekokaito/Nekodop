@@ -11,10 +11,14 @@ export const changePassword = (userId) => {
     document.getElementById("current-password-error").textContent = "";
     document.getElementById("confirm-password-error").textContent = "";
 
-    const currentPassword = document.getElementById("current-password").value.trim();
+    const currentPassword = document
+      .getElementById("current-password")
+      .value.trim();
     const newPassword = document.getElementById("new-password").value.trim();
-    const confirmPassword = document.getElementById("confirm-password").value.trim();
-      
+    const confirmPassword = document
+      .getElementById("confirm-password")
+      .value.trim();
+
     const validation = validatePassword(newPassword);
     if (!validation.isValid) {
       const errorDiv = document.getElementById("new-password-error");
@@ -29,10 +33,9 @@ export const changePassword = (userId) => {
       return;
     }
 
-
     try {
       const res = await fetch(
-        `http://localhost:5000/update-password/${userId}`,
+        `https://nekodop-api.vercel.app/update-password/${userId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -51,7 +54,6 @@ export const changePassword = (userId) => {
       if (res.status === 200) {
         showToast("Password updated successfully.", "success");
         document.getElementById("edit-profile-modal").classList.add("hidden");
-        
 
         // Clear all fields
         changePasswordForm.reset();

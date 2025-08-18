@@ -3,7 +3,7 @@
 export const deleteUser = async (req_id, user_id) => {
   try {
     const response = await fetch(
-      `http://localhost:5000/delete-user/${req_id}/${user_id}`,
+      `https://nekodop-api.vercel.app/delete-user/${req_id}/${user_id}`,
       {
         method: "DELETE",
       }
@@ -14,7 +14,6 @@ export const deleteUser = async (req_id, user_id) => {
     }
 
     const result = await response.json();
-    
 
     // Optionally, refresh the user list or notify
     showToast("User deleted successfully.", "success");

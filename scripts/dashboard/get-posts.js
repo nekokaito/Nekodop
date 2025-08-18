@@ -5,7 +5,7 @@ let allCats = [];
 // Fetch all cats from backend
 export const fetchPosts = async () => {
   try {
-    const res = await fetch("http://localhost:5000/admin/get-cats");
+    const res = await fetch("https://nekodop-api.vercel.app/admin/get-cats");
     const data = await res.json();
     allCats = data.cats || [];
     return allCats;
@@ -63,7 +63,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   const filtered = filterCats(initialFilter);
   renderPosts(filtered);
 
-  
   const approvedCount = filterCats("approved").length;
   const pendingCount = filterCats("pending").length;
   const rejectedCount = filterCats("rejected").length;

@@ -1,6 +1,6 @@
 const login = async (email, password) => {
   // Send login request to backend
-  await fetch("http://localhost:5000/login", {
+  await fetch("https://nekodop-api.vercel.app/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),

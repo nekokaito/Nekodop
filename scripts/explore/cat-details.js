@@ -11,7 +11,7 @@ export const fetchCatDetails = async () => {
 
   try {
     // Fetch cat details from server
-    const res = await fetch(`http://localhost:5000/get-cat/${catId}`);
+    const res = await fetch(`https://nekodop-api.vercel.app/get-cat/${catId}`);
     const data = await res.json();
     const cat = data.cat;
 
@@ -22,7 +22,7 @@ export const fetchCatDetails = async () => {
       try {
         // Fetch owner details
         const ownerRes = await fetch(
-          `http://localhost:5000/get-user/${cat.cat_owner_id}`
+          `https://nekodop-api.vercel.app/get-user/${cat.cat_owner_id}`
         );
         const ownerData = await ownerRes.json();
 

@@ -18,11 +18,14 @@ export const setupAdoptionActions = () => {
 
 const updateAdoptionStatus = async (catId, isApproved) => {
   try {
-    const res = await fetch(`http://localhost:5000/update-cat/${catId}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ isApproved }),
-    });
+    const res = await fetch(
+      `https://nekodop-api.vercel.app/update-cat/${catId}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ isApproved }),
+      }
+    );
 
     const data = await res.json();
     if (res.ok) {

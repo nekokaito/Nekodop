@@ -4,7 +4,9 @@ export const fetchCats = async () => {
   if (!localData?.id) return console.error("No user ID found in localStorage");
 
   try {
-    const res = await fetch(`http://localhost:5000/get-cats/${localData.id}`);
+    const res = await fetch(
+      `https://nekodop-api.vercel.app/get-cats/${localData.id}`
+    );
     const { cats } = await res.json();
 
     const catsContainer = document.getElementById("cats-container");
@@ -76,7 +78,7 @@ export const fetchCats = async () => {
 
           try {
             const delRes = await fetch(
-              `http://localhost:5000/delete-cat/${cat.id}`,
+              `https://nekodop-api.vercel.app/delete-cat/${cat.id}`,
               { method: "DELETE" }
             );
 
@@ -283,11 +285,14 @@ export const setupEditForm = () => {
       // Send update request to server
 
       try {
-        const res = await fetch(`http://localhost:5000/update-cat/${id}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedData),
-        });
+        const res = await fetch(
+          `https://nekodop-api.vercel.app/update-cat/${id}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedData),
+          }
+        );
 
         if (!res.ok) throw new Error("Update failed");
 

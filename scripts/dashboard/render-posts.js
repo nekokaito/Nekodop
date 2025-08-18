@@ -49,7 +49,7 @@ export const renderPosts = async (catList) => {
     container.appendChild(card);
 
     // Fetch owner data in background and update image
-    fetch(`http://localhost:5000/get-user/${cat.cat_owner_id}`)
+    fetch(`https://nekodop-api.vercel.app/get-user/${cat.cat_owner_id}`)
       .then((res) => res.json())
       .then((ownerData) => {
         const ownerImage =

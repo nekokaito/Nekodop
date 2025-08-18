@@ -7,7 +7,9 @@ export const checkIsAdmin = async () => {
   if (!user) return false;
 
   try {
-    const res = await fetch(`http://localhost:5000/is-admin/${user.id}`);
+    const res = await fetch(
+      `https://nekodop-api.vercel.app/is-admin/${user.id}`
+    );
     const data = await res.json();
     return data.isAdmin; // true/false
   } catch (err) {

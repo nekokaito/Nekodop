@@ -14,7 +14,7 @@ export const renderCats = async (catList) => {
           // fetch owner data
 
           const ownerRes = await fetch(
-            `http://localhost:5000/get-user/${cat.cat_owner_id}`
+            `https://nekodop-api.vercel.app/get-user/${cat.cat_owner_id}`
           );
           const ownerData = await ownerRes.json();
 

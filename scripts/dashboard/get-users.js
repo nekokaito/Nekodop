@@ -2,7 +2,7 @@ import { renderUsers } from "./render-users.js";
 
 export const fetchUsers = async () => {
   try {
-    const res = await fetch("http://localhost:5000/get-users");
+    const res = await fetch("https://nekodop-api.vercel.app/get-users");
     const data = await res.json();
     const userList = data.users;
     renderUsers(userList);

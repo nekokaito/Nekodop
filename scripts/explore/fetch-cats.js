@@ -5,11 +5,11 @@ export let cats = []; // store fetched cats here
 export const fetchCats = async () => {
   try {
     // fetch cats from backend
-    
-    const res = await fetch("http://localhost:5000/get-cats");
+
+    const res = await fetch("https://nekodop-api.vercel.app/get-cats");
     const data = await res.json();
 
-    cats = data.cats; 
+    cats = data.cats;
 
     renderCats(cats); // render cats on page
   } catch (error) {

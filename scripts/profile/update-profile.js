@@ -42,7 +42,9 @@ export const updateProfile = (userId) => {
   // Fetch user data and fill the edit form
   const fillEditForm = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/get-user/${userId}`);
+      const res = await fetch(
+        `https://nekodop-api.vercel.app/get-user/${userId}`
+      );
       const data = await res.json();
 
       if (!data || !data.user) {
@@ -152,13 +154,16 @@ export const updateProfile = (userId) => {
     };
 
     try {
-      const res = await fetch(`http://localhost:5000/update-user/${userId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `https://nekodop-api.vercel.app/update-user/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await res.json();
 

@@ -18,7 +18,7 @@ export const initPostForm = () => {
     ownerEmail,
     additionalInformation
   ) => {
-    await fetch("http://localhost:5000/create-cat", {
+    await fetch("https://nekodop-api.vercel.app/create-cat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -42,11 +42,10 @@ export const initPostForm = () => {
           showToast("Posted successfully!", "success");
 
           document.getElementById("post-form").reset(); // Reset form
-           
-          setTimeout(()=>{
+
+          setTimeout(() => {
             location.reload();
-          }, 3000)
-          
+          }, 3000);
         } else {
           console.error("Failed to post cat:", data.error);
         }
@@ -145,7 +144,6 @@ export const initPostForm = () => {
 
       //Final Cat Age
       const catAge = `${year} ${yearLabel} ${month} ${monthLabel}`;
-      
 
       // Validate phone number format
 

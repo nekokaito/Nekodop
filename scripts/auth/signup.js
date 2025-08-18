@@ -2,7 +2,7 @@ import { validatePassword } from "../utils/check-password.js";
 
 const signup = async (userName, email, password, profilePicture) => {
   // Send signup data to backend
-  await fetch("http://localhost:5000/register", {
+  await fetch("https://nekodop-api.vercel.app/register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userName, email, password, profilePicture }),
