@@ -21,8 +21,6 @@ export const applyFilters = () => {
       (maleChecked && cat.cat_gender.toLowerCase() === "male") ||
       (femaleChecked && cat.cat_gender.toLowerCase() === "female");
 
-      console.log(genderMatch)
-
     return nameMatch && genderMatch;
   });
 

@@ -36,10 +36,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const showActiveSection = () => {
     const sections = document.querySelectorAll("#app > div");
-    console.log(sections);
+    
 
     let hash = window.location.hash;
-    console.log(hash);
+    
 
     // Set default hash
     if (!hash) {

@@ -11,7 +11,6 @@ const login = async (email, password) => {
       if (data.user) {
         // Exclude password
         localStorage.setItem("user", JSON.stringify(data.user));
-        console.log("Login successful", data.user);
         showToast("Login successful!", "success");
         setTimeout(() => {
           window.location.href = "/";

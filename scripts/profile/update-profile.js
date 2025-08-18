@@ -86,7 +86,6 @@ export const updateProfile = (userId) => {
 
         if (file) {
           const previewURL = URL.createObjectURL(file);
-          console.log(previewURL);
           profilePicPreview.src = previewURL;
           profilePicPreview.classList.remove("hidden");
           profilePictureContainer.classList.remove("hidden");
@@ -133,7 +132,6 @@ export const updateProfile = (userId) => {
         );
 
         const cloudData = await cloudRes.json();
-        console.log(cloudData);
         profilePictureUrl = cloudData.secure_url;
       } catch (uploadErr) {
         console.error("Cloudinary upload error:", uploadErr);

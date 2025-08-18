@@ -14,7 +14,6 @@ export const initProfile = async () => {
     if (!res.ok) throw new Error("Failed to fetch user data");
 
     const { user: userData } = await res.json();
-    console.log(userData);
     if (!userData) return;
 
     // Set user profile picture or fallback
