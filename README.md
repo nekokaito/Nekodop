@@ -44,6 +44,12 @@ Nekodop allows users to register, log in, and post cats they want to give up for
 
 ---
 
+## Alternative Repo
+
+- [JSP/JAVA](https://github.com/nekokaito/Nekodop-JSP)
+- [Backend (Python)](https://github.com/nekokaito/Nekodop-Server)
+- [Backend (Express)](https://github.com/nekokaito/Nekodop-Express)
+
 ## 💝 Donation Details
 
 <img src="./images/bkash_logo.png" alt="Bkash Logo" width="200" />
